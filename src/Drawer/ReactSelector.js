@@ -9,7 +9,7 @@ const options = [
     { id: 5, value: 'red', label: 'red' },
     { id: 6, value: 'black', label: 'black' },
     { id: 7, value: 'Indigo', label: 'Indigo' },
-    { id: 8, value: 'Orange', label: 'Orange' },
+    { id: 8, value: 'Orange', label: 'Orange' }
 ]
 
 const MyComponent = () => (
