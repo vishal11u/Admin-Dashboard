@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { FaUserDoctor } from "react-icons/fa6";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -22,13 +22,13 @@ import Staff from '../Component/Staff';
 import Dashboard from '../Component/DashBoard';
 import { MdDashboard } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
-import { FaChartPie } from "react-icons/fa6";
-import { FaUserTie } from "react-icons/fa6";
+import { FaHospitalUser } from "react-icons/fa6";
 import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
 import User from '../Component/User';
 import UserImg from '../Component/AvatarDash';
-import Logout from '../Component/Lofout'
+import Logout from '../Component/Lofout';
+import { RiMenu2Line } from "react-icons/ri";
 
 const drawerWidth = 190;
 
@@ -100,8 +100,8 @@ export default function MiniDrawer() {
     const data = [
         {
             path: "/",
-            name: "Personal Info",
-            icon: <FaUserTie size={22} />
+            name: "Feedback",
+            icon: <FaUserDoctor size={22} />
         },
 
         {
@@ -112,7 +112,7 @@ export default function MiniDrawer() {
         {
             path: "/dash",
             name: "Analytics",
-            icon: <FaChartPie size={22} />
+            icon: <FaHospitalUser size={22} />
         }
     ]
     const theme = useTheme();
@@ -129,11 +129,11 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar sx={{backgroundColor:"3B3C36"}} position="fixed" open={open}>
+            <AppBar sx={{backgroundColor:""}} position="fixed" open={open}>
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
                         sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
-                        <MenuIcon />
+                        <RiMenu2Line />
                     </IconButton>
                     <Typography sx={{ display: "flex" }}>
                         <Date />
@@ -143,7 +143,7 @@ export default function MiniDrawer() {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <Drawer variant="permanent" open={open}>
+            <Drawer variant="permanent" open={open} >
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
                         {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision />}
@@ -168,8 +168,8 @@ export default function MiniDrawer() {
             <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
                 <DrawerHeader />
                 <Routes>
-                    <Route path='/' element={<Dashboard />} />
-                    <Route path='/home' element={<FeedBack />}>
+                    <Route path='/home' element={<Dashboard />} />
+                    <Route path='/' element={<FeedBack />}>
                         <Route path='consult' element={<Consultant />} />
                         <Route path='staff' element={<Staff />} />
                         <Route path='patient' element={<Petient />} />
