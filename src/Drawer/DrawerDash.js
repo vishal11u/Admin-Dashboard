@@ -131,18 +131,23 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar sx={{backgroundColor:""}} position="fixed" open={open}>
+            <AppBar sx={{backgroundColor:"#3B3C36"}} position="fixed" open={open}>
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
                         sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
                         <RiMenu2Line />
                     </IconButton>
+                    <div className='flex justify-between w-full items-center'>
+                        <Typography>
+                            <h1 className='text-[20px]'>Admin Dashboard</h1>
+                        </Typography>
                     <Typography sx={{ display: "flex" }}>
                         <Date />
                         <User />
                         <UserImg />
                         <Logout />
                     </Typography>
+                    </div>
                 </Toolbar>
             </AppBar>
             <Drawer variant="permanent" open={open} >
