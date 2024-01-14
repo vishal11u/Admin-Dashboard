@@ -69,7 +69,7 @@ function YourComponent() {
         const totalReviewLabels = templateQuestions[0].ansPatternScale.length;
         const newProgress = (progress + 1) * (100 / (totalQuestions * totalReviewLabels));
         setProgress(Math.min(newProgress, 100));
-        alert("Submited")
+        // alert("Submited")
     };
     
     return (
