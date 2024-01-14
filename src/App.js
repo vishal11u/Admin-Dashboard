@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import MiniDrawer from './Drawer/DrawerDash';
+import Loader from './Login/Loader';
 
 function App() {
+  const [loader, setLoader] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoader(false)
+    }, 3000)
+  })
+
   return (
     <div>
-      <MiniDrawer/>
+      {
+        loader ? <Loader /> : <MiniDrawer />
+      }
     </div>
   )
 }
