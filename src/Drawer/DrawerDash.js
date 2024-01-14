@@ -131,7 +131,7 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-            <AppBar sx={{backgroundColor:"#3B3C36"}} position="fixed" open={open}>
+            <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
                         sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
@@ -141,12 +141,12 @@ export default function MiniDrawer() {
                         <Typography>
                             <h1 className='text-[20px]'>Admin Dashboard</h1>
                         </Typography>
-                    <Typography sx={{ display: "flex" }}>
-                        <Date />
-                        <User />
-                        <UserImg />
-                        <Logout />
-                    </Typography>
+                        <Typography sx={{ display: "flex" }}>
+                            <Date />
+                            <User />
+                            <UserImg />
+                            <Logout />
+                        </Typography>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -181,8 +181,8 @@ export default function MiniDrawer() {
                         <Route path='staff' element={<Staff />} />
                         <Route path='patient' element={<Petient />} />
                     </Route>
-                    <Route path='/temp' element={<TemplateQue/>}/>
-                    <Route path='/staf' element={<Hospital/>}/>
+                    <Route path='/temp' element={<TemplateQue />} />
+                    <Route path='/staf' element={<Hospital />} />
                 </Routes>
             </Box>
         </Box>
