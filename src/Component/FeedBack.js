@@ -3,7 +3,7 @@ import Nested from './Nested'
 
 function FeedBack() {
   return (
-    <div className='md:flex justify-center w-full space-x-28'>
+    <div className='md:flex justify-center w-full space-x-28 mt-10'>
         <div className=''>
             <h1 className="text-left font-bold text-3xl">Please Select Feedback Form</h1>
             <p>Please share your review to improve our system. Thank You!</p>
