@@ -1,21 +1,26 @@
 import React from 'react';
-import { MdLogout } from "react-icons/md";
-import { useNavigate } from 'react-router-dom'
+import { MdLogout } from 'react-icons/md';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../Redux/Sclice';
 
-function Lofout() {
+function Logout() {
   const navigate = useNavigate();
-  const Logout = () => {
-    console.log("hello");
-    navigate('/')
-  }
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    console.log("Logging out...");
+    dispatch(logout());
+    navigate('/login');
+  };
 
   return (
     <div className='items-center flex px-2'>
-      <button onClick={Logout}>
+      <button onClick={handleLogout}>
         <MdLogout size={30} />
       </button>
     </div>
-  )
+  );
 }
 
-export default Lofout;
+export default Logout;

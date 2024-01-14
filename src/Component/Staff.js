@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import Selector from '../Drawer/ReactSelector';
 
 function Staff() {
   return (
-    <div>Staff</div>
+    <div>
+      <Selector/>
+    </div>
   )
 }
 

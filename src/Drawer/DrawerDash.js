@@ -29,6 +29,8 @@ import User from '../Component/User';
 import UserImg from '../Component/AvatarDash';
 import Logout from '../Component/Lofout';
 import { RiMenu2Line } from "react-icons/ri";
+import TemplateQue from '../Drawer/TemplateQue';
+import Hospital from '../Component/Hospital';
 
 const drawerWidth = 190;
 
@@ -110,8 +112,8 @@ export default function MiniDrawer() {
             icon: <MdDashboard size={22} />
         },
         {
-            path: "/dash",
-            name: "Analytics",
+            path: "/staf",
+            name: "Hospital",
             icon: <FaHospitalUser size={22} />
         }
     ]
@@ -170,10 +172,12 @@ export default function MiniDrawer() {
                 <Routes>
                     <Route path='/home' element={<Dashboard />} />
                     <Route path='/' element={<FeedBack />}>
-                        <Route path='consult' element={<Consultant />} />
+                        <Route index element={<Consultant />} />
                         <Route path='staff' element={<Staff />} />
                         <Route path='patient' element={<Petient />} />
                     </Route>
+                    <Route path='/temp' element={<TemplateQue/>}/>
+                    <Route path='/staf' element={<Hospital/>}/>
                 </Routes>
             </Box>
         </Box>

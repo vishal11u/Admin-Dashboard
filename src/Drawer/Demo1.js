@@ -64,13 +64,11 @@ function YourComponent() {
     ];
 
     const handleButtonClick = () => {
-        const totalQuestions = templateQuestions[0].questions.length;
-        console.log(totalQuestions);
-        const totalReviewLabels = templateQuestions[0].ansPatternScale.length;
-        const newProgress = (progress + 1) * (100 / (totalQuestions * totalReviewLabels));
-        setProgress(Math.min(newProgress, 100));
+        setProgress((prevProgress) =>
+            prevProgress + (100 / templateQuestions[0].ansPatternScale.length)
+        );
     };
-    
+
     return (
         <div className="container mx-auto">
             <Box sx={{ width: "100%" }}>
@@ -93,7 +91,7 @@ function YourComponent() {
                             ))}
                         </div>
                     ))}
-                    {/* <p className="mt-4">Conclusion Question: {template.conclusionQuestionAns.conclusionQuestion}</p> */}
+                    <p className="mt-4">Conclusion Question: {template.conclusionQuestionAns.conclusionQuestion}</p>
                 </div>
             ))}
         </div>

@@ -1,14 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-export const Slice = createSlice({
-    name: 'Cart',
-    initialState: [],
-    reducers: {
-        add: (state, action) => {
-            state.push(action.payload)
-        }
-    }
-})
+export const authSlice = createSlice({
+  name: 'auth',
+  initialState: {
+    isAuthenticated: false,
+  },
+  reducers: {
+    login: (state) => {
+      state.isAuthenticated = true;
+    },
+    logout: (state) => {
+      state.isAuthenticated = false;
+    },
+  },
+});
 
-export const { add } = Slice.actions;
-export default Slice.reducer;
+export const { login, logout } = authSlice.actions;
+export default authSlice.reducer;

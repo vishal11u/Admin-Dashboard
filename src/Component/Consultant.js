@@ -1,12 +1,9 @@
 import React from 'react';
-import ReactSelector from '../Drawer/ReactSelector';
-import ReactSelector2 from '../Drawer/ReactSelector2'
 
 function Consultant() {
   return (
     <div>
-      <ReactSelector/>
-      <ReactSelector2 />
+      <h1 className="text-center mt-5">Consultant</h1>
     </div>
   )
 }
