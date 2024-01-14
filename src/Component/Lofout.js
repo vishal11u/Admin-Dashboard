@@ -15,7 +15,7 @@ function Logout() {
   };
 
   return (
-    <div className='items-center flex px-2'>
+    <div className='items-center flex pl-3'>
       <button onClick={handleLogout}>
         <MdLogout size={30} />
       </button>
