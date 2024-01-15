@@ -94,8 +94,9 @@ function UsersDoctor() {
 
     return (
         <div className="">
-            <div className='text-center py-5 text-[30px] font-semibold'>
-                <h1>Doctor's Details</h1>
+            <div className='text-center items-center py-5 flex justify-between'>
+                <h1 className='text-[35px] font-semibold items-center'>🧑🏼‍⚕️Doctor's Details</h1>
+                <input className='py-1 px-2 border rounded-md text-[20px] outline-none ' type='search' placeholder='Search Doctor..'/>
             </div>
             <div>
                 <button className='flex justify-center items-center px-2 gap-1 py-1 rounded-md shadow-lg bg-red-600 text-white text-lg font-semibold' onClick={showModal}>
@@ -137,17 +138,17 @@ function UsersDoctor() {
 
             <div className='grid grid-cols-2'>
                 {doctors.map((doctor, index) => (
-                    <div className="flex shadow-lg mt-5 justify-center rounded-md items-center border px-2 space-x-5 h-[25vh] w-[33vw] transition-all duration-300 hover:scale-[1.05]"
+                    <div className="flex shadow-lg mt-5 bg-gray-200 justify-center rounded-md items-center border px-2 space-x-5 h-[25vh] w-[32vw] transition-all duration-300 hover:scale-[1.05]"
                         key={doctor.rollno} >
                         <div>
                             <img className="h-[21vh] w-[10vw] rounded-2xl border shadow-lg" src={doctor.url} alt="" />
                         </div>
-                        <div className='space-y-2'>
-                            <h2 className="border py-2 px-2">Name: {doctor.name}</h2>
-                            <p className="border py-2 px-2">Speciality: {doctor.specialty}</p>
-                            <p className="border py-2 px-2">Email: {doctor.email}</p>
+                        <div className='space-y-3'>
+                            <h2 className="border border-black rounded-lg py-2 px-2">Name: {doctor.name}</h2>
+                            <p className="border border-black rounded-lg py-2 px-2">Speciality: {doctor.specialty}</p>
+                            <p className="border border-black rounded-lg py-2 px-2">Email: {doctor.email}</p>
                         </div>
-                        <div className="flex space-y-3 flex-col">
+                        <div className="flex space-y-4 flex-col">
                             <button className='py-2 rounded-md px-2 bg-yellow-500' onClick={() => handleView(index)}>
                                 <FaEye size={20} />
                             </button>
