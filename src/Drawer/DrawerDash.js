@@ -115,7 +115,16 @@ export default function MiniDrawer() {
             path: "/staf",
             name: "Hospital",
             icon: <FaHospitalUser size={22} />
-        }
+        },
+        // {
+        //     path: "/staf",
+        //     name: "Hospital",
+        //     icon: <FaHospitalUser size={22} />,
+        //     submenus:{
+        //         id1:"hello",
+        //         id2:"world"
+        //     }
+        // }
     ]
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);

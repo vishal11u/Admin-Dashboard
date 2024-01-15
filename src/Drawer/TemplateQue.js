@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import { IoCaretBackCircle } from "react-icons/io5";
+import { Link } from 'react-router-dom';
 
 function LinearProgressWithLabel(props) {
     return (
@@ -71,26 +73,34 @@ function YourComponent() {
         setProgress(Math.min(newProgress, 100));
         // alert("Submited")
     };
-    
+
     return (
-        <div className="container mx-auto">
-            <Box sx={{ width: "100%" }}>
+        <div className="container mx-auto px-6">
+            <div className='mt-3'>
+                <Link to='/' className='flex items-center text-base gap-1 bg-black text-white py-1 px-2 w-[16vw] rounded-lg' type='button'>
+                    <IoCaretBackCircle size={25} />
+                    Back to Template Selection
+                </Link>
+            </div>
+            <Box sx={{ width: "100%", padding: "5px" }}>
                 <LinearProgressWithLabel value={progress} />
             </Box>
             {templateQuestions.map((template) => (
-                <div key={template.id} className="bg-gray-100 p-6 rounded-lg shadow-md">
-                    <h2 className="text-xl font-semibold mb-4">{template.templateName}</h2>
-                    <p className="mb-2">{template.headers}</p>
-                    <h3 className="text-lg font-semibold mb-2">Questions:</h3>
+                <div key={template.id} className="bg-gray-100 shadow-lg rounded-lg pb-2 border mb-4">
+                    {/* <h1 className="text-xl font-semibold mb-4">{template.templateName}</h1> */}
+                    <p className="mb-2 py-2 rounded-t-md pl-4 font-semibold bg-blue-500">{template.headers}</p>
+                    <h3 className="text-lg font-semibold pl-4">Questions:</h3>
                     {template.questions.map((question) => (
-                        <div key={question.qid} className="mb-3 flex items-center space-x-4">
-                            <p className="mb-1">{question.question}</p>
+                        <div key={question.qid} className="mb-3 flex px-4 w-[100%] items-center justify-center space-x-4">
+                            <p className="mb-1 w-[100%] mt-3">{question.qid}:{question.question}</p>
                             {template.ansPatternScale.map((scale, index) => (
-                                <button key={scale.value}
-                                    className={`px-4 py-2 rounded ${getButtonColor(scale.value)}`}
-                                    onClick={() => { handleButtonClick(); }}>
-                                    {scale.reviewLabel}
-                                </button>
+                                <div className=''>
+                                    <button key={scale.value}
+                                        className={`py-2 w-[7.5vw] text-[13px] rounded-3xl ${getButtonColor(scale.value)}`}
+                                        onClick={() => { handleButtonClick(); }}>
+                                        {scale.reviewLabel}
+                                    </button>
+                                </div>
                             ))}
                         </div>
                     ))}

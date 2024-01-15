@@ -99,7 +99,7 @@ function UsersDoctor() {
             </div>
             <div>
                 <button className='flex justify-center items-center px-2 gap-1 py-1 rounded-md shadow-lg bg-red-600 text-white text-lg font-semibold' onClick={showModal}>
-                    <IoMdAddCircle/> ADD
+                    <IoMdAddCircle /> ADD
                 </button>
                 <Modal title="Doctor Details"
                     visible={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
@@ -135,9 +135,9 @@ function UsersDoctor() {
                 </Modal>
             </div>
 
-            <div>
+            <div className='grid grid-cols-2'>
                 {doctors.map((doctor, index) => (
-                    <div className="flex shadow-lg mt-5 justify-center rounded-md items-center border space-x-5 h-[25vh] w-[32vw] transition-all duration-300 hover:scale-[1.05]"
+                    <div className="flex shadow-lg mt-5 justify-center rounded-md items-center border px-2 space-x-5 h-[25vh] w-[33vw] transition-all duration-300 hover:scale-[1.05]"
                         key={doctor.rollno} >
                         <div>
                             <img className="h-[21vh] w-[10vw] rounded-2xl border shadow-lg" src={doctor.url} alt="" />
