@@ -29,6 +29,7 @@ function UsersDoctor() {
         name: '',
         specialty: '',
         email: '',
+        url: ''
     });
 
     const showModal = () => {
@@ -36,19 +37,24 @@ function UsersDoctor() {
     };
 
     const handleOk = () => {
-        setConfirmLoading(true);
-        const updatedDoctors = [...doctors, { ...formData, url: image }];
-        setDoctors(updatedDoctors);
-        setTimeout(() => {
-            setOpen(false);
-            setConfirmLoading(false);
-            setFormData({
-                name: '',
-                specialty: '',
-                email: '',
-            });
-            setImage(null);
-        }, 1000);
+        if (formData.name === '' || formData.specialty === '' || formData.email === '') {
+            alert("Fill All Data")
+        } else {
+            setConfirmLoading(true);
+            const updatedDoctors = [...doctors, { ...formData, url: image }];
+            setDoctors(updatedDoctors);
+            setTimeout(() => {
+                setOpen(false);
+                setConfirmLoading(false);
+                setFormData({
+                    name: '',
+                    specialty: '',
+                    email: '',
+                    url: ''
+                });
+                setImage(null);
+            }, 1000);
+        }
     };
 
     const handleCancel = () => {
@@ -62,6 +68,7 @@ function UsersDoctor() {
         } else if (info.file.status === 'error') {
             message.error(`${info.file.name} file upload failed.`);
         }
+        console.log(info);
     };
 
     const handleView = (index) => {
@@ -74,6 +81,7 @@ function UsersDoctor() {
             name: doctorToEdit.name,
             specialty: doctorToEdit.specialty,
             rollno: doctorToEdit.rollno,
+            url: doctorToEdit.url
         });
         setImage(doctorToEdit.url);
         setOpen(true);
@@ -96,7 +104,7 @@ function UsersDoctor() {
         <div className="">
             <div className='text-center items-center py-5 flex justify-between'>
                 <h1 className='text-[35px] font-semibold items-center'>🧑🏼‍⚕️Doctor's Details</h1>
-                <input className='py-1 px-2 border rounded-md text-[20px] outline-none ' type='search' placeholder='Search Doctor..'/>
+                <input className='py-1 px-2 border rounded-md text-[20px] outline-none ' type='search' placeholder='Search Doctor..' />
             </div>
             <div>
                 <button className='flex justify-center items-center px-2 gap-1 py-1 rounded-md shadow-lg bg-red-600 text-white text-lg font-semibold' onClick={showModal}>
@@ -105,24 +113,24 @@ function UsersDoctor() {
                 <Modal title="Doctor Details"
                     visible={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
                     <form className="grid grid-cols-1">
-                        <label htmlFor="name">Name*</label>
+                        <label className='mt-2 font-semibold' htmlFor="name">Name*</label>
                         <Input className="border" type="text" id="name" name="name" placeholder="Enter Name" value={formData.name} onChange={handleChange} />
 
-                        <label htmlFor="specialty">Department*</label>
+                        <label className='mt-2 font-semibold' htmlFor="specialty">Department*</label>
                         <Input className="border" type="text" id="specialty" name="specialty" placeholder="Enter Department" value={formData.specialty} onChange={handleChange} />
 
-                        <label htmlFor="email">Email *</label>
+                        <label className='mt-2 font-semibold' htmlFor="email">Email *</label>
                         <Input className="border" type="email" id="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
 
-                        <label htmlFor="image">Upload Image*</label>
+                        <label className='mt-2 font-semibold' htmlFor="image">Upload Image*</label>
                         <Upload
+                            className='mt-2'
                             name="file"
                             listType="picture-card"
                             showUploadList={false}
-                            action="YOUR_SERVER_UPLOAD_ENDPOINT" // Replace with your server upload endpoint
+                            action="YOUR_SERVER_UPLOAD_ENDPOINT"
                             beforeUpload={() => false}
-                            onChange={handleFileChange}
-                        >
+                            onChange={handleFileChange} >
                             {image ? (
                                 <img src={image} alt="Doctor" style={{ width: '100%' }} />
                             ) : (
@@ -138,10 +146,15 @@ function UsersDoctor() {
 
             <div className='grid grid-cols-2'>
                 {doctors.map((doctor, index) => (
-                    <div className="flex shadow-lg mt-5 bg-gray-200 justify-center rounded-md items-center border px-2 space-x-5 h-[25vh] w-[32vw] transition-all duration-300 hover:scale-[1.05]"
+                    <div className="flex shadow-lg mt-5 bg-gray-200 justify-center overflow-hidden rounded-md items-center border px-2 space-x-5 h-[25vh] w-[32vw] transition-all duration-300 hover:scale-[1.05]"
                         key={doctor.rollno} >
                         <div>
-                            <img className="h-[21vh] w-[10vw] rounded-2xl border shadow-lg" src={doctor.url} alt="" />
+                            <img
+                                className="h-[21vh] w-[10vw] rounded-2xl border shadow-lg"
+                                src={doctor.url}
+                                alt="name"
+                                style={{ objectFit: 'cover' }}
+                            />
                         </div>
                         <div className='space-y-3'>
                             <h2 className="border border-black rounded-lg py-2 px-2">Name: {doctor.name}</h2>

@@ -22,7 +22,7 @@ function CurrentDate() {
 
   return (
     <div className='text-sm border-l border-r px-4'>
-      <h1>{date} {monthName} {year}</h1>
+      <h1>{date}  {monthName}  {year}</h1>
       <h1 className='text-center'>{displayHours}:{minutes} {amOrPm}</h1>
     </div>
   );
