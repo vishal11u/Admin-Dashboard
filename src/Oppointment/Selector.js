@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
-// import TableOp from './TableOp'
 
 const options = [
     { id: 1, value: 'Alliance Multispeciality Hospital', label: 'Alliance Multispeciality Hospital' },
@@ -22,19 +21,11 @@ const MyComponent = () => {
     );
 };
 
-export default MyComponent;
-
 function TableOp() {
-    const listData = [
-        {
-
-        }
-    ]
-
+    const listData = [];
     const handlePharm = () => {
         console.log('pharmacy')
     }
-
     return (
         <div className=''>
             <h1>Department</h1>
@@ -48,4 +39,6 @@ function TableOp() {
         </div>
     )
 }
+
+export default MyComponent;
 

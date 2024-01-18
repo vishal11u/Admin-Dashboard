@@ -13,6 +13,7 @@ import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
 import { MdDeleteOutline } from "react-icons/md";
 import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 function ConsultationCharges() {
@@ -71,7 +72,7 @@ function ConsultationCharges() {
             setFollowUpApplication(false);
             setActive(true);
             // setEmpty(false)
-            toast.success('🦄 Wow so easy!', {
+            toast.success('Wow so easy!', {
                 position: "top-right",
                 autoClose: 2500,
                 hideProgressBar: false,
@@ -83,7 +84,7 @@ function ConsultationCharges() {
                 transition: Bounce,
             });
         } else {
-            toast.error('🦄 Wow so easy!', {
+            toast.error('Wow so easy!', {
                 position: "top-right",
                 autoClose: 2500,
                 hideProgressBar: false,
