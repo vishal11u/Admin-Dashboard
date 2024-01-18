@@ -21,7 +21,7 @@ import Consultant from '../Component/Consultant';
 import Staff from '../Component/Staff';
 import Dashboard from '../Component/DashBoard';
 import { MdDashboard } from "react-icons/md";
-import { NavLink } from 'react-router-dom';
+import { NavLink} from 'react-router-dom';
 import { FaHospitalUser } from "react-icons/fa6";
 import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
@@ -31,9 +31,57 @@ import Logout from '../Component/Lofout';
 import { RiMenu2Line } from "react-icons/ri";
 import TemplateQue from '../Drawer/TemplateQue';
 import Hospital from '../Component/Hospital';
+import Collapse from "@mui/material/Collapse";
+import InboxIcon from "@mui/icons-material/MoveToInbox";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import StarBorder from "@mui/icons-material/StarBorder";
 
-const drawerWidth = 190;
 
+const data = [
+    {
+        id: 1,
+        path: "/",
+        name: "Feedback",
+        icon: <FaUserDoctor size={22} />
+    },
+
+    {
+        id: 2,
+        path: '/home',
+        name: "Dashboard ",
+        icon: <MdDashboard size={22} />
+    },
+    {
+        id: 3,
+        path: "/staf",
+        name: "Hospital",
+        icon: <FaHospitalUser size={22} />,
+        subMenus: [
+            {
+                id: 4,
+                functionality: "Feedback",
+                path: "/feed",
+                icon: <FaHospitalUser size={22} />,
+            },
+            {
+                id: 5,
+                functionality: "Answer Review",
+                path: "/answer",
+                icon: <FaHospitalUser size={22} />,
+            },
+            {
+                id: 6,
+                functionality: "QR Generate",
+                path: "/Qr",
+                icon: <FaHospitalUser size={22} />,
+            },
+        ],
+    },
+
+]
+
+const drawerWidth = 210;
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -98,34 +146,38 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-export default function MiniDrawer() {
-    const data = [
-        {
-            path: "/",
-            name: "Feedback",
-            icon: <FaUserDoctor size={22} />
-        },
+function NestedList() {
+    const [open, setOpen] = React.useState(true);
 
-        {
-            path: '/home',
-            name: "Dashboard ",
-            icon: <MdDashboard size={22} />
-        },
-        {
-            path: "/staf",
-            name: "Hospital",
-            icon: <FaHospitalUser size={22} />
-        },
-        // {
-        //     path: "/staf",
-        //     name: "Hospital",
-        //     icon: <FaHospitalUser size={22} />,
-        //     submenus:{
-        //         id1:"hello",
-        //         id2:"world"
-        //     }
-        // }
-    ]
+    const handleClick = () => {
+        setOpen(!open);
+    };
+
+    return (
+        <>
+            <ListItemButton onClick={handleClick}>
+                <ListItemIcon>
+                    <InboxIcon />
+                </ListItemIcon>
+                <ListItemText primary="Inbox" />
+                {open ? <ExpandLess /> : <ExpandMore />}
+            </ListItemButton>
+
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <ListItemButton sx={{ pl: 4 }}>
+                        <ListItemIcon>
+                            <StarBorder />
+                        </ListItemIcon>
+                        <ListItemText primary="Starred" />
+                    </ListItemButton>
+                </List>
+            </Collapse>
+        </>
+    );
+}
+
+export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
 
@@ -140,6 +192,7 @@ export default function MiniDrawer() {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
+
             <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
@@ -159,6 +212,7 @@ export default function MiniDrawer() {
                     </div>
                 </Toolbar>
             </AppBar>
+
             <Drawer variant="permanent" open={open} >
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
@@ -166,21 +220,41 @@ export default function MiniDrawer() {
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
+
                 <List>
                     {data.map((text) => (
-                        <NavLink to={text.path} key={text} disablePadding sx={{ display: 'block' }}>
-                            <ListItemButton
-                                sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
-                                <ListItemIcon
-                                    sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
-                                    {text.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
-                        </NavLink>
+                        <div key={text.id}>
+                            <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
+                                <ListItemButton
+                                    sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
+                                    <ListItemIcon
+                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                                        {text.icon}
+                                    </ListItemIcon>
+                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
+                                </ListItemButton>
+                            </NavLink>
+                            {text.subMenus && (
+                                <Collapse in={open} timeout="auto" unmountOnExit>
+                                    <List component="div" disablePadding>
+                                        {text.subMenus.map((subMenu) => (
+                                            <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
+                                                <ListItemButton sx={{ pl: 4, minHeight: 48 }}>
+                                                    <ListItemIcon>
+                                                        {subMenu.icon}
+                                                    </ListItemIcon>
+                                                    <ListItemText primary={subMenu.functionality} />
+                                                </ListItemButton>
+                                            </NavLink>
+                                        ))}
+                                    </List>
+                                </Collapse>
+                            )}
+                        </div>
                     ))}
                 </List>
             </Drawer>
+
             <Box component="main" sx={{ flexGrow: 1 }}>
                 <DrawerHeader />
                 <Routes>
