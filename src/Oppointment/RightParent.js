@@ -72,9 +72,9 @@ function ConsultationCharges() {
             setFollowUpApplication(false);
             setActive(true);
             // setEmpty(false)
-            toast.success('Wow so easy!', {
+            toast.success('Appointment Successful!', {
                 position: "top-right",
-                autoClose: 2500,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -84,9 +84,9 @@ function ConsultationCharges() {
                 transition: Bounce,
             });
         } else {
-            toast.error('Wow so easy!', {
+            toast.error('Fill all input Fields!', {
                 position: "top-right",
-                autoClose: 2500,
+                autoClose: 2000,
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
@@ -212,7 +212,7 @@ function ConsultationCharges() {
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Is Free</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y  divide-gray-100 border-t border-gray-100">
+                        <tbody className="divide-y shadow-lg divide-gray-100 border-t border-gray-100">
                             {tableData.map((data, index) => (
                                 <tr key={index} className="hover:bg-gray-50">
                                     <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
@@ -220,10 +220,10 @@ function ConsultationCharges() {
                                             <MdDeleteOutline size={25} />
                                         </button>
                                     </th>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-6 py-4">
                                         {data.fromTime && data.fromTime.format('HH:mm A')}
                                     </td>
-                                    <td className="px-6 py-4 text-center">
+                                    <td className="px-6 py-4">
                                         {data.toTime && data.toTime.format('HH:mm A')}
                                     </td>
                                     <td className="px-6 py-4 text-center">
@@ -246,7 +246,7 @@ function ConsultationCharges() {
                     </table>
                 </div>
             ) : (
-                <p className="text-center mt-5 text-gray-500 font-semibold">
+                <p className="text-center text-lg mt-8 text-gray-500 font-semibold">
                     Table is empty. Add data using the form above.
                 </p>
             )}

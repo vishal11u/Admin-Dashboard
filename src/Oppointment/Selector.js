@@ -14,7 +14,7 @@ const MyComponent = () => {
 
     return (
         <div className='mt-5 w-full'>
-            <label className='text-[13px]'>Select Department :-</label>
+            <label className='text-[13px]'>Units :-</label>
             <Select options={options} onChange={handleSelectChange} value={selectedOption} />
             {selectedOption && <TableOp />}
         </div>
