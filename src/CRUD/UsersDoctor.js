@@ -12,17 +12,24 @@ function UsersDoctor() {
     const [doctors, setDoctors] = useState([
         {
             name: 'John Doe',
-            specialty: 'Surgenist',
+            specialty: 31,
             rollno: 1,
-            url: 'http://www.writergirl.com/wp-content/uploads/2014/11/Doctor-790X1024.jpg',
+            url: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'john1@gmail.com',
         },
         {
             name: 'Alexa Lee',
-            specialty: 'Cardiologist',
+            specialty: 22,
             rollno: 2,
-            url: 'https://leman-clinic.ch/wp-content/uploads/2018/11/02.jpg',
+            url: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'alexa2@gmail.com',
+        },
+        {
+            name: 'Michal Stark',
+            specialty: 16,
+            rollno: 3,
+            url: 'https://images.pexels.com/photos/1288182/pexels-photo-1288182.jpeg?auto=compress&cs=tinysrgb&w=600',
+            email: 'michal2@gmail.com',
         }
     ]);
     const [formData, setFormData] = useState({
@@ -103,12 +110,12 @@ function UsersDoctor() {
     return (
         <div className="">
             <div className='text-center items-center py-5 flex justify-between'>
-                <h1 className='text-[35px] font-semibold items-center'>🧑🏼‍⚕️Doctor's Details</h1>
-                <input className='py-1 px-2 border rounded-md text-[20px] outline-none ' type='search' placeholder='Search Doctor..' />
+                <h1 className='text-[35px] font-semibold items-center'>Patient Details</h1>
+                <input className='py-1 px-2 border rounded-md text-[20px] outline-none ' type='search' placeholder='Search Patient Name..' />
             </div>
             <div>
                 <button className='flex justify-center items-center px-2 gap-1 py-1 rounded-md shadow-lg bg-red-600 text-white text-lg font-semibold' onClick={showModal}>
-                    <IoMdAddCircle /> ADD
+                    <IoMdAddCircle /> ADD New Patient
                 </button>
                 <Modal title="Doctor Details"
                     visible={open} onOk={handleOk} confirmLoading={confirmLoading} onCancel={handleCancel}>
@@ -116,8 +123,8 @@ function UsersDoctor() {
                         <label className='mt-2 font-semibold' htmlFor="name">Name*</label>
                         <Input className="border" type="text" id="name" name="name" placeholder="Enter Name" value={formData.name} onChange={handleChange} />
 
-                        <label className='mt-2 font-semibold' htmlFor="specialty">Department*</label>
-                        <Input className="border" type="text" id="specialty" name="specialty" placeholder="Enter Department" value={formData.specialty} onChange={handleChange} />
+                        <label className='mt-2 font-semibold' htmlFor="specialty">Age*</label>
+                        <Input className="border" type='number' id="specialty" name="specialty" placeholder="Enter Department" value={formData.specialty} onChange={handleChange} />
 
                         <label className='mt-2 font-semibold' htmlFor="email">Email *</label>
                         <Input className="border" type="email" id="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} />
@@ -158,7 +165,7 @@ function UsersDoctor() {
                         </div>
                         <div className='space-y-3'>
                             <h2 className="border border-black rounded-lg py-2 px-2">Name: {doctor.name}</h2>
-                            <p className="border border-black rounded-lg py-2 px-2">Speciality: {doctor.specialty}</p>
+                            <p className="border border-black rounded-lg py-2 px-2">Age: {doctor.specialty}</p>
                             <p className="border border-black rounded-lg py-2 px-2">Email: {doctor.email}</p>
                         </div>
                         <div className="flex space-y-4 flex-col">

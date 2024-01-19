@@ -16,7 +16,7 @@ const MyComponent = () => {
         <div className='w-full'>
             <label className='text-[13px]'>Units :-</label>
             <Select options={options} onChange={handleSelectChange} value={selectedOption} />
-            {selectedOption && <TableOp />}
+            <TableOp />
         </div>
     );
 };

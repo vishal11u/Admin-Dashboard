@@ -9,7 +9,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import { FaUserDoctor } from "react-icons/fa6";
+import Logo from './hospital-logo-vector-27-removebg-preview.png'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -21,7 +21,7 @@ import Consultant from '../Component/Consultant';
 import Staff from '../Component/Staff';
 import Dashboard from '../Component/DashBoard';
 import { MdDashboard } from "react-icons/md";
-import { NavLink} from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FaHospitalUser } from "react-icons/fa6";
 import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
@@ -36,52 +36,62 @@ import InboxIcon from "@mui/icons-material/MoveToInbox";
 import ExpandLess from "@mui/icons-material/ExpandLess";
 import ExpandMore from "@mui/icons-material/ExpandMore";
 import StarBorder from "@mui/icons-material/StarBorder";
+import { BiFullscreen } from "react-icons/bi";
+import { MdAppRegistration } from "react-icons/md";
+import { IoQrCode } from "react-icons/io5";
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
+import DrawerBadge from '../Component/DrawerBadge';
 
 
 const data = [
     {
         id: 1,
-        path: "/",
-        name: "Feedback",
-        icon: <FaUserDoctor size={22} />
+        path: '/dash',
+        name: "Dashboard",
+        icon: <MdDashboard size={22} />
     },
-
     {
         id: 2,
-        path: '/home',
-        name: "Dashboard ",
-        icon: <MdDashboard size={22} />
+        path: "/home",
+        name: "Appointment",
+        icon: <MdAppRegistration size={24} />
     },
     {
         id: 3,
         path: "/staf",
-        name: "Hospital",
+        name: "Registration",
         icon: <FaHospitalUser size={22} />,
         subMenus: [
             {
-                id: 4,
+                id: 5,
                 functionality: "Feedback",
-                path: "/feed",
-                icon: <FaHospitalUser size={22} />,
+                path: "/",
+                icon: <QuestionAnswerIcon size={22} />,
             },
             {
                 id: 5,
                 functionality: "Answer Review",
-                path: "/answer",
+                path: "/temp",
                 icon: <FaHospitalUser size={22} />,
             },
             {
                 id: 6,
                 functionality: "QR Generate",
                 path: "/Qr",
-                icon: <FaHospitalUser size={22} />,
+                icon: <IoQrCode size={22} />,
             },
         ],
     },
+    // {
+    //     id: 7,
+    //     path: "/",
+    //     name: "Feedback",
+    //     icon: <MdFeedback size={22} />
+    // },
 
 ]
 
-const drawerWidth = 210;
+const drawerWidth = 215;
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -180,6 +190,7 @@ function NestedList() {
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [fullScreen, setFullScreen] = React.useState(true)
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -189,10 +200,21 @@ export default function MiniDrawer() {
         setOpen(false);
     };
 
+    const FullScreen = () => {
+        setFullScreen(!fullScreen);
+        console.log("fullScreen", fullScreen);
+        if (fullScreen) {
+            console.log("iffullScreen");
+            document.body.requestFullscreen();
+        } else {
+            console.log("elsefullScreen", fullScreen);
+            document.exitFullscreen();
+        }
+    };
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
-
             <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
@@ -200,10 +222,13 @@ export default function MiniDrawer() {
                         <RiMenu2Line />
                     </IconButton>
                     <div className='flex justify-between w-full items-center'>
-                        <Typography>
-                            <h1 className='text-[20px]'>V-Care.</h1>
+                        <Typography className='flex items-center space-x-2'>
+                            <img className='h-10' src={Logo} alt='' />
+                            <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
                         </Typography>
-                        <Typography sx={{ display: "flex" }}>
+                        <Typography sx={{ display: "flex", alignItems: "center" }}>
+                            <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
+                            <DrawerBadge/>
                             <Date />
                             <User />
                             <UserImg />
