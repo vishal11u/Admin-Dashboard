@@ -3,7 +3,7 @@ import Selector from '../Drawer/ReactSelector';
 
 function Staff() {
   return (
-    <div>
+    <div className=''>
       <Selector/>
     </div>
   )

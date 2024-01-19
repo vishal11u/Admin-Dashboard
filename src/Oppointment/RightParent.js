@@ -52,13 +52,14 @@ function ConsultationCharges() {
     const handleFollowUpChargesCheckboxChange = () => {
         setFollowUpChargesEnabled(!followUpChargesEnabled);
         if (!followUpChargesEnabled) {
-            setFollowUpCharges('');
+            setFollowUpCharges(0);
         }
     };
 
     const submitData = (event) => {
         event.preventDefault();
-        if (fromTime && toTime !== '' ) {
+
+        if (fromTime && toTime !== '') {
             const newData = {
                 fromTime,
                 toTime,
@@ -74,7 +75,10 @@ function ConsultationCharges() {
             setIsFree(false);
             setFollowUpApplication(false);
             setActive(true);
-            toast.success('Appointment Successfull!', {
+            setFromTime(null);
+            setToTime(null);
+
+            toast.success('Appointment Successful!', {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -99,6 +103,7 @@ function ConsultationCharges() {
             });
         }
     };
+
 
     const handleDelete = (index) => {
         let data = [...tableData];
@@ -233,7 +238,7 @@ function ConsultationCharges() {
                                         {data.isFree === true ? 0 : `${data.consultationCharges}`}
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        {data.followUpApplication === true ? `${data.followUpCharges}` : 0}
+                                        {data.followUpApplication === true ? 0 : `${data.followUpCharges}`}
                                     </td>
                                     <td className=" py-4">
                                         <p className={`border text-center rounded-lg ${data.active ? 'border-green-500 font-semibold text-green-500' : 'border-red-500 font-semibold text-red-500'} py-2 px-3 `}>
