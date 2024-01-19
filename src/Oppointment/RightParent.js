@@ -22,15 +22,13 @@ function ConsultationCharges() {
     const [fromTime, setFromTime] = useState(null);
     const [toTime, setToTime] = useState(null);
     const [tableData, setTableData] = useState([]);
-    const [tariff, setTariff] = useState('hospital');
-    const [week, setWeek] = useState(day);
     const [consultationCharges, setConsultationCharges] = useState('');
-    const [followUpCharges, setFollowUpCharges] = useState(false);
+    const [followUpCharges, setFollowUpCharges] = useState(0);
     const [isFree, setIsFree] = useState(false);
     const [followUpApplication, setFollowUpApplication] = useState(false);
     const [active, setActive] = useState(true);
     const [followUpChargesEnabled, setFollowUpChargesEnabled] = useState(false);
-    // const [empty, setEmpty] = useState(true)
+    const [charges, setCharges] = useState(false)
 
 
     const handleFromTimeChange = (e) => {
@@ -39,6 +37,16 @@ function ConsultationCharges() {
 
     const handleToTimeChange = (e) => {
         setToTime(e);
+    };
+
+    const handleIsFreeCheckboxChange = () => {
+        setIsFree(!isFree);
+        if (!isFree) {
+            setCharges(false);
+            setConsultationCharges(0);
+        } else {
+            setCharges(true);
+        }
     };
 
     const handleFollowUpChargesCheckboxChange = () => {
@@ -50,10 +58,8 @@ function ConsultationCharges() {
 
     const submitData = (event) => {
         event.preventDefault();
-        if (tariff && week !== '' && fromTime && toTime && consultationCharges !== '' && followUpCharges !== '') {
+        if (fromTime && toTime !== '' ) {
             const newData = {
-                tariff,
-                week,
                 fromTime,
                 toTime,
                 consultationCharges,
@@ -62,17 +68,13 @@ function ConsultationCharges() {
                 followUpApplication,
                 active,
             };
-
             setTableData([...tableData, newData]);
-            setTariff('hospital');
-            setWeek(day);
             setConsultationCharges('');
             setFollowUpCharges('');
             setIsFree(false);
             setFollowUpApplication(false);
             setActive(true);
-            // setEmpty(false)
-            toast.success('Appointment Successful!', {
+            toast.success('Appointment Successfull!', {
                 position: "top-right",
                 autoClose: 2000,
                 hideProgressBar: false,
@@ -111,7 +113,7 @@ function ConsultationCharges() {
                     <div>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Tariff</InputLabel>
-                            <Select label="Tariff" value={tariff} onChange={(e) => setTariff(e.target.value)}>
+                            <Select label="Tariff">
                                 <MenuItem value={"hospital"}>Hospital</MenuItem>
                             </Select>
                         </FormControl>
@@ -120,7 +122,7 @@ function ConsultationCharges() {
                     <div>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Week</InputLabel>
-                            <Select label="Week" value={week} onChange={(e) => setWeek(e.target.value)}>
+                            <Select label="Week" defaultValue={day} >
                                 <MenuItem value={7}>Sunday</MenuItem>
                                 <MenuItem value={1}>Monday</MenuItem>
                                 <MenuItem value={2}>Tuesday</MenuItem>
@@ -172,6 +174,7 @@ function ConsultationCharges() {
                             label="Consultation Charges"
                             value={consultationCharges}
                             onChange={(e) => setConsultationCharges(e.target.value)}
+                            disabled={!charges}
                         />
                     </div>
 
@@ -188,7 +191,7 @@ function ConsultationCharges() {
 
                 <div className='flex flex-col justify-end '>
                     <div>
-                        <FormControlLabel control={<Checkbox checked={isFree} onChange={() => setIsFree(!isFree)} />} label="Is Free" />
+                        <FormControlLabel control={<Checkbox checked={isFree} onChange={handleIsFreeCheckboxChange} />} label="Is Free" />
                         <FormControlLabel control={<Checkbox checked={followUpChargesEnabled} onChange={handleFollowUpChargesCheckboxChange} />} label="Follow up Charges" />
                     </div>
                     <div>
@@ -227,10 +230,10 @@ function ConsultationCharges() {
                                         {data.toTime && data.toTime.format('HH:mm A')}
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        {data.consultationCharges}
+                                        {data.isFree === true ? 0 : `${data.consultationCharges}`}
                                     </td>
                                     <td className="px-6 py-4 text-center">
-                                        {data.followUpCharges}
+                                        {data.followUpApplication === true ? `${data.followUpCharges}` : 0}
                                     </td>
                                     <td className=" py-4">
                                         <p className={`border text-center rounded-lg ${data.active ? 'border-green-500 font-semibold text-green-500' : 'border-red-500 font-semibold text-red-500'} py-2 px-3 `}>

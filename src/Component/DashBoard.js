@@ -9,11 +9,11 @@ function DashBoard() {
         <h1>Manage Consultation Charges</h1>
       </div>
       <div className='flex p-8 gap-3'>
-        <div className='flex-[30%]'>
+        <div className='flex-[25%]'>
           <Selector />
         </div>
         <div className='bg-black w-[1px] border'></div>
-        <div className='flex-[70%]'>
+        <div className='flex-[75%]'>
           <RightParent />
         </div>
       </div>

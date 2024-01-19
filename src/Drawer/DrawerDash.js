@@ -201,7 +201,7 @@ export default function MiniDrawer() {
                     </IconButton>
                     <div className='flex justify-between w-full items-center'>
                         <Typography>
-                            <h1 className='text-[20px]'>Admin Dashboard</h1>
+                            <h1 className='text-[20px]'>V-Care.</h1>
                         </Typography>
                         <Typography sx={{ display: "flex" }}>
                             <Date />

@@ -13,7 +13,7 @@ const MyComponent = () => {
     };
 
     return (
-        <div className='mt-5 w-full'>
+        <div className='w-full'>
             <label className='text-[13px]'>Units :-</label>
             <Select options={options} onChange={handleSelectChange} value={selectedOption} />
             {selectedOption && <TableOp />}
@@ -22,23 +22,43 @@ const MyComponent = () => {
 };
 
 function TableOp() {
-    const listData = [];
-    const handlePharm = () => {
-        console.log('pharmacy')
-    }
+    const table = [
+        { id: 1, department: "Pharmacy" },
+        { id: 2, department: "Casualty/Emergency" },
+        { id: 3, department: "Neonatal Unit" },
+        { id: 4, department: "Dietetics" },
+        { id: 5, department: "Hematology 1" },
+        { id: 6, department: "Oncology" },
+        { id: 7, department: "Physiotherapy" },
+        { id: 8, department: "Pathology" },
+        { id: 9, department: "Critical Care" },
+        { id: 10, department: "Cardiology" }
+    ];
+
+    const [selectedDepartment, setSelectedDepartment] = useState(null);
+
+    const handleDepart = (department) => {
+        setSelectedDepartment(department);
+    };
+
     return (
-        <div className=''>
-            <h1>Department</h1>
+        <div className='mt-2 border rounded-md'>
+            <h1 className='bg-blue-200 py-2 px-4 rounded-t-md font-[500]'>Department</h1>
             {
-                listData.map((data) => (
-                    <div>
-                        <button type='submit' onClick={handlePharm}>{data.department}</button>
-                    </div>
+                table.map((item) => (
+                    <button key={item.id}
+                        className={`border w-full text-left py-2 px-4 transition-all ${selectedDepartment === item.department ? 'bg-blue-300' : ''}`}
+                        type='button'
+                        onClick={() => handleDepart(item.department)}
+                    >
+                        {item.department}
+                    </button>
                 ))
             }
         </div>
-    )
+    );
 }
+
 
 export default MyComponent;
 
