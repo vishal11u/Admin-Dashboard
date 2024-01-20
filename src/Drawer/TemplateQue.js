@@ -6,6 +6,8 @@ import Box from '@mui/material/Box';
 import { IoCaretBackCircle } from "react-icons/io5";
 import { Link, useNavigate } from 'react-router-dom';
 import { GiClick } from "react-icons/gi";
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LinearProgressWithLabel(props) {
     return (
@@ -97,10 +99,30 @@ function YourComponent() {
         const totalQuestions = templateQuestions[0].questions.length;
         if (reviewLabels.length === totalQuestions) {
             console.log("Review Labels:", reviewLabels);
-            alert("Submitted");
+            toast.success('Review Submited!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
             navigate('/');
         } else {
-            alert("Please review all questions before submitting.");
+            toast.warning('Feedback form is incomplete!', {
+                position: "top-right",
+                autoClose: 2500,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
     };
 

@@ -15,7 +15,6 @@ import { MdDeleteOutline } from "react-icons/md";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function ConsultationCharges() {
     let d = new Date();
     let day = d.getDay();
@@ -39,6 +38,7 @@ function ConsultationCharges() {
         setToTime(e);
     };
 
+
     const handleIsFreeCheckboxChange = () => {
         setIsFree(!isFree);
         if (!isFree) {
@@ -58,7 +58,6 @@ function ConsultationCharges() {
 
     const submitData = (event) => {
         event.preventDefault();
-
         if (fromTime && toTime !== '') {
             const newData = {
                 fromTime,
