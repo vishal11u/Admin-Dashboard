@@ -4,8 +4,6 @@ import { MdDelete } from 'react-icons/md';
 import { Modal, Input, Upload, message } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { IoMdAddCircle } from 'react-icons/io';
-import { toast, Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 function UsersDoctor() {
     const [open, setOpen] = useState(false);
@@ -46,30 +44,6 @@ function UsersDoctor() {
                 'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'linda4@gmail.com',
         },
-        {
-            name: 'Linda Andress',
-            specialty: 99,
-            rollno: 5,
-            url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
-        },
-        {
-            name: 'Linda Andress',
-            specialty: 99,
-            rollno: 6,
-            url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
-        },
-        {
-            name: 'Linda Andress',
-            specialty: 99,
-            rollno: 7,
-            url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
-        },
     ]);
     const [formData, setFormData] = useState({
         name: '',
@@ -84,17 +58,7 @@ function UsersDoctor() {
 
     const handleOk = () => {
         if (!formData.name || !formData.specialty || !formData.email) {
-            toast.error('Fill all Input Feild', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
+            alert('Fill All Data');
         } else {
             setConfirmLoading(true);
             const updatedDoctors = [...doctors, { ...formData, url: image }];
@@ -110,17 +74,6 @@ function UsersDoctor() {
                 });
                 setImage(true)
             }, 1000);
-            toast.success('New Patient Added!', {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "dark",
-                transition: Bounce,
-            });
         }
     };
 
@@ -219,9 +172,10 @@ function UsersDoctor() {
             </div>
             <div>
                 <button
-                    className='flex justify-center items-center px-2 gap-1 py-1 shadow-lg bg-black text-white text-lg font-semibold'
-                    onClick={showModal} >
-                    <IoMdAddCircle /> Add New Patient
+                    className='flex justify-center items-center px-2 gap-1 py-1 rounded-md shadow-lg bg-red-600 text-white text-lg font-semibold'
+                    onClick={showModal}
+                >
+                    <IoMdAddCircle /> ADD New Patient
                 </button>
                 <Modal
                     title='Doctor Details'
@@ -295,54 +249,37 @@ function UsersDoctor() {
                 </Modal>
             </div>
 
-            <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
-                <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-                    <thead className="bg-gray-800 text-white">
-                        <tr>
-                            <th scope="col" className="px-6 py-4 font-medium">Image</th>
-                            <th scope="col" className="px-3 py-4 font-medium">Name</th>
-                            <th scope="col" className="px-6 py-4 font-medium text-center">Age</th>
-                            <th scope="col" className="px-6 py-4 font-medium">Email</th>
-                            <th scope="col" className="px-4 py-4 font-medium text-center">view</th>
-                            <th scope="col" className="px-4 py-4 font-medium text-center">Edit</th>
-                            <th scope="col" className="px-3 py-4 font-medium text-center">Delete</th>
-                        </tr>
-                    </thead>
-                    <tbody className="divide-y shadow-lg divide-gray-100 border-t border-gray-100">
-                        {doctors.map((data, index) => (
-                            <tr key={data.rollno} className="hover:bg-gray-50">
-                                <th className="flex gap-3 px-6 py-2 font-normal text-gray-900">
-                                    <img className='h-16 w-16 rounded-full object-cover' src={data.url} alt='' />
-                                </th>
-                                <td className="px-3 py-2 ">
-                                    {data.name}
-                                </td>
-                                <td className="px-4  py-2 text-center">
-                                    {data.specialty}
-                                </td>
-                                <td className="px-6 py-2 ">
-                                    {data.email}
-                                </td>
-                                <td className=" text-center py-2 ">
-                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-yellow-500' type='button' onClick={() => handleView(index)}>
-                                        <FaEye size={20} />
-                                    </button>
-                                </td>
-                                <td className=" text-center py-2 ">
-                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-blue-600' type='button' onClick={() => handleEdit(index)}>
-                                        <FaPen size={20} />
-                                    </button>
-                                </td>
-                                <td className="px- text-center py-2">
-                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-red-600' type='button' onClick={() => handleDelete(index)}>
-                                        <MdDelete size={20} />
-                                    </button>
-                                </td>
-                            </tr>
-                        ))}
+            <table className='mt-5'>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                {doctors.map((doctor, index) => (
+                    <tbody
+                        className='flex justify-around shadow-lg bg-gray-200 overflow-hidden rounded-md items-center border px-2 space-x-5 '
+                        key={doctor.rollno} >
+                        <td>
+                            <img className='h-12 w-12 rounded-full' src={doctor.url} alt='name' style={{ objectFit: 'cover' }} />
+                        </td>
+                        <td className=''>{doctor.name} </td>
+                        <td className=''>{doctor.specialty} </td>
+                        <td className=''>{doctor.email} </td>
+                        <td className='py-2 rounded-md px-2 bg-yellow-500' onClick={() => handleView(index)}  >
+                            <FaEye size={20} />
+                        </td>
+                        <td className='py-2 rounded-md px-2 text-white bg-blue-600' onClick={() => handleEdit(index)} >
+                            <FaPen size={20} />
+                        </td>
+                        <td className='py-2 rounded-md px-2 text-white bg-red-600' onClick={() => handleDelete(index)} >
+                            <MdDelete size={20} />
+                        </td>
                     </tbody>
-                </table>
-            </div>
+                ))}
+            </table>
         </div>
     );
 }

@@ -41,6 +41,7 @@ import { MdAppRegistration } from "react-icons/md";
 import { IoQrCode } from "react-icons/io5";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import DrawerBadge from '../Component/DrawerBadge';
+import { GrCompliance } from "react-icons/gr";
 
 
 const data = [
@@ -72,7 +73,7 @@ const data = [
                 id: 5,
                 functionality: "Answer Review",
                 path: "/temp",
-                icon: <FaHospitalUser size={22} />,
+                icon: <GrCompliance size={22} />,
             },
             {
                 id: 6,

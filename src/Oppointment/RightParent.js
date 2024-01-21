@@ -22,7 +22,7 @@ function ConsultationCharges() {
     const [toTime, setToTime] = useState(null);
     const [tableData, setTableData] = useState([]);
     const [consultationCharges, setConsultationCharges] = useState('');
-    const [followUpCharges, setFollowUpCharges] = useState(0);
+    const [followUpCharges, setFollowUpCharges] = useState('');
     const [isFree, setIsFree] = useState(false);
     const [followUpApplication, setFollowUpApplication] = useState(false);
     const [active, setActive] = useState(true);
