@@ -48,6 +48,9 @@ import SearchDash from './SearchDash';
 import { SlCalender } from "react-icons/sl";
 import { GrAnalytics } from "react-icons/gr";
 import { IoMdSettings } from "react-icons/io";
+import Calender from './Calender/Calender';
+import Setting from './Setting/Setting';
+import AnalyticsMain from '../Analytics/AnalyticsMain';
 
 const data = [
     {
@@ -249,7 +252,7 @@ export default function MiniDrawer() {
                             <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
                         </Typography>
                         <Typography sx={{ display: "flex", alignItems: "center" }}>
-                            <SearchDash/>
+                            <SearchDash />
                             <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
                             <DrawerBadge />
                             <Date />
@@ -315,6 +318,9 @@ export default function MiniDrawer() {
                     </Route>
                     <Route path='/temp' element={<TemplateQue />} />
                     <Route path='/staf' element={<Hospital />} />
+                    <Route path='/calender' element={<Calender />} />
+                    <Route path='/setting' element={<Setting />} />
+                    <Route path='/analytics' element={<AnalyticsMain />} />
                 </Routes>
             </Box>
         </Box>

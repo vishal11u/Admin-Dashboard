@@ -1,12 +1,31 @@
-import React from 'react'
-import ChatsDash from './ChatsDash'
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Unstable_Grid2';
+import ChatsDash from './ChatsDash';
+import DashAccrd from './DashAccord';
+import DashCart from './DashCart';
+import DashCard from './DashCard';
 
-function DashMain() {
+
+export default function BasicGrid() {
   return (
-    <div>
-        <ChatsDash/>
+    <div className='pt-8 h-full px-10 bg-gray-100'>
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={2}>
+          <Grid xs={8}>
+            <ChatsDash />
+          </Grid>
+          <Grid xs={4}>
+            <DashCard/>
+          </Grid>
+          <Grid xs={4}>
+           <DashAccrd/>
+          </Grid>
+          <Grid xs={8}>
+            <DashCart/>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
   )
 }
-
-export default DashMain

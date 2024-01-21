@@ -43,7 +43,7 @@ function TableOp() {
 
     return (
         <div className='mt-2 border rounded-md'>
-            <h1 className='bg-blue-200 py-2 px-4 rounded-t-md font-[500]'>Department</h1>
+            <h1 className='bg-blue-400 py-2 px-4 rounded-t-md font-[500]'>Department</h1>
             {
                 table.map((item) => (
                     <button key={item.id}
