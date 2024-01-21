@@ -23,7 +23,7 @@ function UsersDoctor() {
             email: 'john1@gmail.com',
         },
         {
-            name: 'Alexa Lee',
+            name: `Sophia O'Connor`,
             specialty: 22,
             rollno: 2,
             url:
@@ -47,27 +47,27 @@ function UsersDoctor() {
             email: 'linda4@gmail.com',
         },
         {
-            name: 'Linda Andress',
-            specialty: 99,
+            name: 'Ethan Miller',
+            specialty: 71,
             rollno: 5,
             url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'linda4@gmail.com',
         },
         {
-            name: 'Linda Andress',
-            specialty: 99,
+            name: 'Mason Gupta',
+            specialty: 25,
             rollno: 6,
             url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/769772/pexels-photo-769772.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'linda4@gmail.com',
         },
         {
-            name: 'Linda Andress',
-            specialty: 99,
+            name: 'Mia Kapoor',
+            specialty: 18,
             rollno: 7,
             url:
-                'https://images.pexels.com/photos/1729931/pexels-photo-1729931.jpeg?auto=compress&cs=tinysrgb&w=600',
+                'https://images.pexels.com/photos/1844012/pexels-photo-1844012.jpeg?auto=compress&cs=tinysrgb&w=600',
             email: 'linda4@gmail.com',
         },
     ]);
@@ -299,20 +299,20 @@ function UsersDoctor() {
                 <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
                     <thead className="bg-gray-800 text-white">
                         <tr>
-                            <th scope="col" className="px-6 py-4 font-medium">Image</th>
-                            <th scope="col" className="px-3 py-4 font-medium">Name</th>
-                            <th scope="col" className="px-6 py-4 font-medium text-center">Age</th>
-                            <th scope="col" className="px-6 py-4 font-medium">Email</th>
-                            <th scope="col" className="px-4 py-4 font-medium text-center">view</th>
-                            <th scope="col" className="px-4 py-4 font-medium text-center">Edit</th>
-                            <th scope="col" className="px-3 py-4 font-medium text-center">Delete</th>
+                            <th scope="col" className="px-6 py-4 font-medium  border">Profile Image</th>
+                            <th scope="col" className="px-3 py-4 font-medium border">Name</th>
+                            <th scope="col" className="px-6 py-4 font-medium text-center border">Age</th>
+                            <th scope="col" className="px-6 py-4 font-medium border">Email</th>
+                            <th scope="col" className="px-4 py-4 font-medium text-center border">view</th>
+                            <th scope="col" className="px-4 py-4 font-medium text-center border">Edit</th>
+                            <th scope="col" className="px-3 py-4 font-medium text-center border">Delete</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y shadow-lg divide-gray-100 border-t border-gray-100">
                         {doctors.map((data, index) => (
                             <tr key={data.rollno} className="hover:bg-gray-50">
                                 <th className="flex gap-3 px-6 py-2 font-normal text-gray-900">
-                                    <img className='h-16 w-16 rounded-full object-cover' src={data.url} alt='' />
+                                    <img className='h-16 w-16 flex mx-2 rounded-full object-cover' src={data.url} alt='' />
                                 </th>
                                 <td className="px-3 py-2 ">
                                     {data.name}
@@ -324,7 +324,7 @@ function UsersDoctor() {
                                     {data.email}
                                 </td>
                                 <td className=" text-center py-2 ">
-                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-yellow-500' type='button' onClick={() => handleView(index)}>
+                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-green-500' type='button' onClick={() => handleView(index)}>
                                         <FaEye size={20} />
                                     </button>
                                 </td>
