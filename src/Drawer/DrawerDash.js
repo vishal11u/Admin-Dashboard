@@ -42,7 +42,12 @@ import { IoQrCode } from "react-icons/io5";
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import DrawerBadge from '../Component/DrawerBadge';
 import { GrCompliance } from "react-icons/gr";
-
+import { LuActivitySquare } from "react-icons/lu";
+import DashMain from '../Dashboard/DashMain';
+import SearchDash from './SearchDash';
+import { SlCalender } from "react-icons/sl";
+import { GrAnalytics } from "react-icons/gr";
+import { IoMdSettings } from "react-icons/io";
 
 const data = [
     {
@@ -55,13 +60,12 @@ const data = [
         id: 2,
         path: "/home",
         name: "Appointment",
-        icon: <MdAppRegistration size={24} />
+        icon: <MdAppRegistration size={26} />
     },
     {
         id: 3,
-        path: "/staf",
-        name: "Registration",
-        icon: <FaHospitalUser size={22} />,
+        name: "Activities",
+        icon: <LuActivitySquare size={26} />,
         subMenus: [
             {
                 id: 5,
@@ -83,16 +87,33 @@ const data = [
             },
         ],
     },
-    // {
-    //     id: 7,
-    //     path: "/",
-    //     name: "Feedback",
-    //     icon: <MdFeedback size={22} />
-    // },
-
+    {
+        id: 7,
+        path: "/staf",
+        name: "Patient Details",
+        icon: <FaHospitalUser size={22} />
+    },
+    {
+        id: 8,
+        path: "/calender",
+        name: "Calender",
+        icon: <SlCalender size={22} />
+    },
+    {
+        id: 9,
+        path: "/analytics",
+        name: "Analytics",
+        icon: <GrAnalytics size={24} />
+    },
+    {
+        id: 10,
+        path: "/setting",
+        name: "Settings",
+        icon: <IoMdSettings size={24} />
+    },
 ]
 
-const drawerWidth = 215;
+const drawerWidth = 220;
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -228,8 +249,9 @@ export default function MiniDrawer() {
                             <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
                         </Typography>
                         <Typography sx={{ display: "flex", alignItems: "center" }}>
+                            <SearchDash/>
                             <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
-                            <DrawerBadge/>
+                            <DrawerBadge />
                             <Date />
                             <User />
                             <UserImg />
@@ -284,6 +306,7 @@ export default function MiniDrawer() {
             <Box component="main" sx={{ flexGrow: 1 }}>
                 <DrawerHeader />
                 <Routes>
+                    <Route path='/dash' element={<DashMain />} />
                     <Route path='/home' element={<Dashboard />} />
                     <Route path='/' element={<FeedBack />}>
                         <Route index element={<Consultant />} />

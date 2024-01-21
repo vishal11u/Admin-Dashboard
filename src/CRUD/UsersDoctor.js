@@ -52,7 +52,7 @@ function UsersDoctor() {
             rollno: 5,
             url:
                 'https://images.pexels.com/photos/1139743/pexels-photo-1139743.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
+            email: 'ethan5@gmail.com',
         },
         {
             name: 'Mason Gupta',
@@ -60,7 +60,7 @@ function UsersDoctor() {
             rollno: 6,
             url:
                 'https://images.pexels.com/photos/769772/pexels-photo-769772.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
+            email: 'mason6@gmail.com',
         },
         {
             name: 'Mia Kapoor',
@@ -68,7 +68,7 @@ function UsersDoctor() {
             rollno: 7,
             url:
                 'https://images.pexels.com/photos/1844012/pexels-photo-1844012.jpeg?auto=compress&cs=tinysrgb&w=600',
-            email: 'linda4@gmail.com',
+            email: 'mia7@gmail.com',
         },
     ]);
     const [formData, setFormData] = useState({
@@ -180,7 +180,7 @@ function UsersDoctor() {
     };
 
     return (
-        <div className="h-screen">
+        <div className="h-full">
             <Modal
                 title="Patient Details"
                 visible={viewModalOpen}
@@ -202,17 +202,15 @@ function UsersDoctor() {
                 <h1 className='text-[35px] font-semibold items-center'>
                     Patient Details
                 </h1>
-                <div className='flex gap-2'>
+                <div className='flex'>
                     <input
-                        className='py-1 px-2 border rounded-md text-[20px] outline-none '
-                        type='search'
+                        className='py-2 px-2 border text-[18px] outline-none '
+                        type='text'
                         placeholder='Search Patient Name..'
-                        onChange={(e) => handleSearch(e.target.value)}
-                    />
+                        onChange={(e) => handleSearch(e.target.value)} />
                     <button
-                        className='py-1 px-2 border rounded-md text-[20px] outline-none bg-gray-300'
-                        onClick={() => setDoctors(doctors)}
-                    >
+                        className='py-2 px-3 border text-[18px] outline-none bg-red-600 text-white transition-all ease-in-out active:bg-gray-400'
+                        onClick={() => setDoctors(doctors)} >
                         Reset
                     </button>
                 </div>
