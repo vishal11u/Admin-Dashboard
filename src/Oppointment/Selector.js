@@ -41,6 +41,7 @@ function TableOp() {
             setSelectedDepartments(selectedDepartments.filter(dep => dep !== department));
         } else {
             setSelectedDepartments([...selectedDepartments, department]);
+            console.log(department);
         }
     };
 
