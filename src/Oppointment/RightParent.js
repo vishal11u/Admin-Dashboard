@@ -17,7 +17,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function ConsultationCharges() {
     let d = new Date();
-    let day = d.getDay();
+    const dayWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let day = dayWeek[d.getDay()];
     const [fromTime, setFromTime] = useState(null);
     const [toTime, setToTime] = useState(null);
     const [tableData, setTableData] = useState([]);
@@ -56,6 +57,7 @@ function ConsultationCharges() {
 
     const submitData = (event) => {
         const newData = {
+            day: day,
             fromTime,
             toTime,
             consultationCharges,
@@ -86,7 +88,7 @@ function ConsultationCharges() {
                 theme: "dark",
                 transition: Bounce,
             });
-        } else if (fromTime && toTime !== '') {
+        } else if (fromTime && toTime !== '', isFree !== '') {
 
             setTableData([...tableData, newData]);
             setConsultationCharges('');
@@ -146,13 +148,13 @@ function ConsultationCharges() {
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Week</InputLabel>
                             <Select label="Week" defaultValue={day} >
-                                <MenuItem value={7}>Sunday</MenuItem>
-                                <MenuItem value={1}>Monday</MenuItem>
-                                <MenuItem value={2}>Tuesday</MenuItem>
-                                <MenuItem value={3}>Wednesday</MenuItem>
-                                <MenuItem value={4}>Thursday</MenuItem>
-                                <MenuItem value={5}>Friday</MenuItem>
-                                <MenuItem value={6}>Saturday</MenuItem>
+                                <MenuItem value="Sunday">Sunday</MenuItem>
+                                <MenuItem value="Monday">Monday</MenuItem>
+                                <MenuItem value="Tuesday">Tuesday</MenuItem>
+                                <MenuItem value="Wednesday">Wednesday</MenuItem>
+                                <MenuItem value="Thursday">Thursday</MenuItem>
+                                <MenuItem value="Friday">Friday</MenuItem>
+                                <MenuItem value="Saturday">Saturday</MenuItem>
                             </Select>
                         </FormControl>
                     </div>

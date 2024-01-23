@@ -35,10 +35,13 @@ function TableOp() {
         { id: 10, department: "Cardiology" }
     ];
 
-    const [selectedDepartment, setSelectedDepartment] = useState(null);
-
+    const [selectedDepartments, setSelectedDepartments] = useState([]);
     const handleDepart = (department) => {
-        setSelectedDepartment(department);
+        if (selectedDepartments.includes(department)) {
+            setSelectedDepartments(selectedDepartments.filter(dep => dep !== department));
+        } else {
+            setSelectedDepartments([...selectedDepartments, department]);
+        }
     };
 
     return (
@@ -47,10 +50,9 @@ function TableOp() {
             {
                 table.map((item) => (
                     <button key={item.id}
-                        className={`border w-full text-left py-2 px-4 transition-all ${selectedDepartment === item.department ? 'bg-blue-300' : ''}`}
+                        className={`border w-full text-left py-2 px-4 transition-all ${selectedDepartments.includes(item.department) ? 'bg-blue-300' : ''}`}
                         type='button'
-                        onClick={() => handleDepart(item.department)}
-                    >
+                        onClick={() => handleDepart(item.department)} >
                         {item.department}
                     </button>
                 ))
@@ -58,7 +60,6 @@ function TableOp() {
         </div>
     );
 }
-
 
 export default MyComponent;
 

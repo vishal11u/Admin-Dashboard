@@ -82,13 +82,10 @@ function YourComponent() {
             const totalReviewLabels = templateQuestions[0].ansPatternScale.length;
             const newProgress = (updatedReviewLabels.length + 1) * (100 / (totalQuestions * totalReviewLabels));
             setProgress(Math.min(newProgress, 100));
-
-            // Update the selected option for the question
             setSelectedOptions(prevSelectedOptions => ({
                 ...prevSelectedOptions,
                 [questionId]: value,
             }));
-
             return updatedReviewLabels;
         });
     };
@@ -98,7 +95,6 @@ function YourComponent() {
     const SubmitReview = (e) => {
         const totalQuestions = templateQuestions[0].questions.length;
         if (reviewLabels.length === totalQuestions) {
-            console.log("Review Labels:", reviewLabels);
             toast.success('Review Submited!', {
                 position: "top-right",
                 autoClose: 2000,
@@ -153,7 +149,7 @@ function YourComponent() {
                                 <div className=''>
                                     <button
                                         key={scale.value}
-                                        className={`py-2 w-[7.5vw] text-[13px] rounded-3xl ${selectedOptions[question.qid] === scale.value ? 'animate-bounce' : ''} ${getButtonColor(scale.value)}`}
+                                        className={`py-2 w-[7.5vw] text-[13px] rounded-tl-2xl rounded-br-2xl ${selectedOptions[question.qid] === scale.value ? 'animate-bounce' : ''} ${getButtonColor(scale.value)}`}
                                         onClick={() => { handleButtonClick(question.qid, scale.value); }}>
                                         {scale.reviewLabel}
                                     </button>
