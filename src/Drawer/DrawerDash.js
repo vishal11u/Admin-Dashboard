@@ -51,6 +51,7 @@ import { IoMdSettings } from "react-icons/io";
 import Calender from './Calender/Calender';
 import Setting from './Setting/Setting';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
+import { FaCaretDown } from "react-icons/fa";
 
 const data = [
     {
@@ -67,7 +68,7 @@ const data = [
     },
     {
         id: 3,
-        name: "Activities",
+        name: "Activities ▼",
         icon: <LuActivitySquare size={26} />,
         subMenus: [
             {
@@ -214,7 +215,7 @@ function NestedList() {
 
 export default function MiniDrawer() {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     const [fullScreen, setFullScreen] = React.useState(true)
 
     const handleDrawerOpen = () => {
@@ -286,7 +287,7 @@ export default function MiniDrawer() {
                                 </ListItemButton>
                             </NavLink>
                             {text.subMenus && (
-                                <Collapse in={open} timeout="auto" unmountOnExit>
+                                <Collapse in={open} timeout="auto" unmountOnExit >
                                     <List component="div" disablePadding>
                                         {text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>

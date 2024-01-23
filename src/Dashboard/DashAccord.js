@@ -9,45 +9,43 @@ import BasicPie from './DashPieChart';
 export default function DisabledAccordion() {
     return (
         <div className="border shadow rounded-md h-[60vh] px-3 bg-white">
-            <Accordion sx={{marginTop:"15px"}}>
+            <h1 className="mt-2 font-semibold text-[17px] text-center">Popular Services</h1>
+            <Accordion sx={{marginTop:"8px"}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header">
-                    <Typography>Accordion 1</Typography>
+                    <Typography>Service 1</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                        Service 1
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <Accordion sx={{marginTop:"0.3rem"}}>
+            <Accordion sx={{marginTop:""}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header">
-                    <Typography>Accordion 1</Typography>
+                    <Typography>Service 2</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                        Service 2
                     </Typography>
                 </AccordionDetails>
             </Accordion>
-            <Accordion sx={{marginTop:"0.3rem"}}>
+            <Accordion sx={{marginTop:""}}>
                 <AccordionSummary
                     expandIcon={<ExpandMoreIcon />}
                     aria-controls="panel1-content"
                     id="panel1-header">
-                    <Typography>Accordion 1</Typography>
+                    <Typography>Service 3</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                        Service 3
                     </Typography>
                 </AccordionDetails>
             </Accordion>

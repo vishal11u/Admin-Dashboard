@@ -27,8 +27,7 @@ function ConsultationCharges() {
     const [followUpApplication, setFollowUpApplication] = useState(false);
     const [active, setActive] = useState(true);
     const [followUpChargesEnabled, setFollowUpChargesEnabled] = useState(false);
-    const [charges, setCharges] = useState(false)
-
+    const [charges, setCharges] = useState(false);
 
     const handleFromTimeChange = (e) => {
         setFromTime(e);
@@ -37,7 +36,6 @@ function ConsultationCharges() {
     const handleToTimeChange = (e) => {
         setToTime(e);
     };
-
 
     const handleIsFreeCheckboxChange = () => {
         setIsFree(!isFree);
@@ -57,17 +55,39 @@ function ConsultationCharges() {
     };
 
     const submitData = (event) => {
-        event.preventDefault();
-        if (fromTime && toTime !== '') {
-            const newData = {
-                fromTime,
-                toTime,
-                consultationCharges,
-                followUpCharges,
-                isFree,
-                followUpApplication,
-                active,
-            };
+        const newData = {
+            fromTime,
+            toTime,
+            consultationCharges,
+            followUpCharges,
+            isFree,
+            followUpApplication,
+            active,
+        };
+        const isTimeSlotExit = tableData.some((data) => {
+            const someday = data.day === newData.day;
+
+            return someday && (
+                (newData.fromTime >= data.fromTime && newData.fromTime < data.toTime) ||
+                (newData.toTime > data.fromTime && newData.toTime <= data.toTime) ||
+                (newData.toTime <= data.fromTime && newData.toTime >= data.toTime)
+            )
+        });
+
+        if (isTimeSlotExit) {
+            toast.warning('Time slot already booked!', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
+        } else if (fromTime && toTime !== '') {
+
             setTableData([...tableData, newData]);
             setConsultationCharges('');
             setFollowUpCharges('');
@@ -102,7 +122,6 @@ function ConsultationCharges() {
             });
         }
     };
-
 
     const handleDelete = (index) => {
         let data = [...tableData];
@@ -217,6 +236,7 @@ function ConsultationCharges() {
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Follow up Charge</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Active</th>
                                 <th scope="col" className="px-6 py-4 font-medium text-gray-900">Is Free</th>
+                                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Day</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y shadow-lg divide-gray-100 border-t border-gray-100">
@@ -247,6 +267,9 @@ function ConsultationCharges() {
                                     <td className="px-6 py-4">
                                         {data.isFree ? 'Free' : 'Not Free'}
                                     </td>
+                                    <td className="px-6 py-4">
+                                        {data.day}
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -257,7 +280,6 @@ function ConsultationCharges() {
                     Table is empty. Add data using the form above.
                 </p>
             )}
-
         </div>
     )
 }

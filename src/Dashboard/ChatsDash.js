@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import CountUp from 'react-countup';
 
 function ChatsDash() {
     return (
@@ -15,7 +16,9 @@ function ChatsDash() {
                             <p class="ml-16 truncate text-sm font-medium text-gray-300">Total Patients</p>
                         </dt>
                         <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-100">71,897</p>
+                            <p class="text-2xl font-semibold text-gray-100">
+                            <CountUp delay={0.4} end={72000} duration={0.6}/>
+                            </p>
                             <p class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                                 <svg class="h-5 w-5 flex-shrink-0 self-center text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clip-rule="evenodd" />
@@ -40,7 +43,7 @@ function ChatsDash() {
                             <p class="ml-16 truncate text-sm font-medium text-gray-300">Avg. Open Rate</p>
                         </dt>
                         <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-100">58.16%</p>
+                            <p class="text-2xl font-semibold text-gray-100"><CountUp delay={0.4} end={57} duration={0.6}/>.60%</p>
                             <p class="ml-2 flex items-baseline text-sm font-semibold text-green-600">
                                 <svg class="h-5 w-5 flex-shrink-0 self-center text-green-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M10 17a.75.75 0 01-.75-.75V5.612L5.29 9.77a.75.75 0 01-1.08-1.04l5.25-5.5a.75.75 0 011.08 0l5.25 5.5a.75.75 0 11-1.08 1.04l-3.96-4.158V16.25A.75.75 0 0110 17z" clip-rule="evenodd" />
@@ -65,7 +68,7 @@ function ChatsDash() {
                             <p class="ml-16 truncate text-sm font-medium text-gray-300">Avg. Click Rate</p>
                         </dt>
                         <dd class="ml-16 flex items-baseline pb-6 sm:pb-7">
-                            <p class="text-2xl font-semibold text-gray-100">24.57%</p>
+                            <p class="text-2xl font-semibold text-gray-100"><CountUp delay={0.4} end={24} duration={0.6}/>.57%</p>
                             <p class="ml-2 flex items-baseline text-sm font-semibold text-red-600">
                                 <svg class="h-5 w-5 flex-shrink-0 self-center text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M10 3a.75.75 0 01.75.75v10.638l3.96-4.158a.75.75 0 111.08 1.04l-5.25 5.5a.75.75 0 01-1.08 0l-5.25-5.5a.75.75 0 111.08-1.04l3.96 4.158V3.75A.75.75 0 0110 3z" clip-rule="evenodd" />
