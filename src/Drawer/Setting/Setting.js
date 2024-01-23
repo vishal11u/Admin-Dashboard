@@ -1,8 +1,11 @@
-import React from 'react'
+import React from 'react';
+import SettingTab from './SettingTab';
 
 function Setting() {
   return (
-    <div>Setting</div>
+    <div className='p-6 bg-gray-200 h-full'>
+      <SettingTab/>
+    </div>
   )
 }
 
