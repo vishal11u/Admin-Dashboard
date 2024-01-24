@@ -12,13 +12,13 @@ function Nested() {
     <div>
       <div className='w-full shadow-lg border-2 rounded-md h-[73vh] p-5'>
         <ul className='flex justify-around space-x-5'>
-          <Link to="/">
+          <Link to="/feedback/consult">
             <button type='submit' onClick={() => handleButtonClick('Consultant')}
               className={`py-2 px-3 text-[8px] md:w-32 md:text-base shadow-lg border rounded-lg text-center ${activeButton === 'Consultant' ? 'bg-black text-white' : ''  }`} >
               Consultant
             </button>
           </Link>
-          <Link to="staff">
+          <Link to="/feedback/staff">
             <button type='submit' onClick={() => handleButtonClick('Staff')}
               className={`py-2 px-3 text-[8px] md:w-32 shadow-lg border md:text-base rounded-lg text-center ${activeButton === 'Staff' ? 'bg-black text-white' : '' }`} >
               Staff

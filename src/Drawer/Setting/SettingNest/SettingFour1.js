@@ -38,7 +38,7 @@ function SettingFour1() {
             </InputAdornment>}
           label="Old Password" />
       </FormControl>
-      <Box sx={{ display: "flex", alignItems: "center",marginTop:"1rem" }}>
+      <Box sx={{ display: "flex", alignItems: "center", marginTop: "1rem" }}>
         <FormControl sx={{ m: 1, width: '50ch' }} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-password">New Password</InputLabel>
           <OutlinedInput id="outlined-adornment-password"

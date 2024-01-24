@@ -52,48 +52,50 @@ import Calender from './Calender/Calender';
 import Setting from './Setting/Setting';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
 import QRgen from '../Component/QRgen';
+import ScrollUp from '../ScroppUp';
 
 const data = [
     {
         id: 1,
-        path: '/dash',
+        path: '/',
         name: "Dashboard",
         icon: <MdDashboard size={22} />
     },
     {
         id: 2,
-        path: "/home",
+        path: "/appointment",
         name: "Appointment",
         icon: <MdAppRegistration size={26} />
     },
     {
         id: 3,
+        path: "/feedback",
         name: "Activities ▼",
         icon: <LuActivitySquare size={26} />,
         subMenus: [
             {
                 id: 5,
                 functionality: "Feedback",
-                path: "/",
+                path: "/feedback/staff",
                 icon: <QuestionAnswerIcon size={22} />,
             },
             {
                 id: 5,
                 functionality: "Answer Review",
-                path: "/temp",
+                path: "/feedback/answer",
                 icon: <GrCompliance size={22} />,
             },
             {
                 id: 6,
                 functionality: "QR Generate",
-                path: "/qr",
+                path: "/feedback/qr",
                 icon: <IoQrCode size={22} />,
             },
         ],
     },
     {
         id: 7,
-        path: "/staf",
+        path: "/patient",
         name: "Patient Details",
         icon: <FaHospitalUser size={22} />
     },
@@ -245,7 +247,7 @@ export default function MiniDrawer() {
                 <Toolbar >
                     <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
                         sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
-                        <RiMenu2Line />
+                        <RiMenu2Line size={30} />
                     </IconButton>
                     <div className='flex justify-between w-full items-center'>
                         <Typography className='flex items-center space-x-2'>
@@ -268,7 +270,7 @@ export default function MiniDrawer() {
             <Drawer variant="permanent" open={open} >
                 <DrawerHeader>
                     <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision />}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
                     </IconButton>
                 </DrawerHeader>
                 <Divider />
@@ -309,20 +311,21 @@ export default function MiniDrawer() {
 
             <Box component="main" sx={{ flexGrow: 1 }}>
                 <DrawerHeader />
+                <ScrollUp />
                 <Routes>
-                    <Route path='/dash' element={<DashMain />} />
-                    <Route path='/home' element={<Dashboard />} />
-                    <Route path='/' element={<FeedBack />}>
-                        <Route index element={<Consultant />} />
+                    <Route path='/' element={<DashMain />} />
+                    <Route path='/appointment' element={<Dashboard />} />
+                    <Route path='/feedback' element={<FeedBack />}>
+                        <Route path='consult' element={<Consultant />} />
                         <Route path='staff' element={<Staff />} />
                         <Route path='patient' element={<Petient />} />
                     </Route>
-                    <Route path='/temp' element={<TemplateQue />} />
-                    <Route path='/staf' element={<Hospital />} />
+                    <Route path='/feedback/answer' element={<TemplateQue />} />
+                    <Route path='/feedback/qr' element={<QRgen />} />
+                    <Route path='/patient' element={<Hospital />} />
                     <Route path='/calender' element={<Calender />} />
                     <Route path='/setting' element={<Setting />} />
                     <Route path='/analytics' element={<AnalyticsMain />} />
-                    <Route path='/qr' element={<QRgen />} />
                 </Routes>
             </Box>
         </Box>
