@@ -217,7 +217,7 @@ function NestedList() {
 
 export default function MiniDrawer() {
     const theme = useTheme();
-    const [open, setOpen] = React.useState(true);
+    const [open, setOpen] = React.useState(false);
     const [fullScreen, setFullScreen] = React.useState(true)
 
     const handleDrawerOpen = () => {

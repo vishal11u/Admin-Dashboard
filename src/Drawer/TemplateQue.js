@@ -90,8 +90,6 @@ function YourComponent() {
         });
     };
 
-
-
     const SubmitReview = (e) => {
         const totalQuestions = templateQuestions[0].questions.length;
         if (reviewLabels.length === totalQuestions) {
@@ -125,22 +123,22 @@ function YourComponent() {
     return (
         <div className="container mx-auto px-6">
             <div className='mt-3 flex justify-between px-2'>
-                <Link to='/' className='flex items-center text-base gap-1 bg-black text-white py-1 px-2 w-[16vw] rounded-lg'>
-                    <IoCaretBackCircle size={25} />
+                <Link to='/' className='flex items-center text-sm gap-1 bg-black text-white py-2 px-2 w-[16vw] rounded-lg'>
+                    <IoCaretBackCircle size={22} />
                     Back to Template Selection
                 </Link>
 
-                <button type='submit' className='flex items-center gap-1 py-1 px-4 border-none bg-green-600 text-white rounded-lg' onClick={SubmitReview} >
+                <button type='submit' className='flex items-center gap-1 py-2 px-4 border-none text-sm bg-green-600 text-white rounded-lg' onClick={SubmitReview} >
                     <GiClick size={21} />
                     Submit your review
                 </button>
             </div>
-            <Box sx={{ width: "85%", padding: "5px" }}>
+            <Box sx={{ width: "83%", padding: "5px" }}>
                 <LinearProgressWithLabel value={progress} />
             </Box>
             {templateQuestions.map((template) => (
                 <div key={template.id} className="bg-gray-100 shadow-lg rounded-lg pb-2 border mb-4">
-                    <p className="mb-2 py-2 rounded-t-md pl-4 font-semibold bg-blue-500">{template.headers}</p>
+                    <p className="mb-2 py-3 text-white rounded-t-md pl-4 font-semibold bg-blue-600">{template.headers}</p>
                     <h3 className="text-lg font-semibold pl-4">Questions:</h3>
                     {template.questions.map((question) => (
                         <div key={question.qid} className="mb-3 flex px-4 w-[100%] items-center justify-center space-x-4">
@@ -172,7 +170,7 @@ function getButtonColor(value) {
         case 3:
             return 'bg-yellow-500 text-black';
         case 4:
-            return 'bg-green-500 text-white';
+            return 'bg-green-600 text-white';
         case 5:
             return 'bg-blue-500 text-white';
         default:

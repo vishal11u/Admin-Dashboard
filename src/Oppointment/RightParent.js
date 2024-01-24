@@ -11,7 +11,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import { renderTimeViewClock } from '@mui/x-date-pickers/timeViewRenderers';
-import { MdDelete } from "react-icons/md";
+import { MdDelete } from 'react-icons/md';
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,11 +47,11 @@ function ConsultationCharges({ selectedDepData }) {
   };
 
   const AddFromTime = (e) => {
-    setFormData({ ...formData, fromTime: e.format("HH:MM A") });
+    setFormData({ ...formData, fromTime: e.format("HH:mm A") });
   };
 
   const AddToTime = (e) => {
-    setFormData({ ...formData, toTime: e.format("HH:MM A") });
+    setFormData({ ...formData, toTime: e.format("HH:mm A") });
   };
 
   const submitData = () => {
@@ -78,6 +78,7 @@ function ConsultationCharges({ selectedDepData }) {
         (formData.toTime <= item.fromTime && formData.toTime >= item.toTime)
       );
     });
+
     if (isTimeSlotExists) {
       toast.warning('Time slot already booked!', {
         position: 'top-right',
@@ -90,14 +91,11 @@ function ConsultationCharges({ selectedDepData }) {
         theme: "dark",
         transition: Bounce,
       });
-    }
-    else if (
+    } else if (
       formData.fromTime === "" ||
       formData.toTime === "" ||
       (formData.isFree ? false : formData.consultationCharges === "") ||
       (formData.followUpApplication && formData.followCharges === "")
-
-
     ) {
       toast.error('Fill all input Fields!', {
         position: "top-right",
@@ -127,7 +125,6 @@ function ConsultationCharges({ selectedDepData }) {
     }
   };
 
-
   const resetData = () => {
     setFormData({
       fromTime: "",
@@ -136,8 +133,8 @@ function ConsultationCharges({ selectedDepData }) {
       followCharges: "",
       isFree: false,
       followUpApplication: false,
-    })
-  }
+    });
+  };
 
   const handleDelete = (i) => {
     let Data = [...tableData];
@@ -146,18 +143,17 @@ function ConsultationCharges({ selectedDepData }) {
   };
 
   return (
-    <div className='m-3 '>
+    <div className='m-3'>
       <div className='flex gap-3'>
         <div className='grid grid-cols-2 gap-3 w-[60%]'>
           <div>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Tariff</InputLabel>
               <Select label="Tariff" defaultValue={1}>
-                <MenuItem value={"1"}  >Hosptal</MenuItem>
+                <MenuItem value={"1"}  >Hospital</MenuItem>
               </Select>
             </FormControl>
           </div>
-
           <div>
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Week</InputLabel>
@@ -170,40 +166,32 @@ function ConsultationCharges({ selectedDepData }) {
                 <MenuItem value="Saturday">Saturday</MenuItem>
                 <MenuItem value="Sunday">Sunday</MenuItem>
               </Select>
-
             </FormControl>
           </div>
-
           <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['TimePicker']}>
                 <TimePicker
                   label="From Time"
-                  viewRenderers={{ hours: renderTimeViewClock, minutes: renderTimeViewClock, seconds: renderTimeViewClock, }}
+                  viewRenderers={{ hours: renderTimeViewClock, minutes: renderTimeViewClock, seconds: renderTimeViewClock }}
                   onChange={AddFromTime}
                   className='w-[100%]'
                 />
               </DemoContainer>
             </LocalizationProvider>
           </div>
-
           <div>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
               <DemoContainer components={['TimePicker']}>
                 <TimePicker
                   label="To Time"
-                  viewRenderers={{
-                    hours: renderTimeViewClock,
-                    minutes: renderTimeViewClock,
-                    seconds: renderTimeViewClock,
-                  }}
+                  viewRenderers={{ hours: renderTimeViewClock, minutes: renderTimeViewClock, seconds: renderTimeViewClock }}
                   onChange={AddToTime}
                   className='w-[100%]'
                 />
               </DemoContainer>
             </LocalizationProvider>
           </div>
-
           <div>
             <TextField
               type='number'
@@ -226,7 +214,6 @@ function ConsultationCharges({ selectedDepData }) {
               label="Follow up Charges"
             />
           </div>
-
         </div>
         <div className='flex flex-col justify-end '>
           <div>
@@ -245,53 +232,51 @@ function ConsultationCharges({ selectedDepData }) {
               label="Follow up Application"
             />
           </div>
-          <div>
+          <div className='space-x-3'>
             <FormControlLabel control={<Checkbox defaultChecked />} label="Active" />
-            <Button onClick={resetData}>Reset</Button>
-            <Button onClick={submitData}>Add</Button>
+            <Button variant='outlined' onClick={resetData}>Reset</Button>
+            <Button variant='contained' onClick={submitData}>Add</Button>
           </div>
         </div>
       </div>
-
       {tableData.length > 0 ? (
-      <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
-        <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-          <thead className="bg-blue-200">
-            <tr>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">Action</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">From Time</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">To time</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">Consultation Charge</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">Follow Up charge</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">Active</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">isfree</th>
-              <th scope="col" className="px-6 py-4 font-medium text-gray-900">Day</th>
-            </tr>
-          </thead>
-          <tbody>
-            {tableData.map((item, i) => (
-              <tr className='text-center' key={i}>
-                <td className='p-3 text-red-600 text-2xl text-center' onClick={() => handleDelete(i)}><MdDelete /></td>
-                <td className="px-6 py-4">{item.fromTime}</td>
-                <td className="px-6 py-4">{item.toTime}</td>
-                <td className="px-6 py-4">{item.isFree === true ? 0 : item.consultationCharges}</td>
-                <td className="px-6 py-4">{item.followUpApplication === true ? item.followCharges : 0}</td>
-                <td className="px-6 py-4"><button className='border-2 border-green-500 px-4 text-green-500 font-semibold pb-1 rounded-md'> Active</button></td>
-                <td className="px-6 py-4">{item.isFree === true ? 'Yes' : 'No'}</td>
-                <td className="px-6 py-4">{item.day}</td>
+        <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
+          <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+            <thead className="bg-blue-200">
+              <tr>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Action</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">From Time</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">To time</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Consultation Charge</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Follow Up charge</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Active</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">isfree</th>
+                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Day</th>
               </tr>
-            ))}
-          </tbody>
-        </table> 
-      </div>
-       ) : (
+            </thead>
+            <tbody>
+              {tableData.map((item, i) => (
+                <tr className='text-center' key={i}>
+                  <td className='p-3 text-red-600 text-2xl text-center' onClick={() => handleDelete(i)}><MdDelete /></td>
+                  <td className="px-6 py-4">{item.fromTime}</td>
+                  <td className="px-6 py-4">{item.toTime}</td>
+                  <td className="px-6 py-4">{item.isFree === true ? 0 : item.consultationCharges}</td>
+                  <td className="px-6 py-4">{item.followUpApplication === true ? item.followCharges : 0}</td>
+                  <td className="px-6 py-4"><button className='border-2 border-green-500 px-4 text-green-500 font-semibold pb-1 rounded-md'> Active</button></td>
+                  <td className="px-6 py-4">{item.isFree === true ? 'Yes' : 'No'}</td>
+                  <td className="px-6 py-4">{item.day}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
         <p className="text-center text-lg mt-8 text-gray-500 font-semibold">
           Table is empty. Add data using the form above.
         </p>
       )}
-
     </div>
-  )
+  );
 }
 
-export default ConsultationCharges
+export default ConsultationCharges;
