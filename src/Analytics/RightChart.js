@@ -2,19 +2,19 @@ import React from 'react';
 import { Chart } from "react-google-charts";
 
 export const data = [
-  ["City", "2010 Population", "2000 Population"],
-  ["New York City, NY", 8175000, 8008000],
-  ["Los Angeles, CA", 3792000, 3694000],
-  ["Chicago, IL", 2695000, 2896000],
-  ["Houston, TX", 2099000, 1953000],
-  ["Philadelphia, PA", 1526000, 1517000],
+  ["City", "2024 Patient", "2010 Patient"],
+  ["Mumbai, MI", 8175000, 8008000],
+  ["Chennai, CSK", 3792000, 3694000],
+  ["Pune, PN", 2695000, 2896000],
+  ["Delhi, DL", 2099000, 1953000],
+  ["Banglore, BN", 1526000, 1517000],
 ];
 
 export const options = {
-  title: "Population of Largest U.S. Cities",
+  title: "Patients in Largest India Cities",
   chartArea: { width: "60%" },
   hAxis: {
-    title: "Total Population",
+    title: "Total Patient",
     minValue: 0,
   },
 };

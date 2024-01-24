@@ -35,7 +35,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function BadgeAvatars() {
     return (
-        <div className="px-4 flex space-x-3 items-center border-r">
+        <div className="px-4  hidden md:flex space-x-3 items-center border-r">
             <Stack direction="row" spacing={2}>
                 <StyledBadge
                     overlap="circular"

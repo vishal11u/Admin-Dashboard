@@ -138,8 +138,8 @@ function ConsultationCharges() {
                     <div>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Tariff</InputLabel>
-                            <Select label="Tariff">
-                                <MenuItem value={"hospital"}>Hospital</MenuItem>
+                            <Select label="Tariff" >
+                                <MenuItem value="hospital">Hospital</MenuItem>
                             </Select>
                         </FormControl>
                     </div>

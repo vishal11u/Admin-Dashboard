@@ -51,7 +51,7 @@ import { IoMdSettings } from "react-icons/io";
 import Calender from './Calender/Calender';
 import Setting from './Setting/Setting';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
-import { FaCaretDown } from "react-icons/fa";
+import QRgen from '../Component/QRgen';
 
 const data = [
     {
@@ -86,7 +86,7 @@ const data = [
             {
                 id: 6,
                 functionality: "QR Generate",
-                path: "/Qr",
+                path: "/qr",
                 icon: <IoQrCode size={22} />,
             },
         ],
@@ -322,6 +322,7 @@ export default function MiniDrawer() {
                     <Route path='/calender' element={<Calender />} />
                     <Route path='/setting' element={<Setting />} />
                     <Route path='/analytics' element={<AnalyticsMain />} />
+                    <Route path='/qr' element={<QRgen />} />
                 </Routes>
             </Box>
         </Box>
