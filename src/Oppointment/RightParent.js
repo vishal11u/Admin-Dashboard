@@ -143,7 +143,7 @@ function ConsultationCharges({ selectedDepData }) {
   };
 
   return (
-    <div className='m-3'>
+    <div className='m-3 w-full'>
       <div className='flex gap-3'>
         <div className='grid grid-cols-2 gap-3 w-[60%]'>
           <div>
@@ -215,7 +215,7 @@ function ConsultationCharges({ selectedDepData }) {
             />
           </div>
         </div>
-        <div className='flex flex-col justify-end '>
+        <div className='flex flex-col justify-end space-y-3'>
           <div>
             <FormControlLabel
               control={<Checkbox />}
@@ -232,7 +232,7 @@ function ConsultationCharges({ selectedDepData }) {
               label="Follow up Application"
             />
           </div>
-          <div className='space-x-3'>
+          <div className='space-x-2'>
             <FormControlLabel control={<Checkbox defaultChecked />} label="Active" />
             <Button variant='outlined' onClick={resetData}>Reset</Button>
             <Button variant='contained' onClick={submitData}>Add</Button>
