@@ -16,8 +16,8 @@ const MyComponent = () => {
     return (
         <div className='mt-5'>
             <label className='text-[13px]'>Select Department :-</label>
-            <Select options={options}onChange={handleSelectChange} value={selectedOption}/>
-            {selectedOption && <ReactSelector2 />}
+            <Select options={options} onChange={handleSelectChange} value={selectedOption}/>
+            <ReactSelector2 />
         </div>
     );
 };

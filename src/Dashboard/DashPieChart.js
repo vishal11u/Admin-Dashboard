@@ -30,4 +30,4 @@ function DashPieChart() {
   )
 }
 
-export default DashPieChart
+export default DashPieChart;

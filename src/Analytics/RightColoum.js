@@ -47,7 +47,7 @@ export default function RightColoum() {
                 data={data}
                 options={options}
                 width={"100%"}
-                height={"315px"}
+                height={"300px"}
             />
         </div>
     );

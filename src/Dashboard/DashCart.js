@@ -30,7 +30,7 @@ function DashCart() {
             <Chart
                 chartType="Bar"
                 width="100%"
-                height="400px"
+                height="380px"
                 data={data}
                 options={options}
             />

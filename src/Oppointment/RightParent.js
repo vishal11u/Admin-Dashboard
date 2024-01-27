@@ -28,7 +28,8 @@ function ConsultationCharges({ selectedDepData }) {
     followCharges: "",
     isFree: false,
     followUpApplication: false,
-    day: defaultDay
+    day: defaultDay,
+    isActive: false
   };
 
   const [formData, setFormData] = useState(obj);
@@ -36,7 +37,6 @@ function ConsultationCharges({ selectedDepData }) {
 
   const HandleChange = (event) => {
     const { name, value, type, checked } = event.target;
-
     setFormData((prevFormData) => {
       if (type === 'checkbox') {
         return { ...prevFormData, [name]: checked };
@@ -44,6 +44,12 @@ function ConsultationCharges({ selectedDepData }) {
         return { ...prevFormData, [name]: value, day: name === 'week' ? value : defaultDay };
       }
     });
+    if (name === 'isActive') {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        isActive: checked,
+      }));
+    }
   };
 
   const AddFromTime = (e) => {
@@ -110,7 +116,7 @@ function ConsultationCharges({ selectedDepData }) {
       });
     } else {
       setTableData([...tableData, { ...formData, day: formData.day }]);
-
+      setFormData(obj)
       toast.success('Appointment Successful!', {
         position: "top-right",
         autoClose: 1000,
@@ -126,14 +132,7 @@ function ConsultationCharges({ selectedDepData }) {
   };
 
   const resetData = () => {
-    setFormData({
-      fromTime: "",
-      toTime: "",
-      consultationCharges: "",
-      followCharges: "",
-      isFree: false,
-      followUpApplication: false,
-    });
+    setFormData(obj);
   };
 
   const handleDelete = (i) => {
@@ -233,7 +232,7 @@ function ConsultationCharges({ selectedDepData }) {
             />
           </div>
           <div className='space-x-2'>
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Active" />
+            <FormControlLabel control={<Checkbox checked={formData.isActive} onChange={HandleChange} name="isActive" />} label="Active" />
             <Button variant='outlined' onClick={resetData}>Reset</Button>
             <Button variant='contained' onClick={submitData}>Add</Button>
           </div>
@@ -242,27 +241,33 @@ function ConsultationCharges({ selectedDepData }) {
       {tableData.length > 0 ? (
         <div className="overflow-hidden rounded-lg border border-gray-200 shadow-md mt-5">
           <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
-            <thead className="bg-blue-200">
+            <thead className="bg-blue-300">
               <tr>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Action</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">From Time</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">To time</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Consultation Charge</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Follow Up charge</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Active</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">isfree</th>
-                <th scope="col" className="px-6 py-4 font-medium text-gray-900">Day</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Action</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">From Time</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">To time</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Consultation Charge</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Follow Up charge</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Active</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Isfree</th>
+                <th scope="col" className="px-6 py-4 font-semibold text-black text-center text-[15px]">Day</th>
               </tr>
             </thead>
             <tbody>
               {tableData.map((item, i) => (
-                <tr className='text-center' key={i}>
-                  <td className='p-3 text-red-600 text-2xl text-center' onClick={() => handleDelete(i)}><MdDelete /></td>
+                <tr className='items-center text-center border-b' key={i}>
+                  <td className='px-8 py-4 text-red-600 text-2xl text-center' onClick={() => handleDelete(i)}><MdDelete /></td>
                   <td className="px-6 py-4">{item.fromTime}</td>
-                  <td className="px-6 py-4">{item.toTime}</td>
-                  <td className="px-6 py-4">{item.isFree === true ? 0 : item.consultationCharges}</td>
-                  <td className="px-6 py-4">{item.followUpApplication === true ? item.followCharges : 0}</td>
-                  <td className="px-6 py-4"><button className='border-2 border-green-500 px-4 text-green-500 font-semibold pb-1 rounded-md'> Active</button></td>
+                  <td className="px-6 py-4 ">{item.toTime}</td>
+                  <td className="px-6 py-4 ">{item.isFree === true ? 0 : item.consultationCharges}</td>
+                  <td className="px-6 py-4 ">{item.followUpApplication === true ? item.followCharges : 0}</td>
+                  <td className="px-6 py-4 ">
+                    {item.isActive ? (
+                      <button className='border-2 border-green-500 px-4 text-green-500 py-1 font-semibold rounded-md'>Active</button>
+                    ) : (
+                      <button className='border-2 border-red-500 px-4 text-red-500 font-semibold py-1 rounded-md'>Close</button>
+                    )}
+                  </td>
                   <td className="px-6 py-4">{item.isFree === true ? 'Yes' : 'No'}</td>
                   <td className="px-6 py-4">{item.day}</td>
                 </tr>

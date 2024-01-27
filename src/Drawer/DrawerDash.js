@@ -316,7 +316,7 @@ export default function MiniDrawer() {
                     <Route path='/' element={<DashMain />} />
                     <Route path='/appointment' element={<Dashboard />} />
                     <Route path='/feedback' element={<FeedBack />}>
-                        <Route path='consult' element={<Consultant />} />
+                        <Route path='consult' index element={<Consultant />} />
                         <Route path='staff' element={<Staff />} />
                         <Route path='patient' element={<Petient />} />
                     </Route>

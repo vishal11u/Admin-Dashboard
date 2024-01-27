@@ -1,9 +1,12 @@
 import React from 'react';
+import Selector from '../Drawer/ReactSelector'
 
 function Consultant() {
   return (
     <div>
-      <h1 className="text-center mt-5">Consultant</h1>
+      <h1 className="mt-5">
+        <Selector/>
+      </h1>
     </div>
   )
 }

@@ -30,7 +30,7 @@ function LeftGlobalChart() {
         ]}
         chartType="GeoChart"
         width="100%"
-        height="320px"
+        height="300px"
         data={data}
       />
     </div>
