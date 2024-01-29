@@ -31,10 +31,6 @@ import { RiMenu2Line } from "react-icons/ri";
 import TemplateQue from '../Drawer/TemplateQue';
 import Hospital from '../Component/Hospital';
 import Collapse from "@mui/material/Collapse";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import StarBorder from "@mui/icons-material/StarBorder";
 import { BiFullscreen } from "react-icons/bi";
 import { MdAppRegistration } from "react-icons/md";
 import { IoQrCode } from "react-icons/io5";
@@ -53,6 +49,7 @@ import AnalyticsMain from '../Analytics/AnalyticsMain';
 import QRgen from '../Component/QRgen';
 import ScrollUp from '../ScroppUp';
 import DarkLight from './DarkLight';
+import Login from '../Login/Login'
 
 const data = [
     {
@@ -188,7 +185,7 @@ export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [fullScreen, setFullScreen] = React.useState(true)
-
+    const [userLogin, setUserLogin] = React.useState(true)
     const handleDrawerOpen = () => {
         setOpen(true);
     };
@@ -208,95 +205,101 @@ export default function MiniDrawer() {
             document.exitFullscreen();
         }
     };
-
+    console.log("userLogin", userLogin);
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
-                <Toolbar >
-                    <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
-                        sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
-                        <RiMenu2Line size={30} />
-                    </IconButton>
-                    <div className='flex justify-between w-full items-center'>
-                        <Typography className='flex items-center space-x-2'>
-                            <img className='h-10' src={Logo} alt='' />
-                            <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
-                        </Typography>
-                        <Typography sx={{ display: "flex", alignItems: "center" }}>
-                            <SearchDash />
-                            <DarkLight />
-                            <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
-                            <DrawerBadge />
-                            <Date />
-                            <UserImg />
-                            <Logout />
-                        </Typography>
-                    </div>
-                </Toolbar>
-            </AppBar>
+        <>
+            {userLogin ?
+                <Login userLogin={userLogin} setUserLogin={setUserLogin} /> :
+                <Box sx={{ display: 'flex' }}>
+                    <CssBaseline />
+                    <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
+                        <Toolbar >
+                            <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
+                                sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
+                                <RiMenu2Line size={30} />
+                            </IconButton>
+                            <div className='flex justify-between w-full items-center'>
+                                <Typography className='flex items-center space-x-2'>
+                                    <img className='h-10' src={Logo} alt='' />
+                                    <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
+                                </Typography>
+                                <Typography sx={{ display: "flex", alignItems: "center" }}>
+                                    <SearchDash />
+                                    <DarkLight />
+                                    <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
+                                    <DrawerBadge />
+                                    <Date />
+                                    <UserImg />
+                                    <Logout />
+                                </Typography>
+                            </div>
+                        </Toolbar>
+                    </AppBar>
 
-            <Drawer variant="permanent" open={open} >
-                <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
-                    </IconButton>
-                </DrawerHeader>
-                <Divider />
+                    <Drawer variant="permanent" open={open} >
+                        <DrawerHeader>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
+                            </IconButton>
+                        </DrawerHeader>
+                        <Divider />
 
-                <List >
-                    {data.map((text) => (
-                        <div key={text.id}>
-                            <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
-                                <ListItemButton
-                                    sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
-                                    <ListItemIcon
-                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
-                                        {text.icon}
-                                    </ListItemIcon>
-                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
-                                </ListItemButton>
-                            </NavLink>
-                            {text.subMenus && (
-                                <Collapse in={open} timeout="auto" unmountOnExit >
-                                    <List component="div" disablePadding>
-                                        {text.subMenus.map((subMenu) => (
-                                            <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                <ListItemButton sx={{ pl: 4, minHeight: 48, }}>
-                                                    <ListItemIcon >
-                                                        {subMenu.icon}
-                                                    </ListItemIcon>
-                                                    <ListItemText primary={subMenu.functionality} />
-                                                </ListItemButton>
-                                            </NavLink>
-                                        ))}
-                                    </List>
-                                </Collapse>
-                            )}
-                        </div>
-                    ))}
-                </List>
-            </Drawer>
+                        <List >
+                            {data.map((text) => (
+                                <div key={text.id}>
+                                    <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
+                                        <ListItemButton
+                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
+                                            <ListItemIcon
+                                                sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
+                                                {text.icon}
+                                            </ListItemIcon>
+                                            <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
+                                        </ListItemButton>
+                                    </NavLink>
+                                    {text.subMenus && (
+                                        <Collapse in={open} timeout="auto" unmountOnExit >
+                                            <List component="div" disablePadding>
+                                                {text.subMenus.map((subMenu) => (
+                                                    <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
+                                                        <ListItemButton sx={{ pl: 4, minHeight: 48, }}>
+                                                            <ListItemIcon >
+                                                                {subMenu.icon}
+                                                            </ListItemIcon>
+                                                            <ListItemText primary={subMenu.functionality} />
+                                                        </ListItemButton>
+                                                    </NavLink>
+                                                ))}
+                                            </List>
+                                        </Collapse>
+                                    )}
+                                </div>
+                            ))}
+                        </List>
+                    </Drawer>
 
-            <Box component="main" sx={{ flexGrow: 1 }}>
-                <DrawerHeader />
-                <ScrollUp />
-                <Routes>
-                    <Route path='/' element={<DashMain />} />
-                    <Route path='/appointment' element={<Dashboard />} />
-                    <Route path='/feedback' element={<FeedBack />}>
-                        <Route path='consult' index element={<Consultant />} />
-                        <Route path='staff' element={<Staff />} />
-                        <Route path='patient' element={<Petient />} />
-                    </Route>
-                    <Route path='/feedback/answer' element={<TemplateQue />} />
-                    <Route path='/feedback/qr' element={<QRgen />} />
-                    <Route path='/patient' element={<Hospital />} />
-                    <Route path='/calender' element={<Calender />} />
-                    <Route path='/setting' element={<Setting />} />
-                    <Route path='/analytics' element={<AnalyticsMain />} />
-                </Routes>
-            </Box>
-        </Box>
+                    <Box component="main" sx={{ flexGrow: 1 }}>
+                        <DrawerHeader />
+
+                        <ScrollUp />
+                        <Routes>
+                            <Route path='/' element={<DashMain />} />
+                            <Route path='/appointment' element={<Dashboard />} />
+                            <Route path='/feedback' element={<FeedBack />}>
+                                <Route path='consult' index element={<Consultant />} />
+                                <Route path='staff' element={<Staff />} />
+                                <Route path='patient' element={<Petient />} />
+                            </Route>
+                            <Route path='/feedback/answer' element={<TemplateQue />} />
+                            <Route path='/feedback/qr' element={<QRgen />} />
+                            <Route path='/patient' element={<Hospital />} />
+                            <Route path='/calender' element={<Calender />} />
+                            <Route path='/setting' element={<Setting />} />
+                            <Route path='/analytics' element={<AnalyticsMain />} />
+                        </Routes>
+                    </Box>
+                </Box>
+            }
+        </>
     );
 }

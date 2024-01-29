@@ -4,7 +4,7 @@ import { auth, provider } from '../Firbase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signInWithPopup } from 'firebase/auth'
 
-const Login = () => {
+const Login = (props) => {
     const navigate = useNavigate();
     const [data, setData] = useState("");
     const [user, setUser] = useState("");
@@ -22,6 +22,7 @@ const Login = () => {
             setNotify("create")
             alert("You Login")
             navigate('/')
+            props.setUserLogin(false)
         } catch (err) {
             console.log(err);
         }
