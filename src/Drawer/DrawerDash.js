@@ -52,6 +52,7 @@ import Setting from './Setting/Setting';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
 import QRgen from '../Component/QRgen';
 import ScrollUp from '../ScroppUp';
+import DarkLight from './DarkLight';
 
 const data = [
     {
@@ -224,6 +225,7 @@ export default function MiniDrawer() {
                         </Typography>
                         <Typography sx={{ display: "flex", alignItems: "center" }}>
                             <SearchDash />
+                            <DarkLight />
                             <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
                             <DrawerBadge />
                             <Date />
@@ -249,10 +251,10 @@ export default function MiniDrawer() {
                                 <ListItemButton
                                     sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
                                     <ListItemIcon
-                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center',color:"#1F2933" }}>
+                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
                                         {text.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,color:"#1F2933"}} />
+                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
                                 </ListItemButton>
                             </NavLink>
                             {text.subMenus && (
@@ -260,7 +262,7 @@ export default function MiniDrawer() {
                                     <List component="div" disablePadding>
                                         {text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                <ListItemButton sx={{ pl: 4, minHeight: 48 ,}}>
+                                                <ListItemButton sx={{ pl: 4, minHeight: 48, }}>
                                                     <ListItemIcon >
                                                         {subMenu.icon}
                                                     </ListItemIcon>

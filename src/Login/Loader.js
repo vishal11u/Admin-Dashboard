@@ -1,16 +1,17 @@
 import React from 'react';
-import { bouncy } from 'ldrs';
+import { cardio } from 'ldrs'
 
 function Loader() {
-    bouncy.register();
+    cardio.register()
 
     return (
         <div className='h-screen w-screen flex justify-center items-center'>
-            <l-bouncy
-                size="60"
-                speed="1.75"
+            <l-cardio
+                size="70"
+                stroke="4"
+                speed="1.5"
                 color="black"
-            ></l-bouncy>
+            ></l-cardio>
         </div>
     )
 }
