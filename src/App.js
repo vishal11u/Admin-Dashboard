@@ -16,6 +16,6 @@ function App() {
       {loader ? <Loader /> : <MiniDrawer />}
     </div>
   )
-} 
+}
 
 export default App;

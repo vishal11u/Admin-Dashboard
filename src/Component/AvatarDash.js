@@ -42,7 +42,7 @@ export default function BadgeAvatars() {
                     anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
                     variant="dot"
                 >
-                    <Avatar alt="Remy Sharp" src="https://images.pexels.com/photos/19760445/pexels-photo-19760445/free-photo-of-man-with-beard-and-mustache-standing-outside-in-the-dark.jpeg?auto=compress&cs=tinysrgb&w=600" />
+                    <Avatar alt="Remy Sharp" src="https://www.pngitem.com/pimgs/m/581-5813504_avatar-dummy-png-transparent-png.png" />
                 </StyledBadge>
             </Stack>
             <div className="text-[13px]">

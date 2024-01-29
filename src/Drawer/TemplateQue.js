@@ -9,30 +9,13 @@ import { GiClick } from "react-icons/gi";
 import { toast, Bounce } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function LinearProgressWithLabel(props) {
-    return (
-        <Box sx={{ display: "flex", alignItems: "center" }}>
-            <Box sx={{ width: "100%", mr: 1 }}>
-                <LinearProgress variant="determinate" {...props} />
-            </Box>
-            <Box sx={{ minWidth: 35 }}>
-                <Typography variant="body2" color="text.secondary">{`${Math.round(
-                    props.value
-                )}%`}</Typography>
-            </Box>
-        </Box>
-    );
-}
-
-LinearProgressWithLabel.propTypes = {
-    value: PropTypes.number.isRequired,
-};
 
 function YourComponent() {
     const navigate = useNavigate();
     const [progress, setProgress] = useState(0);
     const [reviewLabels, setReviewLabels] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState({});
+    const [questionCount, setQuestionCount] = useState(0);
 
     const templateQuestions = [
         {
@@ -78,14 +61,13 @@ function YourComponent() {
                 return prevReviewLabels;
             }
             const updatedReviewLabels = [...prevReviewLabels, { questionId, value }];
-            const totalQuestions = templateQuestions[0].questions.length;
-            const totalReviewLabels = templateQuestions[0].ansPatternScale.length;
-            const newProgress = (updatedReviewLabels.length + 1) * (100 / (totalQuestions * totalReviewLabels));
-            setProgress(Math.min(newProgress, 100));
+            // const totalQuestions = templateQuestions[0].questions.length;
+            // const totalReviewLabels = templateQuestions[0].ansPatternScale.length;
             setSelectedOptions(prevSelectedOptions => ({
                 ...prevSelectedOptions,
                 [questionId]: value,
             }));
+            setQuestionCount(prevCount => prevCount + 1);
             return updatedReviewLabels;
         });
     };
@@ -122,20 +104,25 @@ function YourComponent() {
 
     return (
         <div className="container mx-auto px-6">
-            <div className='mt-3 flex justify-between px-2'>
+            <div className='bg-blue-200 flex justify-between items-center py-2 rounded-lg px-5 mt-2'>
+                <h1 className='font-medium'>Employ No : <span className='font-normal'>Emp123456</span></h1>
+                <h1 className='font-medium'>Employ Name : <span className='font-normal'>Rajkumar Pathak</span></h1>
+                <h1 className='font-medium'>Department : <span className='font-normal'>Cardiology</span></h1>
+            </div>
+            <div className='mt-1 flex items-center justify-between px-2 py-4'>
                 <Link to='/' className='flex items-center text-sm gap-1 bg-black text-white py-2 px-2 w-[16vw] rounded-lg'>
                     <IoCaretBackCircle size={22} />
                     Back to Template Selection
                 </Link>
-
+                <div>
+                    <p className="text-lg font-semibold pl-4">Questions answered: {questionCount > 0 ? questionCount : '0'}/15</p>
+                </div>
                 <button type='submit' className='flex items-center gap-1 py-2 px-4 border-none text-sm bg-green-600 text-white rounded-lg' onClick={SubmitReview} >
                     <GiClick size={21} />
                     Submit your review
                 </button>
             </div>
-            <Box sx={{ width: "83%", padding: "5px" }}>
-                <LinearProgressWithLabel value={progress} />
-            </Box>
+
             {templateQuestions.map((template) => (
                 <div key={template.id} className="bg-gray-100 shadow-lg rounded-lg pb-2 border mb-4">
                     <p className="mb-2 py-3 text-white rounded-t-md pl-4 font-semibold bg-blue-600">{template.headers}</p>
@@ -157,6 +144,7 @@ function YourComponent() {
                     ))}
                 </div>
             ))}
+
         </div>
     );
 }

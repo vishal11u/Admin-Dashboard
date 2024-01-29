@@ -21,7 +21,7 @@ export const options = {
 
 function RightChart() {
   return (
-    <div className='border h-[40vh] rounded-md shadow-lg bg-white'>
+    <div className='border h-[40vh] rounded-md shadow-lg bg-white overflow-hidden'>
       <Chart
         chartType="BarChart"
         width="100%"

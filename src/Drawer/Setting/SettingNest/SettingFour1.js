@@ -6,9 +6,11 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 function SettingFour1() {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = React.useState(false);
   const [password, setPassword] = React.useState(false);
 
@@ -21,6 +23,10 @@ function SettingFour1() {
 
   const handlePassword = (event) => {
     event.preventDefault();
+  }
+
+  const Gohome = () => {
+    navigate('/')
   }
 
   return (
@@ -65,9 +71,10 @@ function SettingFour1() {
               </InputAdornment>}
             label="Confirm Password" />
         </FormControl>
+        <Button variant='contained' onClick={Gohome}>Submit</Button>
       </Box>
+
     </div>
   )
 }
-
 export default SettingFour1;

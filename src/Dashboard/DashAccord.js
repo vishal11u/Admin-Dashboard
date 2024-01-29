@@ -8,7 +8,7 @@ import BasicPie from './DashPieChart';
 
 export default function DisabledAccordion() {
     return (
-        <div className="border shadow rounded-md h-[60vh] px-3 bg-white">
+        <div className="border shadow rounded-md h-[60vh] px-3 bg-white overflow-hidden">
             <h1 className="mt-2 font-semibold text-[17px] text-center">Popular Services</h1>
             <Accordion sx={{marginTop:"8px"}}>
                 <AccordionSummary

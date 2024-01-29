@@ -19,7 +19,7 @@ function SettingTwo2() {
         <TextField sx={{ width: "250px" }} id="outlined-basic" defaultValue="vishal11@gmail.com" label="Email" variant="outlined" />
       </div>
       <div>
-        <TextField sx={{ width: "520px" }} id="outlined-basic" label="Profile URL" variant="outlined" />
+        <TextField sx={{ width: "520px" }} id="outlined-basic" label="Profile URL" defaultValue="www.Demo.com" variant="outlined" />
         <TextField InputProps={{ sx: { height: 120 } }} sx={{ width: "520px",marginTop:"1.5rem" }} id="outlined-basic" defaultValue="Amrut Colony, Satara - 415002" label="Address" variant="outlined" />
       </div>
     </div>

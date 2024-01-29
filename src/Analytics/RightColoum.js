@@ -41,7 +41,7 @@ export const options = {
 
 export default function RightColoum() {
     return (
-        <div className='shadow-lg border rounded-md bg-white h-[45vh] p-2'>
+        <div className='shadow-lg border rounded-md bg-white h-[45vh] p-2 overflow-hidden'>
             <Chart
                 chartType="PieChart"
                 data={data}

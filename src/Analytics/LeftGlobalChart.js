@@ -14,7 +14,7 @@ export const data = [
 
 function LeftGlobalChart() {
   return (
-    <div className='shadow-lg border rounded-md bg-white h-[45vh]'>
+    <div className='shadow-lg border rounded-md bg-white h-[45vh] overflow-hidden'>
       <Chart
         chartEvents={[
           {

@@ -25,7 +25,6 @@ import { NavLink } from 'react-router-dom';
 import { FaHospitalUser } from "react-icons/fa6";
 import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
-import User from '../Component/User';
 import UserImg from '../Component/AvatarDash';
 import Logout from '../Component/Lofout';
 import { RiMenu2Line } from "react-icons/ri";
@@ -184,37 +183,6 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
     }),
 );
 
-function NestedList() {
-    const [open, setOpen] = React.useState(true);
-
-    const handleClick = () => {
-        setOpen(!open);
-    };
-
-    return (
-        <>
-            <ListItemButton onClick={handleClick}>
-                <ListItemIcon>
-                    <InboxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Inbox" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItemButton>
-
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItemButton sx={{ pl: 4 }}>
-                        <ListItemIcon>
-                            <StarBorder />
-                        </ListItemIcon>
-                        <ListItemText primary="Starred" />
-                    </ListItemButton>
-                </List>
-            </Collapse>
-        </>
-    );
-}
-
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -259,7 +227,6 @@ export default function MiniDrawer() {
                             <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />
                             <DrawerBadge />
                             <Date />
-                            <User />
                             <UserImg />
                             <Logout />
                         </Typography>
@@ -275,17 +242,17 @@ export default function MiniDrawer() {
                 </DrawerHeader>
                 <Divider />
 
-                <List>
+                <List >
                     {data.map((text) => (
                         <div key={text.id}>
                             <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
                                     sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
                                     <ListItemIcon
-                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', }}>
+                                        sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center',color:"#1F2933" }}>
                                         {text.icon}
                                     </ListItemIcon>
-                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 }} />
+                                    <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0 ,color:"#1F2933"}} />
                                 </ListItemButton>
                             </NavLink>
                             {text.subMenus && (
@@ -293,8 +260,8 @@ export default function MiniDrawer() {
                                     <List component="div" disablePadding>
                                         {text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                <ListItemButton sx={{ pl: 4, minHeight: 48 }}>
-                                                    <ListItemIcon>
+                                                <ListItemButton sx={{ pl: 4, minHeight: 48 ,}}>
+                                                    <ListItemIcon >
                                                         {subMenu.icon}
                                                     </ListItemIcon>
                                                     <ListItemText primary={subMenu.functionality} />
