@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth, provider } from '../Firbase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { signInWithPopup } from 'firebase/auth'
+import { signInWithPopup } from 'firebase/auth';
+import { toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = (props) => {
     const navigate = useNavigate();
@@ -20,11 +22,32 @@ const Login = (props) => {
             const userCredential = await createUserWithEmailAndPassword(auth, data, user);
             console.log("register", userCredential.user);
             setNotify("create")
-            alert("You Login")
+            toast.success('Login Successfully', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
             navigate('/')
             props.setUserLogin(false)
         } catch (err) {
             console.log(err);
+            toast.warning('Alredy Have Account', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
         }
         if (data.length === 0 || user.length === 0) {
             setError(true)
@@ -38,7 +61,19 @@ const Login = (props) => {
         signInWithPopup(auth, provider).then((result) => {
             setClick(result.user.email)
             localStorage.setItem("email", result.user.email);
+            toast.success('Login Successfully', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                transition: Bounce,
+            });
             navigate('/')
+            props.setUserLogin(false)
         }).catch((arr) => {
             console.log(arr);
         })
@@ -52,9 +87,9 @@ const Login = (props) => {
 
             <form className='px-3 md:px-16 py-4 '>
                 <div className='px-5  text-center text-4xl'>
-                    <h1><span className='text-yellow-400 text-6xl' >Log</span>.in</h1><hr />
+                    <h1><span className='text-yellow-400 text-6xl' >Login</span>.in</h1><hr />
                 </div>
-                <div className="mt-5">
+                <div className="mt-6">
                     <label>Email Address*</label>
                     <input type="email" name="email" className="h-10 px-1 border mt-1 rounded md:px-4 w-full bg-gray-50" placeholder='Email' onChange={e => setData(e.target.value)} />
                 </div>
@@ -62,7 +97,7 @@ const Login = (props) => {
                 {error && data.length <= 0 ?
                     <label className='text-red-500 text-[13px]'>Email cannot be Empty</label> : ""}
 
-                <div className="mt-3">
+                <div className="mt-4">
                     <label>Password*</label>
                     <input type="password" name="password" className="h-10 px-1 border mt-1 rounded md:px-4 w-full bg-gray-50" placeholder='🔐••••••' onChange={e => setUser(e.target.value)} />
                 </div>
@@ -72,7 +107,7 @@ const Login = (props) => {
 
                 <div className='mt-3'>
                     <div className=''>
-                        <input className='md:mr-2 mr-1' type='checkbox' />
+                        <input className='md:mr-2 mr-1' type='checkbox' onChange={e => setUser(e.target.value)} />
                         <label for="full_name">Remember Me.</label>
                     </div>
                 </div>
