@@ -80,13 +80,13 @@ const Login = (props) => {
     }
 
     return (
-        <div className='mt-[6%] pb-5 md:flex flex-wrap justify-center '  >
+        <div className='mt-[10%] md:mt-[4%] pb-5 md:flex flex-col items-center justify-center '>
             <div className=''>
                 <img className='md:h-[61vh]' src='https://img.freepik.com/free-vector/tablet-login-concept-illustration_114360-7883.jpg?size=626&ext=jpg&uid=R123874945&ga=GA1.1.241201418.1699171553&semt=ais' alt='' /><hr />
             </div>
 
-            <form className='px-3 md:px-16 py-4 '>
-                <div className='px-5  text-center text-4xl'>
+            <form className='px-3 md:px-16 py-4 text-center'>
+                {/* <div className='px-5  text-center text-4xl'>
                     <h1><span className='text-yellow-400 text-6xl' >Login</span>.in</h1><hr />
                 </div>
                 <div className="mt-6">
@@ -113,13 +113,16 @@ const Login = (props) => {
                 </div>
                 <div className='mt-4 text-center'>
                     <button className='text-white px-24 bg-black md:px-40 py-3' type='button' onClick={handleSubmit}>Login</button>
-                </div>
-                <div className='flex justify-center mt-3'>
-                    <button class="px-6 py-2 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150" onClick={goggleSubmit}>
-                        <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="" />
-                        <span>Login with Google</span>
+                </div> */}
+                <div className='flex justify-center items-center mt-1'>
+                    <button class=" py-2 px-7 md:px-6 md:py-2 shadow-lg border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150" onClick={goggleSubmit}>
+                        <img class="md:w-7 md:h-7 h-6 w-6" src="https://www.svgrepo.com/show/475656/google-color.svg" alt="" />
+                        <span className='md:text-[20px] font-medium'>Login with Google</span>
                     </button>
                 </div>
+                <p className='mt-1.5 text-[12px] md:text-[14px] '>Login with only
+                    <span className='text-red-600 ml-1'>Google Account</span>
+                </p>
             </form>
         </div>
     )

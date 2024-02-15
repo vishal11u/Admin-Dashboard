@@ -20,9 +20,7 @@ import Petient from '../Component/Petient';
 import Consultant from '../Component/Consultant';
 import Staff from '../Component/Staff';
 import Dashboard from '../Component/DashBoard';
-import { MdDashboard } from "react-icons/md";
 import { NavLink } from 'react-router-dom';
-import { FaHospitalUser } from "react-icons/fa6";
 import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
 import UserImg from '../Component/AvatarDash';
@@ -32,17 +30,20 @@ import TemplateQue from '../Drawer/TemplateQue';
 import Hospital from '../Component/Hospital';
 import Collapse from "@mui/material/Collapse";
 import { BiFullscreen } from "react-icons/bi";
-import { MdAppRegistration } from "react-icons/md";
-import { IoQrCode } from "react-icons/io5";
-import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 import DrawerBadge from '../Component/DrawerBadge';
-import { GrCompliance } from "react-icons/gr";
-import { LuActivitySquare } from "react-icons/lu";
+import Regstration from './assets/website.png';
+import DashBoard from './assets/dashboard (2).png';
+import Appointment from './assets/appointment.png';
+import Feedback from './assets/feedback.png';
+import Message from './assets/message.png';
+import QR from './assets/qr-code.png';
+import Calendar from './assets/calendar.png';
+import Analatics from './assets/analysis.png';
+import Settings from './assets/account.png';
+import Users from './assets/user.png';
+import Details from './assets/svg.png';
 import DashMain from '../Dashboard/DashMain';
 import SearchDash from './SearchDash';
-import { SlCalender } from "react-icons/sl";
-import { GrAnalytics } from "react-icons/gr";
-import { IoMdSettings } from "react-icons/io";
 import Calender from './Calender/Calender';
 import Setting from './Setting/Setting';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
@@ -50,69 +51,75 @@ import QRgen from '../Component/QRgen';
 import ScrollUp from '../ScroppUp';
 import DarkLight from './DarkLight';
 import Login from '../Login/Login'
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const data = [
     {
         id: 1,
         path: '/',
         name: "Dashboard",
-        icon: <MdDashboard size={22} />
+        icon: `${DashBoard}`
     },
     {
         id: 2,
-        path: "/appointment",
-        name: "Appointment",
-        icon: <MdAppRegistration size={26} />
+        path: "/registration",
+        name: "Registration",
+        icon: `${Regstration}`
     },
     {
         id: 3,
-        path: "/feedback",
-        name: "Activities ▼",
-        icon: <LuActivitySquare size={26} />,
+        path: "/appointment",
+        name: "Appointment",
+        icon: `${Appointment}`
+    },
+    {
+        id: 4,
+        name: "Activities ",
+        icon: `${Users}`,
         subMenus: [
             {
                 id: 5,
                 functionality: "Feedback",
                 path: "/feedback/staff",
-                icon: <QuestionAnswerIcon size={22} />,
-            },
-            {
-                id: 5,
-                functionality: "Answer Review",
-                path: "/feedback/answer",
-                icon: <GrCompliance size={22} />,
+                icon: `${Feedback}`,
             },
             {
                 id: 6,
+                functionality: "Answer Review",
+                path: "/feedback/answer",
+                icon: `${Message}`,
+            },
+            {
+                id: 7,
                 functionality: "QR Generate",
                 path: "/feedback/qr",
-                icon: <IoQrCode size={22} />,
+                icon: `${QR}`,
             },
         ],
     },
     {
-        id: 7,
+        id: 8,
         path: "/patient",
         name: "Patient Details",
-        icon: <FaHospitalUser size={22} />
-    },
-    {
-        id: 8,
-        path: "/calender",
-        name: "Calender",
-        icon: <SlCalender size={22} />
+        icon: `${Details}`
     },
     {
         id: 9,
-        path: "/analytics",
-        name: "Analytics",
-        icon: <GrAnalytics size={24} />
+        path: "/calender",
+        name: "Calender",
+        icon: `${Calendar}`
     },
     {
         id: 10,
+        path: "/analytics",
+        name: "Analytics",
+        icon: `${Analatics}`
+    },
+    {
+        id: 11,
         path: "/setting",
         name: "Settings",
-        icon: <IoMdSettings size={24} />
+        icon: `${Settings}`
     },
 ]
 
@@ -184,6 +191,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [collaps, setCollaps] = React.useState(false);
     const [fullScreen, setFullScreen] = React.useState(true)
     const [userLogin, setUserLogin] = React.useState(true)
     const handleDrawerOpen = () => {
@@ -193,6 +201,10 @@ export default function MiniDrawer() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+
+    const collapesOpen = () => {
+        setCollaps(!collaps)
+    }
 
     const FullScreen = () => {
         setFullScreen(!fullScreen);
@@ -243,36 +255,39 @@ export default function MiniDrawer() {
                             </IconButton>
                         </DrawerHeader>
                         <Divider />
-
                         <List >
                             {data.map((text) => (
                                 <div key={text.id}>
                                     <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
                                         <ListItemButton
-                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}>
+                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}
+                                            onClick={text.subMenus ? collapesOpen : undefined} >
                                             <ListItemIcon
-                                                sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
-                                                {text.icon}
+                                                sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
+                                                <img className='h-7 w-7' src={text.icon} alt='' />
                                             </ListItemIcon>
                                             <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
+                                            {text.subMenus && (
+                                                <IconButton sx={{ ml: 'auto', display: open && text.subMenus ? 'block' : 'none' }} >
+                                                    {text.subMenus && (collaps ? <FaChevronUp size={15} /> : <FaChevronDown size={15} />)}
+                                                </IconButton>
+                                            )}
                                         </ListItemButton>
                                     </NavLink>
-                                    {text.subMenus && (
-                                        <Collapse in={open} timeout="auto" unmountOnExit >
-                                            <List component="div" disablePadding>
-                                                {text.subMenus.map((subMenu) => (
-                                                    <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                        <ListItemButton sx={{ pl: 4, minHeight: 48, }}>
-                                                            <ListItemIcon >
-                                                                {subMenu.icon}
-                                                            </ListItemIcon>
-                                                            <ListItemText primary={subMenu.functionality} />
-                                                        </ListItemButton>
-                                                    </NavLink>
-                                                ))}
-                                            </List>
-                                        </Collapse>
-                                    )}
+                                    <Collapse timeout="auto" unmountOnExit in={collaps} >
+                                        <List component="div" disablePadding >
+                                            {text.subMenus && text.subMenus.map((subMenu) => (
+                                                <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
+                                                    <ListItemButton sx={{ pl: 5, minHeight: 48, }}>
+                                                        <ListItemIcon >
+                                                            <img className='h-7 w-7' src={subMenu.icon} alt='' />
+                                                        </ListItemIcon>
+                                                        <ListItemText primary={subMenu.functionality} />
+                                                    </ListItemButton>
+                                                </NavLink>
+                                            ))}
+                                        </List>
+                                    </Collapse>
                                 </div>
                             ))}
                         </List>
@@ -280,7 +295,6 @@ export default function MiniDrawer() {
 
                     <Box component="main" sx={{ flexGrow: 1 }}>
                         <DrawerHeader />
-
                         <ScrollUp />
                         <Routes>
                             <Route path='/' element={<DashMain />} />
