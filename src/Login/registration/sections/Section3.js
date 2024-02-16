@@ -62,17 +62,19 @@ function Section3({ register, errors }) {
     return (
         <div>
             <div className='flex justify-between space-y-2 space-x-2'>
-                <div className='w-[70%] space-y-2 h-[24.2vh]'>
+                <div className='w-[70%] space-y-2 '>
                     <LocalizationProvider dateAdapter={AdapterDayjs} >
                         <DemoContainer components={['DatePicker']} >
                             <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} />
                         </DemoContainer>
                     </LocalizationProvider>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "96.5%", marginTop: "15%" }} label="Last Name" variant="outlined"
+                    <TextField id="outlined-basic" size='small' sx={{ width: "96.1%", paddingTop:'5px'}} aria-label='Last Name' label="Last Name" variant="outlined"
                         {...register("Lastname")}
-                        error={errors.Lastname?.message} />
-                    <FormControl sx={{ padding: '5px 0px' }}>
-                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{ fontSize: '15px' }}>Gender</FormLabel>
+                        error={errors.Lastname?.message}
+                        //  InputLabelProps={{shrink: true}} 
+                         />
+                    <FormControl sx={{ padding: '5px 0px'}}>
+                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{ fontSize: '13px' }}>Gender</FormLabel>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group" >
                             <FormControlLabel value="female" control={<Radio size="small" />} label="Female" size="small" />
                             <FormControlLabel value="male" control={<Radio size="small" />} label="Male" size="small" />
@@ -80,7 +82,7 @@ function Section3({ register, errors }) {
                         </RadioGroup>
                     </FormControl>
                 </div>
-                <div className='border flex justify-center rounded-md items-center px-8 w-[30%]'>
+                <div className='border flex justify-center rounded-md items-center px-8 h-[20vh] w-[30%]'>
                     <Upload name="avatar" listType="picture-card" className="avatar-uploader" showUploadList={false}
                         action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188" beforeUpload={beforeUpload} onChange={handleChange}>
                         {imageUrl ? (
@@ -90,7 +92,7 @@ function Section3({ register, errors }) {
                     </Upload>
                 </div>
             </div>
-            <div className='flex justify-center w-full space-x-3 mt-2'>
+            <div className='flex justify-center w-full space-x-3 mt-'>
                 <Select options={options} placeholder="Natinality" className='w-full' />
                 <Select options={options} placeholder="Blood Group" className='w-full' />
             </div>

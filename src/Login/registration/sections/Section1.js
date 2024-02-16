@@ -35,15 +35,17 @@ function Section1({ register, errors, handleChangeGender, gender }) {
     return (
         <div className='mt-2'>
             <div className='w-full'>
-                <Select options={options} placeholder="Search By Patient Name/UHID/Mobile No." components={{ DropdownIndicator }} />
+                <Select options={options} className='z-10' placeholder="Search By Patient Name/UHID/Mobile No." components={{ DropdownIndicator }} />
             </div>
             <div className='mt-4 space-x-3 flex justify-between items-center'>
                 <FormControl sx={{ width: "100px" }} size='small'>
                     <InputLabel id="demo-simple-select-label" sx={{ color: errors.Prefix ? 'red' : 'gray' }} >
-                        Prefix
+                        Prefix*
                     </InputLabel>
                     <Selects labelId="demo-simple-select-label" id="demo-simple-select"
-                        value={gender} onChange={handleChangeGender} label="Prefix"
+                        value={gender}
+                        onChange={handleChangeGender}
+                        label="Prefix*"
                         {...register("gender")}
                         error={errors.Prefix?.message} >
                         <MenuItem value={10}>Mr.</MenuItem>

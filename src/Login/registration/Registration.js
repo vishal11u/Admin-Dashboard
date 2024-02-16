@@ -20,7 +20,7 @@ function Registration() {
         resolver: yupResolver(schema),
     });
 
-    const [gender, setGender] = useState('');
+    const [gender, setGender] = useState([]);
     const [userdata, setUserdata] = useState([]);
 
     const onSubmit = (data) => {
