@@ -21,7 +21,7 @@ const DropdownIndicator = (props) => {
     );
 };
 
-function Section1() {
+function Section1({ register, errors, handleChangeGender, gender }) {
     const options = [
         { id: 1, value: 'Alliance Multispeciality Hospital', label: 'Alliance Multispeciality Hospital' },
     ];
@@ -39,25 +39,32 @@ function Section1() {
             </div>
             <div className='mt-4 space-x-3 flex justify-between items-center'>
                 <FormControl sx={{ width: "100px" }} size='small'>
-                    <InputLabel id="demo-simple-select-label">Age</InputLabel>
-                    <Selects labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="Age" onChange={handleChange} >
-                        <MenuItem value={10}>Ten</MenuItem>
-                        <MenuItem value={20}>Twenty</MenuItem>
-                        <MenuItem value={30}>Thirty</MenuItem>
+                    <InputLabel id="demo-simple-select-label" sx={{ color: errors.Prefix ? 'red' : 'gray' }} >
+                        Prefix
+                    </InputLabel>
+                    <Selects labelId="demo-simple-select-label" id="demo-simple-select"
+                        value={gender} onChange={handleChangeGender} label="Prefix"
+                        {...register("gender")}
+                        error={errors.Prefix?.message} >
+                        <MenuItem value={10}>Mr.</MenuItem>
+                        <MenuItem value={20}>Miss</MenuItem>
+                        <MenuItem value={30}>Mrs.</MenuItem>
                     </Selects>
                 </FormControl>
+
                 <div>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "19.8vw" }} label="First Name" variant="outlined" />
+                    <TextField id="outlined-basic" size='small' sx={{ width: "19.8vw" }} label="First Name" variant="outlined"
+                        {...register("Firstname")} error={errors.Firstname?.message} />
                 </div>
             </div>
             <div className='mt-2 flex justify-between items-center'>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <DemoContainer components={['DatePicker']} >
-                        <DatePicker label="Date" sx={{ width: '19vw' }} slotProps={{textField:{size:"small"}}}/>
+                        <DatePicker label="Date" sx={{ width: '19vw' }} slotProps={{ textField: { size: "small" } }} />
                     </DemoContainer>
                 </LocalizationProvider>
                 <div>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "6vw",marginTop:"5px" }} label="Age" variant="outlined" />
+                    <TextField id="outlined-basic" size='small' sx={{ width: "6vw", marginTop: "5px" }} label="Age" variant="outlined" />
                 </div>
             </div>
             <div className='mt-4 space-x-3 flex justify-between items-center'>
@@ -70,7 +77,8 @@ function Section1() {
                     </Selects>
                 </FormControl>
                 <div>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "19.8vw" }} label="Mobile*" variant="outlined" />
+                    <TextField id="outlined-basic" size='small' sx={{ width: "19.8vw" }} label="Mobile*" variant="outlined"
+                        {...register("Mobileno")} error={errors.Mobileno?.message} />
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ const beforeUpload = (file) => {
     return isJpgOrPng && isLt2M;
 };
 
-function Section3() {
+function Section3({ register, errors }) {
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState();
 
@@ -68,9 +68,11 @@ function Section3() {
                             <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} />
                         </DemoContainer>
                     </LocalizationProvider>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "96.5%", marginTop: "15%" }} label="Middle Name" variant="outlined" />
-                    <FormControl sx={{padding:'5px 0px'}}>
-                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{fontSize:'15px'}}>Gender</FormLabel>
+                    <TextField id="outlined-basic" size='small' sx={{ width: "96.5%", marginTop: "15%" }} label="Last Name" variant="outlined"
+                        {...register("Lastname")}
+                        error={errors.Lastname?.message} />
+                    <FormControl sx={{ padding: '5px 0px' }}>
+                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{ fontSize: '15px' }}>Gender</FormLabel>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group" >
                             <FormControlLabel value="female" control={<Radio size="small" />} label="Female" size="small" />
                             <FormControlLabel value="male" control={<Radio size="small" />} label="Male" size="small" />

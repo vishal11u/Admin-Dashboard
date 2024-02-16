@@ -17,22 +17,29 @@ const DropdownIndicator = (props) => {
     );
 };
 
-function Section4() {
+function Section4({ errors, register, age, handleChange }) {
     const options = [
         { id: 1, value: 'Alliance Multispeciality Hospital', label: 'Alliance Multispeciality Hospital' },
     ];
 
-    const [age, setAge] = React.useState('');
-
-    const handleChange = (event) => {
-        setAge(event.target.value);
+    const customStyles = {
+        control: (provided, state) => ({
+            ...provided,
+            borderColor: state.selectProps.error ? '#f44336' : provided.borderColor,
+            color: state.selectProps.error ? '#f44336' : provided.color 
+        }),
+        placeholder: (provided, state) => ({
+            ...provided,
+            color: state.selectProps.error ? '#f44336' : provided.color 
+        })
     };
 
     return (
         <div className='mt-2 flex space-x-2 h-full'>
             <div className='w-[30%]'>
                 <div>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "27.2vw" }} label="House No/Building Name/Flat No.*" variant="outlined" />
+                    <TextField id="outlined-basic" size='small' sx={{ width: "27.2vw" }} label="House No/Building Name/Flat No.*" variant="outlined"
+                        {...register("Houseno")} error={errors.Houseno?.message} />
                 </div>
                 <div className='flex items-center space-x-2 mt-2'>
                     <FormControl sx={{ width: "300px" }} size='small'>
@@ -43,11 +50,12 @@ function Section4() {
                             <MenuItem value={30}>Thirty</MenuItem>
                         </Selects>
                     </FormControl>
-                    <Select options={options} placeholder="Pincode*" className='w-full' components={{ DropdownIndicator }} />
+                    <Select options={options} placeholder="Pincode*" className='w-full' components={{ DropdownIndicator }}
+                        {...register("Pincode")} error={errors.Pincode?.message} styles={customStyles} />
                 </div>
             </div>
             <div className='w-[30%]'>
-                <TextField id="outlined-basic" size='small' sx={{ width: "27.2vw" }} label="House No/Building Name/Flat No.*" variant="outlined" />
+                <TextField id="outlined-basic" size='small' sx={{ width: "27.2vw" }} label="Street Address" variant="outlined" />
                 <FormControl sx={{ width: "418px", marginTop: '9px' }} size='small'>
                     <InputLabel id="demo-simple-select-label">District</InputLabel>
                     <Selects labelId="demo-simple-select-label" id="demo-simple-select" value={age} label="District" onChange={handleChange} >
