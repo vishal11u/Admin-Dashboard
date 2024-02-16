@@ -236,7 +236,7 @@ export default function MiniDrawer() {
                                     <img className='h-10' src={Logo} alt='' />
                                     <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
                                 </Typography>
-                                <Typography sx={{ display: "flex", alignItems: "center" }}>
+                                <Typography sx={{ display: "flex", alignItems: "center",gap:'5px' }}>
                                     <SearchDash />
                                     <DarkLight />
                                     <BiFullscreen className='cursor-pointer mr-3' onClick={FullScreen} size={30} />

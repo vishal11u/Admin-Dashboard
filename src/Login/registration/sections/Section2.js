@@ -16,9 +16,9 @@ function Section2() {
                 <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Middle Name" variant="outlined" />
             </div>
             <div className='flex space-x-2 justify-between mt-3.5 items-center'>
-                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Middle Name" variant="outlined" />
-                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Middle Name" variant="outlined" />
-                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Middle Name" variant="outlined" />
+                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Year" variant="outlined" />
+                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Month" variant="outlined" />
+                <TextField id="outlined-basic" size='small' sx={{ width: "100%" }} label="Day" variant="outlined" />
             </div>
             <div className='w-full mt-5'>
                 <Select options={options} placeholder="Maritial Status" />

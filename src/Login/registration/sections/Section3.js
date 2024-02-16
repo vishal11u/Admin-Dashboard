@@ -9,9 +9,10 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
+import { LoadingOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import Select from 'react-select';
+import { IoPersonAdd } from "react-icons/io5";
 
 const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -52,7 +53,7 @@ function Section3() {
     };
     const uploadButton = (
         <button style={{ border: 0, background: "none", }} type="button" >
-            {loading ? <LoadingOutlined /> : <PlusOutlined />}
+            {loading ? <LoadingOutlined /> : <IoPersonAdd size={40} />}
             <div style={{ marginTop: 8, }} >
                 Upload
             </div>
@@ -61,19 +62,19 @@ function Section3() {
     return (
         <div>
             <div className='flex justify-between space-y-2 space-x-2'>
-                <div className='w-[70%] space-y-2'>
+                <div className='w-[70%] space-y-2 h-[24.2vh]'>
                     <LocalizationProvider dateAdapter={AdapterDayjs} >
                         <DemoContainer components={['DatePicker']} >
                             <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} />
                         </DemoContainer>
                     </LocalizationProvider>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "96.5%" }} label="Middle Name" variant="outlined" />
-                    <FormControl>
-                        <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                    <TextField id="outlined-basic" size='small' sx={{ width: "96.5%", marginTop: "15%" }} label="Middle Name" variant="outlined" />
+                    <FormControl sx={{padding:'5px 0px'}}>
+                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{fontSize:'15px'}}>Gender</FormLabel>
                         <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group" >
-                            <FormControlLabel value="female" control={<Radio />} label="Female" />
-                            <FormControlLabel value="male" control={<Radio />} label="Male" />
-                            <FormControlLabel value="other" control={<Radio />} label="Other" />
+                            <FormControlLabel value="female" control={<Radio size="small" />} label="Female" size="small" />
+                            <FormControlLabel value="male" control={<Radio size="small" />} label="Male" size="small" />
+                            <FormControlLabel value="other" control={<Radio size="small" />} label="Other" size="small" />
                         </RadioGroup>
                     </FormControl>
                 </div>
@@ -88,8 +89,8 @@ function Section3() {
                 </div>
             </div>
             <div className='flex justify-center w-full space-x-3 mt-2'>
-                <Select options={options} placeholder="Maritial Status" className='w-full' />
-                <Select options={options} placeholder="Maritial Status" className='w-full' />
+                <Select options={options} placeholder="Natinality" className='w-full' />
+                <Select options={options} placeholder="Blood Group" className='w-full' />
             </div>
         </div>
     )

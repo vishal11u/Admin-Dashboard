@@ -8,7 +8,7 @@ function App() {
   useEffect(() => {
     setTimeout(() => {
       setLoader(false)
-    }, 2500)
+    }, 1500)
   })
 
   return (

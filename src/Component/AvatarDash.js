@@ -47,7 +47,7 @@ export default function BadgeAvatars() {
             </Stack>
             <div className="text-[13px]">
                 <h1>Good Day</h1>
-                <p>Mr.User Name</p>
+                <p>Super Admin</p>
             </div>
         </div>
     );
