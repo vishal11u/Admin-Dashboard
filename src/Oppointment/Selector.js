@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Select from 'react-select';
 
 const MyComponent = ({ selectedDepData, setSelectedDepData }) => {
@@ -44,10 +44,9 @@ function TableOp({ selectedDepData, setSelectedDepData }) {
             {table.map((item) => (
                 <button
                     key={item.id}
-                    className={`border w-full text-left py-2 px-4 transition-all ${selectedDepData.includes(item.department) ? 'bg-gray-200 border border-white' : ''}`}
+                    className={`border w-full text-left py-2 px-4 transition-all ${selectedDepData.includes(item.department) ? 'bg-orange-400 border border-white' : ''}`}
                     type='button'
-                    onClick={() => handleDepDataSelect(item.department)}
-                >
+                    onClick={() => handleDepDataSelect(item.department)}>
                     {item.department}
                 </button>
             ))}

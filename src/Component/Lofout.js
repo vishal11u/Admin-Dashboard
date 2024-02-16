@@ -1,6 +1,8 @@
 import React from 'react';
 import { MdLogout } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {} from '../redux/Slice'
 
 function Logout() {
   const navigate = useNavigate();

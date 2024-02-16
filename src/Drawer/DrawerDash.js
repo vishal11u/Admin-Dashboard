@@ -52,6 +52,7 @@ import ScrollUp from '../ScroppUp';
 import DarkLight from './DarkLight';
 import Login from '../Login/Login'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import Registration from '../Login/registration/Registration';
 
 const data = [
     {
@@ -220,8 +221,8 @@ export default function MiniDrawer() {
     console.log("userLogin", userLogin);
     return (
         <>
-            {userLogin ?
-                <Login userLogin={userLogin} setUserLogin={setUserLogin} /> :
+            {/* {userLogin ?
+                <Login userLogin={userLogin} setUserLogin={setUserLogin} /> : */}
                 <Box sx={{ display: 'flex' }}>
                     <CssBaseline />
                     <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
@@ -269,7 +270,7 @@ export default function MiniDrawer() {
                                             <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
                                             {text.subMenus && (
                                                 <IconButton sx={{ ml: 'auto', display: open && text.subMenus ? 'block' : 'none' }} >
-                                                    {text.subMenus && (collaps ? <FaChevronUp size={15} /> : <FaChevronDown size={15} />)}
+                                                    {text.subMenus && (collaps ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />)}
                                                 </IconButton>
                                             )}
                                         </ListItemButton>
@@ -278,8 +279,8 @@ export default function MiniDrawer() {
                                         <List component="div" disablePadding >
                                             {text.subMenus && text.subMenus.map((subMenu) => (
                                                 <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                    <ListItemButton sx={{ pl: 5, minHeight: 48, }}>
-                                                        <ListItemIcon >
+                                                    <ListItemButton sx={{ pl: 5.5, minHeight: 48, }}>
+                                                        <ListItemIcon sx={{mr:-1.5}}>
                                                             <img className='h-7 w-7' src={subMenu.icon} alt='' />
                                                         </ListItemIcon>
                                                         <ListItemText primary={subMenu.functionality} />
@@ -299,6 +300,7 @@ export default function MiniDrawer() {
                         <Routes>
                             <Route path='/' element={<DashMain />} />
                             <Route path='/appointment' element={<Dashboard />} />
+                            <Route path='/registration' element={<Registration />} />
                             <Route path='/feedback' element={<FeedBack />}>
                                 <Route path='consult' index element={<Consultant />} />
                                 <Route path='staff' element={<Staff />} />
@@ -313,7 +315,7 @@ export default function MiniDrawer() {
                         </Routes>
                     </Box>
                 </Box>
-            }
+            {/* } */}
         </>
     );
 }

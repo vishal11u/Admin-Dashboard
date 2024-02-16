@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import nameReducer from './nameSlice'; 
 
-const rootReducer = combineReducers({
+const Store = combineReducers({
     name: nameReducer,
 });
 
-export default rootReducer;
+export default Store;

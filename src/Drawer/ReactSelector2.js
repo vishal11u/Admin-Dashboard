@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select, { components } from 'react-select';
-import { FaSearch } from 'react-icons/fa'; // Assuming you're using Font Awesome icons
+import { FaSearch } from 'react-icons/fa'; 
 
 const DropdownIndicator = (props) => {
   return (
