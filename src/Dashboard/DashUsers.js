@@ -238,7 +238,6 @@ function DashUsers() {
                             <th scope="col" className="px-6 py-4 font-medium text-center border">Age</th>
                             <th scope="col" className="px-6 py-4 font-medium border">Email</th>
                             <th scope="col" className="px-4 py-4 font-medium text-center border">View</th>
-                            <th scope="col" className="px-4 py-4 font-medium text-center border">Edit</th>
                             <th scope="col" className="px-3 py-4 font-medium text-center border">Delete</th>
                         </tr>
                     </thead>
@@ -260,11 +259,6 @@ function DashUsers() {
                                 <td className=" text-center py-2 ">
                                     <button className='py-2 rounded-md px-2 shadow-lg text-white bg-green-500' type='button' onClick={() => handleView(index)}>
                                         <FaEye size={20} />
-                                    </button>
-                                </td>
-                                <td className=" text-center py-2 ">
-                                    <button className='py-2 rounded-md px-2 shadow-lg text-white bg-blue-600' type='button' onClick={() => handleEdit(index)}>
-                                        <FaPen size={20} />
                                     </button>
                                 </td>
                                 <td className="px- text-center py-2">

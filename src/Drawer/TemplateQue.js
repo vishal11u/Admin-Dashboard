@@ -115,7 +115,7 @@ function YourComponent() {
                     Back to Template Selection
                 </Link>
                 <div>
-                    <p className="text-lg font-semibold pl-4">Questions answered: {questionCount > 0 ? questionCount : '0'}/15</p>
+                    <p className="text-lg font-semibold pl-4">Questions answered: {questionCount > 0 ? questionCount : '0'}/16</p>
                 </div>
                 <button type='submit' className='flex items-center gap-1 py-2 px-4 border-none text-sm bg-green-600 text-white rounded-lg' onClick={SubmitReview} >
                     <GiClick size={21} />

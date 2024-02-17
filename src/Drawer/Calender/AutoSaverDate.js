@@ -5,12 +5,15 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-// import { IoMdClock } from "react-icons/io";
-import { FaPen ,FaTrash} from "react-icons/fa";
+import { IoMdClock } from "react-icons/io";
+import { FaPen, FaTrash } from "react-icons/fa";
 
 export default function StaticDatePickerLandscape() {
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
-    const [events, setEvents] = useState({});
+    const [events, setEvents] = useState(() => {
+        const storedEvents = localStorage.getItem('events');
+        return storedEvents ? JSON.parse(storedEvents) : {};
+    });
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [eventText, setEventText] = useState('');
     const [selectedDateKey, setSelectedDateKey] = useState('');
@@ -22,6 +25,10 @@ export default function StaticDatePickerLandscape() {
             clearInterval(timerID);
         };
     }, []);
+
+    useEffect(() => {
+        localStorage.setItem('events', JSON.stringify(events));
+    }, [events]);
 
     const tick = () => {
         setCurrentDateTime(new Date());
@@ -105,10 +112,10 @@ export default function StaticDatePickerLandscape() {
 
     return (
         <div className='w-full'>
-            {/* <div className='text-center py-2 text-xl font-medium w-full bg-gray-900 text-white'>
+            <div className='text-center py-2 text-xl font-medium w-full bg-gray-900 text-white'>
                 <IoMdClock className='w-full mb-1' size={50} />
                 {`Current Date & Time: ${currentDateTime.toLocaleString()}`}
-            </div> */}
+            </div>
             <div className='p-5 flex w-full justify-center space-x-10 '>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <div className='w-[30vw]'>

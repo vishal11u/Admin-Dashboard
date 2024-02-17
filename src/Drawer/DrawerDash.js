@@ -50,81 +50,123 @@ import AnalyticsMain from '../Analytics/AnalyticsMain';
 import QRgen from '../Component/QRgen';
 import ScrollUp from '../ScroppUp';
 import DarkLight from './DarkLight';
-import Login from '../Login/Login'
+// import Login from '../Login/Login'
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Registration from '../Login/registration/Registration';
+import Tooltip from '@mui/material/Tooltip';
 
 const data = [
     {
         id: 1,
         path: '/',
         name: "Dashboard",
-        icon: `${DashBoard}`
+        icon: `${DashBoard}`,
     },
     {
         id: 2,
-        path: "/registration",
         name: "Registration",
-        icon: `${Regstration}`
-    },
-    {
-        id: 3,
-        path: "/appointment",
-        name: "Appointment",
-        icon: `${Appointment}`
+        icon: `${Regstration}`,
+        subMenus: [
+            {
+                id: 3,
+                functionality: "Pre Registration",
+                path: "/registration/preregistration",
+                icon: `${Feedback}`,
+            },
+        ]
     },
     {
         id: 4,
+        name: "Appointment",
+        icon: `${Appointment}`,
+        subMenus: [
+            {
+                id: 5,
+                functionality: "Book Appointment",
+                path: "/appointment/bookappointment",
+                icon: `${Feedback}`,
+            },
+        ]
+    },
+    {
+        id: 6,
         name: "Activities ",
         icon: `${Users}`,
         subMenus: [
             {
-                id: 5,
+                id: 7,
                 functionality: "Feedback",
-                path: "/feedback/staff",
+                path: "activity/feedback/staff",
                 icon: `${Feedback}`,
             },
             {
-                id: 6,
+                id: 8,
                 functionality: "Answer Review",
-                path: "/feedback/answer",
+                path: "/activity/feedback/answer",
                 icon: `${Message}`,
             },
             {
-                id: 7,
+                id: 9,
                 functionality: "QR Generate",
-                path: "/feedback/qr",
+                path: "/activity/feedback/qr",
                 icon: `${QR}`,
             },
         ],
     },
     {
-        id: 8,
-        path: "/patient",
-        name: "Patient Details",
-        icon: `${Details}`
-    },
-    {
-        id: 9,
-        path: "/calender",
-        name: "Calender",
-        icon: `${Calendar}`
-    },
-    {
         id: 10,
-        path: "/analytics",
-        name: "Analytics",
-        icon: `${Analatics}`
+        name: "Details",
+        icon: `${Details}`,
+        subMenus: [
+            {
+                id: 11,
+                functionality: "Patient Details",
+                path: "/details/patientdetails",
+                icon: `${Feedback}`,
+            },
+        ]
     },
     {
-        id: 11,
-        path: "/setting",
-        name: "Settings",
-        icon: `${Settings}`
+        id: 12,
+        name: "Analytics",
+        icon: `${Analatics}`,
+        subMenus: [
+            {
+                id: 13,
+                functionality: "Patient Analysis",
+                path: "/analytics/patientanalysis",
+                icon: `${Feedback}`,
+            },
+        ]
     },
+    {
+        id: 14,
+        name: "Settings",
+        icon: `${Settings}`,
+        subMenus: [
+            {
+                id: 15,
+                functionality: "Staff Profile",
+                path: "/setting/staffprofile",
+                icon: `${Feedback}`,
+            },
+            {
+                id: 16,
+                functionality: "Doctors Profile",
+                path: "/setting/doctorprofile",
+                icon: `${Feedback}`,
+            }
+        ]
+    },
+    {
+        id: 17,
+        path: "/hospital/calender",
+        name: "Calender",
+        icon: `${Calendar}`,
+    }
 ]
 
-const drawerWidth = 220;
+const drawerWidth = 245;
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -192,46 +234,41 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [collaps, setCollaps] = React.useState(false);
-    const [fullScreen, setFullScreen] = React.useState(true)
-    const [userLogin, setUserLogin] = React.useState(true)
+    const [openCollapseId, setOpenCollapseId] = React.useState(null);
+    const [fullScreen, setFullScreen] = React.useState(true);
+
     const handleDrawerOpen = () => {
         setOpen(true);
     };
 
     const handleDrawerClose = () => {
         setOpen(false);
-        setCollaps(false)
+        setOpenCollapseId(false);
     };
 
-    const collapesOpen = () => {
-        setCollaps(!collaps)
-        setOpen(true)
-    }
+    const toggleCollapse = (id) => {
+        setOpenCollapseId((prevId) => (prevId === id ? null : id));
+        setOpen(true);
+    };
+
 
     const FullScreen = () => {
         setFullScreen(!fullScreen);
-        console.log("fullScreen", fullScreen);
         if (fullScreen) {
-            console.log("iffullScreen");
             document.body.requestFullscreen();
         } else {
-            console.log("elsefullScreen", fullScreen);
             document.exitFullscreen();
         }
     };
-    console.log("userLogin", userLogin);
 
     return (
         <>
-            {/* {userLogin ?
-                <Login userLogin={userLogin} setUserLogin={setUserLogin} /> : */}
             <Box sx={{ display: 'flex' }}>
                 <CssBaseline />
                 <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
-                    <Toolbar >
+                    <Toolbar>
                         <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
-                            sx={{ marginRight: 5, ...(open && { display: 'none' }), }} >
+                            sx={{ marginRight: 5, ...(open && { display: 'none' }), }}>
                             <RiMenu2Line size={30} />
                         </IconButton>
                         <div className='flex justify-between w-full items-center'>
@@ -262,27 +299,29 @@ export default function MiniDrawer() {
                     <List >
                         {data.map((text) => (
                             <div key={text.id}>
-                                <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
-                                    <ListItemButton
-                                        sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}
-                                        onClick={text.subMenus ? collapesOpen : undefined} >
-                                        <ListItemIcon
-                                            sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
-                                            <img className='h-7 w-7' src={text.icon} alt='' />
-                                        </ListItemIcon>
-                                        <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
-                                        {text.subMenus && (
-                                            <IconButton sx={{ ml: 'auto', display: open && text.subMenus ? 'block' : 'none' }} >
-                                                {text.subMenus && (collaps ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />)}
-                                            </IconButton>
-                                        )}
-                                    </ListItemButton>
-                                </NavLink>
-                                <Collapse timeout="auto" unmountOnExit in={collaps} >
+                                <Tooltip title={text.name} placement="right" arrow>
+                                    <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
+                                        <ListItemButton
+                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}
+                                            onClick={() => text.subMenus && toggleCollapse(text.id)}>
+                                            <ListItemIcon
+                                                sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
+                                                <img className='h-7 w-7' src={text.icon} alt='' />
+                                            </ListItemIcon>
+                                            <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
+                                            {text.subMenus && (
+                                                <IconButton sx={{ ml: 'auto', display: open && text.subMenus ? 'block' : 'none' }} >
+                                                    {text.subMenus && (openCollapseId === text.id ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />)}
+                                                </IconButton>
+                                            )}
+                                        </ListItemButton>
+                                    </NavLink>
+                                </Tooltip>
+                                <Collapse timeout="auto" unmountOnExit in={openCollapseId === text.id}>
                                     <List component="div" disablePadding >
                                         {text.subMenus && text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                <ListItemButton sx={{ pl: 2, minHeight: 48, }}>
+                                                <ListItemButton sx={{ pl: 2.7, minHeight: 48, }}>
                                                     <ListItemIcon>
                                                         {/* <img className='h-7 w-7' src={subMenu.icon} alt='' /> */}
                                                     </ListItemIcon>
@@ -302,23 +341,23 @@ export default function MiniDrawer() {
                     <ScrollUp />
                     <Routes>
                         <Route path='/' element={<DashMain />} />
-                        <Route path='/appointment' element={<Dashboard />} />
-                        <Route path='/registration' element={<Registration />} />
-                        <Route path='/feedback' element={<FeedBack />}>
+                        <Route path='/appointment/bookappointment' element={<Dashboard />} />
+                        <Route path='/registration/preregistration' element={<Registration />} />
+                        <Route path='/activity/feedback' element={<FeedBack />}>
                             <Route path='consult' index element={<Consultant />} />
                             <Route path='staff' element={<Staff />} />
                             <Route path='patient' element={<Petient />} />
                         </Route>
-                        <Route path='/feedback/answer' element={<TemplateQue />} />
-                        <Route path='/feedback/qr' element={<QRgen />} />
-                        <Route path='/patient' element={<Hospital />} />
-                        <Route path='/calender' element={<Calender />} />
-                        <Route path='/setting' element={<Setting />} />
-                        <Route path='/analytics' element={<AnalyticsMain />} />
+                        <Route path='/activity/feedback/answer' element={<TemplateQue />} />
+                        <Route path='/activity/feedback/qr' element={<QRgen />} />
+                        <Route path='/details/patientdetails' element={<Hospital />} />
+                        <Route path='/hospital/calender' element={<Calender />} />
+                        <Route path='/setting/staffprofile' element={<Setting />} />
+                        <Route path='/analytics/patientanalysis' element={<AnalyticsMain />} />
                     </Routes>
                 </Box>
             </Box>
-            {/* } */}
         </>
     );
 }
+

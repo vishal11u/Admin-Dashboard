@@ -30,7 +30,7 @@ export default function RadioButtons() {
                     name="radio-buttons"
                     inputProps={{ 'aria-label': 'B' }}
                 />
-                <p>PPD</p>
+                <p>IPD</p>
             </div>
         </div >
     );
