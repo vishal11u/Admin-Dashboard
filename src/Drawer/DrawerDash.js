@@ -275,8 +275,8 @@ export default function MiniDrawer() {
                         </Tooltip>
                         <div className='flex justify-between w-full items-center'>
                             <Typography className='flex items-center space-x-2'>
-                                <img className='h-10' src={Logo} alt='' />
-                                <h1 className='text-[20px] flex items-center'><span className='text-purple-600 text-[30px] font-semibold'>V</span>- Healthcare.</h1>
+                                {/* <img className='h-10' src={Logo} alt='' /> */}
+                                <h1 className='text-[23px] font-medium flex items-center text-green-500'><span className='text-white'>Health</span>care.</h1>
                             </Typography>
                             <Typography sx={{ display: "flex", alignItems: "center", gap: '5px' }}>
                                 <SearchDash />
@@ -293,9 +293,13 @@ export default function MiniDrawer() {
 
                 <Drawer variant="permanent" open={open} >
                     <DrawerHeader>
+                        <div className='flex justify-center items-center mx-4'>
+                            <img className='h-9 mr-0.5' src={Logo} alt='' />
+                            <span className='text-purple-600 text-[17px] flex justify-center items-center font-semibold'><span className='text-yellow-400 text-[25px]'>V-</span>health.</span>
+                        </div>
                         <Tooltip title='Close' placement="bottom" arrow>
                             <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
+                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={28} />}
                             </IconButton>
                         </Tooltip>
                     </DrawerHeader>
