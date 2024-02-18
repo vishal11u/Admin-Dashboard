@@ -150,12 +150,12 @@ const data = [
                 path: "/setting/staffprofile",
                 icon: `${Feedback}`,
             },
-            {
-                id: 16,
-                functionality: "Doctors Profile",
-                path: "/setting/doctorprofile",
-                icon: `${Feedback}`,
-            }
+            // {
+            //     id: 16,
+            //     functionality: "Doctors Profile",
+            //     path: "/setting/staffprofile",
+            //     icon: `${Feedback}`,
+            // }
         ]
     },
     {
@@ -267,10 +267,12 @@ export default function MiniDrawer() {
                 <CssBaseline />
                 <AppBar sx={{ backgroundColor: "#3B3C36" }} position="fixed" open={open}>
                     <Toolbar>
-                        <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
-                            sx={{ marginRight: 5, ...(open && { display: 'none' }), }}>
-                            <RiMenu2Line size={30} />
-                        </IconButton>
+                        <Tooltip title='Open' placement="bottom" arrow>
+                            <IconButton color="inherit" aria-label="open drawer" onClick={handleDrawerOpen} edge="start"
+                                sx={{ marginRight: 5, ...(open && { display: 'none' }), }}>
+                                <RiMenu2Line size={30} />
+                            </IconButton>
+                        </Tooltip>
                         <div className='flex justify-between w-full items-center'>
                             <Typography className='flex items-center space-x-2'>
                                 <img className='h-10' src={Logo} alt='' />
@@ -291,9 +293,11 @@ export default function MiniDrawer() {
 
                 <Drawer variant="permanent" open={open} >
                     <DrawerHeader>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
-                        </IconButton>
+                        <Tooltip title='Close' placement="bottom" arrow>
+                            <IconButton onClick={handleDrawerClose}>
+                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={30} />}
+                            </IconButton>
+                        </Tooltip>
                     </DrawerHeader>
                     <Divider />
                     <List >
