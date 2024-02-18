@@ -224,8 +224,8 @@ function DashUsers() {
                     </div>)}
             </Modal>
             <div className=' items-center '>
-                <h1 className='text-[25px] font-semibold items-center'>
-                    LAST 24HR USERS
+                <h1 className='text-[20px] font-semibold items-center'>
+                    Todays Registrations:
                 </h1>
             </div>
 
