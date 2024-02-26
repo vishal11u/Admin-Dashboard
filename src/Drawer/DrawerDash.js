@@ -251,7 +251,6 @@ export default function MiniDrawer() {
         setOpen(true);
     };
 
-
     const FullScreen = () => {
         setFullScreen(!fullScreen);
         if (fullScreen) {
@@ -305,7 +304,7 @@ export default function MiniDrawer() {
                     </DrawerHeader>
                     <Divider />
                     <List >
-                        {data.map((text) => (
+                        {data.map((text,i) => (
                             <div key={text.id}>
                                 <Tooltip title={text.name} placement="right" arrow>
                                     <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
