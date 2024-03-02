@@ -9,7 +9,7 @@ function Logout() {
 
   const handleLogout = () => {
     console.log("Logging out...");
-    navigate('/login');
+    // navigate('/login');
   };
 
   return (

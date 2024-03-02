@@ -14,15 +14,15 @@ const DropdownIndicator = (props) => {
 };
 
 const options = [
-  { id: 1, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/feedback/answer' },
-  { id: 2, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/feedback/answer' },
-  { id: 3, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/feedback/answer' },
-  { id: 4, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/feedback/answer' },
-  { id: 5, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/feedback/answer' },
-  { id: 6, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/feedback/answer' },
-  { id: 7, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/feedback/answer' },
-  { id: 8, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/feedback/answer' },
-  { id: 9, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/feedback/answer' },
+  { id: 1, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/activity/feedback/answer' },
+  { id: 2, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/activity/feedback/answer' },
+  { id: 3, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/activity/feedback/answer' },
+  { id: 4, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/activity/feedback/answer' },
+  { id: 5, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/activity/feedback/answer' },
+  { id: 6, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/activity/feedback/answer' },
+  { id: 7, value: 'Radiology template for consultant', label: 'Radiology template for consultant', path: '/activity/feedback/answer' },
+  { id: 8, value: 'Pathology template for consultant', label: 'Pathology template for consultant', path: '/activity/feedback/answer' },
+  { id: 9, value: 'Cardiology template for consultant', label: 'Cardiology template for consultant', path: '/activity/feedback/answer' },
 
 ];
 
