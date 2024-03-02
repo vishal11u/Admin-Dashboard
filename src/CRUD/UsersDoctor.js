@@ -193,12 +193,13 @@ function UsersDoctor() {
     };
 
     const handleSearch = (searchName) => {
-        if (searchName !== null) {
+        if (searchName !== '') {
             const filteredDoctors = doctors.filter((doctor) =>
                 doctor.name.toLowerCase().includes(searchName.toLowerCase())
             );
             setDoctors(filteredDoctors);
         } else {
+            // setDoctors([...originalDoctors]);
             setDoctors([...doctors])
         }
 

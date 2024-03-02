@@ -14,6 +14,7 @@ import { message, Upload } from "antd";
 import Select from 'react-select';
 import { IoPersonAdd } from "react-icons/io5";
 import dayjs from 'dayjs';
+import { Typography } from '@mui/material';
 
 const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -66,20 +67,25 @@ function Section3({ register, errors }) {
                 <div className='w-[70%] space-y-2 '>
                     <LocalizationProvider dateAdapter={AdapterDayjs} >
                         <DemoContainer components={['DatePicker']} >
-                            <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} value={new dayjs()}/>
+                            <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} value={new dayjs()} />
                         </DemoContainer>
                     </LocalizationProvider>
-                    <TextField id="outlined-basic" size='small' sx={{ width: "96.1%", paddingTop:'5px'}} aria-label='Last Name' label="Last Name" variant="outlined"
+                    <TextField id="outlined-basic" size='small' sx={{ width: "96.1%", paddingTop: '5px' }} aria-label='Last Name' label="Last Name" variant="outlined"
                         {...register("Lastname")}
                         error={errors.Lastname?.message}
-                        //  InputLabelProps={{shrink: true}} 
-                         />
-                    <FormControl sx={{ padding: '5px 0px'}}>
-                        <FormLabel id="demo-row-radio-buttons-group-label" sx={{ fontSize: '13px' }}>Gender</FormLabel>
-                        <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group" >
-                            <FormControlLabel value="female" control={<Radio size="small" />} label="Female" size="small" />
-                            <FormControlLabel value="male" control={<Radio size="small" />} label="Male" size="small" />
-                            <FormControlLabel value="other" control={<Radio size="small" />} label="Other" size="small" />
+                    //  InputLabelProps={{shrink: true}} 
+                    />
+                    <FormControl sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '10px' ,paddingTop:'8.5px'}}>
+                        <FormLabel id="demo-row-radio-buttons-group-label">Gender</FormLabel>
+                        <RadioGroup
+                            row
+                            aria-labelledby="demo-row-radio-buttons-group-label"
+                            name="row-radio-buttons-group"
+                            sx={{ display: 'flex', flexDirection: 'row' }}
+                        >
+                            <FormControlLabel value="male" control={<Radio size="small" />} label={<Typography variant="body2">Male</Typography>} sx={{ fontSize: 'small' }} />
+                            <FormControlLabel value="female" control={<Radio size="small" />} label={<Typography variant="body2">Female</Typography>} sx={{ fontSize: 'small' }} />
+                            <FormControlLabel value="other" control={<Radio size="small" />} label={<Typography variant="body2">Other</Typography>} sx={{ fontSize: 'small' }} />
                         </RadioGroup>
                     </FormControl>
                 </div>
@@ -93,7 +99,7 @@ function Section3({ register, errors }) {
                     </Upload>
                 </div>
             </div>
-            <div className='flex justify-center w-full space-x-3 mt-'>
+            <div className='flex justify-center w-full space-x-3 mt-5'>
                 <Select options={options} placeholder="Natinality" className='w-full' />
                 <Select options={options} placeholder="Blood Group" className='w-full' />
             </div>

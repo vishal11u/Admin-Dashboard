@@ -7,10 +7,8 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Logo from './hospital-logo-vector-27-removebg-preview.png'
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,13 +19,13 @@ import Consultant from '../Component/Consultant';
 import Staff from '../Component/Staff';
 import Dashboard from '../Component/DashBoard';
 import { NavLink } from 'react-router-dom';
-import { FaEyeLowVision } from "react-icons/fa6";
 import Date from '../Component/Date';
 import UserImg from '../Component/AvatarDash';
 import Logout from '../Component/Lofout';
 import { RiMenu2Line } from "react-icons/ri";
 import TemplateQue from '../Drawer/TemplateQue';
 import Hospital from '../Component/Hospital';
+import PatientForm from '../CRUD/PatientForm';
 import Collapse from "@mui/material/Collapse";
 import { BiFullscreen } from "react-icons/bi";
 import DrawerBadge from '../Component/DrawerBadge';
@@ -45,12 +43,16 @@ import Details from './assets/svg.png';
 import DashMain from '../Dashboard/DashMain';
 import SearchDash from './SearchDash';
 import Calender from './Calender/Calender';
-import Setting from './Setting/Setting';
+import Setting from '../Component/dropdown/SteperParent';
+import CityDrop from '../Component/dropdown/CityDrop';
+import StateDrop from '../Component/dropdown/StateDrop';
+import CountryDrop from '../Component/dropdown/ApiDropDown';
 import AnalyticsMain from '../Analytics/AnalyticsMain';
 import QRgen from '../Component/QRgen';
 import ScrollUp from '../ScroppUp';
 import DarkLight from './DarkLight';
-// import Login from '../Login/Login'
+// import Login from '../Login/Login';
+import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Registration from '../Login/registration/Registration';
 import Tooltip from '@mui/material/Tooltip';
@@ -120,6 +122,12 @@ const data = [
         subMenus: [
             {
                 id: 11,
+                functionality: "Patient Form",
+                path: "/details/createpatient",
+                icon: `${Feedback}`,
+            },
+            {
+                id: 12,
                 functionality: "Patient Details",
                 path: "/details/patientdetails",
                 icon: `${Feedback}`,
@@ -127,12 +135,12 @@ const data = [
         ]
     },
     {
-        id: 12,
+        id: 13,
         name: "Analytics",
         icon: `${Analatics}`,
         subMenus: [
             {
-                id: 13,
+                id: 14,
                 functionality: "Patient Analysis",
                 path: "/analytics/patientanalysis",
                 icon: `${Feedback}`,
@@ -140,33 +148,39 @@ const data = [
         ]
     },
     {
-        id: 14,
-        name: "Settings",
+        id: 15,
+        name: "Masters",
         icon: `${Settings}`,
         subMenus: [
             {
-                id: 15,
-                functionality: "Staff Profile",
-                path: "/setting/staffprofile",
+                id: 16,
+                functionality: "Country Master",
+                path: "/setting/staffprofile/Country",
                 icon: `${Feedback}`,
             },
-            // {
-            //     id: 16,
-            //     functionality: "Doctors Profile",
-            //     path: "/setting/staffprofile",
-            //     icon: `${Feedback}`,
-            // }
+            {
+                id: 17,
+                functionality: "State Master",
+                path: "/setting/staffprofile/State",
+                icon: `${Feedback}`,
+            },
+            {
+                id: 18,
+                functionality: "City Master",
+                path: "/setting/staffprofile/City",
+                icon: `${Feedback}`,
+            }
         ]
     },
     {
-        id: 17,
+        id: 19,
         path: "/hospital/calender",
         name: "Calender",
         icon: `${Calendar}`,
     }
 ]
 
-const drawerWidth = 245;
+const drawerWidth = 250;
 const openedMixin = (theme) => ({
     width: drawerWidth,
     transition: theme.transitions.create('width', {
@@ -236,13 +250,26 @@ export default function MiniDrawer() {
     const [open, setOpen] = React.useState(false);
     const [openCollapseId, setOpenCollapseId] = React.useState([]);
     const [fullScreen, setFullScreen] = React.useState(true);
+    const [isClicked, setIsClicked] = React.useState(false);
+
+    const handleClick = (subMenuId) => {
+        if (isClicked === subMenuId) {
+            setIsClicked(null);
+        } else {
+            setIsClicked(subMenuId);
+        }
+    };
 
     const handleDrawerOpen = () => {
         setOpen(!open);
+        setOpenCollapseId([])
     };
 
     const handleDrawerClose = () => {
         setOpen(false);
+        if (window.innerWidth < 768) {
+            window.location.reload();
+        }
         setOpenCollapseId([]);
     };
 
@@ -301,7 +328,7 @@ export default function MiniDrawer() {
                     </Toolbar>
                 </AppBar>
 
-                <Drawer variant="permanent" open={open} >
+                <Drawer variant="permanent" open={open}  >
                     <DrawerHeader>
                         <div className='flex justify-center items-center mx-4'>
                             <img className='h-9 mr-0.5' src={Logo} alt='' />
@@ -309,18 +336,17 @@ export default function MiniDrawer() {
                         </div>
                         <Tooltip title='Close' placement="bottom" arrow>
                             <IconButton onClick={handleDrawerClose}>
-                                {theme.direction === 'rtl' ? <ChevronRightIcon /> : <FaEyeLowVision size={28} />}
+                                {theme.direction === 'rtl' ? '' : <FaCircleChevronLeft className='text-orange-500' size={24} />}
                             </IconButton>
                         </Tooltip>
                     </DrawerHeader>
-                    <Divider />
-                    <List >
+                    <List>
                         {data.map((text, i) => (
                             <div key={text.id}>
                                 <Tooltip title={text.name} placement="right" arrow>
                                     <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
                                         <ListItemButton
-                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5, }}
+                                            sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2 }}
                                             onClick={() => text.subMenus && toggleCollapse(text.id)}>
                                             <ListItemIcon
                                                 sx={{ minWidth: 0, mr: open ? 2 : 'auto', justifyContent: 'center', color: "#1F2933" }}>
@@ -339,12 +365,22 @@ export default function MiniDrawer() {
                                     <List component="div" disablePadding >
                                         {text.subMenus && text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>
-                                                <ListItemButton sx={{ pl: 2.7, minHeight: 48, }}>
+                                                <ListItemButton sx={{ pl: 3, minHeight: 48, }}>
                                                     <ListItemIcon>
                                                         {/* <img className='h-7 w-7' src={subMenu.icon} alt='' /> */}
                                                     </ListItemIcon>
-                                                    <ListItemText primary={subMenu.functionality} />
+                                                    <ListItemText
+                                                        sx={{
+                                                            borderLeft: isClicked === subMenu.id ? '2.2px solid orange' : 'none',
+                                                            paddingLeft: '7px',
+                                                            color: isClicked === subMenu.id ? '#0BA8E6' : 'inherit',
+                                                            cursor: 'pointer',
+                                                        }}
+                                                        primary={subMenu.functionality}
+                                                        onClick={() => handleClick(subMenu.id)}
+                                                    />
                                                 </ListItemButton>
+                                                {/* className={`border w-full text-left py-2 px-4 transition-all ${selectedDepData.includes(item.department) ? 'bg-orange-400 border border-white' : ''}`} */}
                                             </NavLink>
                                         ))}
                                     </List>
@@ -370,8 +406,11 @@ export default function MiniDrawer() {
                         <Route path='/activity/feedback/qr' element={<QRgen />} />
                         <Route path='/details/patientdetails' element={<Hospital />} />
                         <Route path='/hospital/calender' element={<Calender />} />
-                        <Route path='/setting/staffprofile' element={<Setting />} />
+                        <Route path='/setting/staffprofile/Country' element={<CountryDrop />} />
+                        <Route path='/setting/staffprofile/state' element={<StateDrop />} />
+                        <Route path='/setting/staffprofile/city' element={<CityDrop />} />
                         <Route path='/analytics/patientanalysis' element={<AnalyticsMain />} />
+                        <Route path='/details/createpatient' element={<PatientForm />} />
                     </Routes>
                 </Box>
             </Box>
