@@ -13,6 +13,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { message, Upload } from "antd";
 import Select from 'react-select';
 import { IoPersonAdd } from "react-icons/io5";
+import dayjs from 'dayjs';
 
 const getBase64 = (img, callback) => {
     const reader = new FileReader();
@@ -65,7 +66,7 @@ function Section3({ register, errors }) {
                 <div className='w-[70%] space-y-2 '>
                     <LocalizationProvider dateAdapter={AdapterDayjs} >
                         <DemoContainer components={['DatePicker']} >
-                            <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} />
+                            <DatePicker label="Date" sx={{ width: '24vw' }} slotProps={{ textField: { size: "small" } }} value={new dayjs()}/>
                         </DemoContainer>
                     </LocalizationProvider>
                     <TextField id="outlined-basic" size='small' sx={{ width: "96.1%", paddingTop:'5px'}} aria-label='Last Name' label="Last Name" variant="outlined"

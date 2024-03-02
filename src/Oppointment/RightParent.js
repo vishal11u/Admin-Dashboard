@@ -147,16 +147,16 @@ function ConsultationCharges({ selectedDepData }) {
         <div className='grid grid-cols-2 gap-3 w-[60%]'>
           <div>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Tariff</InputLabel>
-              <Select label="Tariff" defaultValue={1}>
-                <MenuItem value={"1"}  >Hospital</MenuItem>
+              <InputLabel id="demo-simple-select-label" size='small'>Tariff</InputLabel>
+              <Select label="Tariff" defaultValue={1} size='small'>
+                <MenuItem value={1}>Hospital</MenuItem>
               </Select>
             </FormControl>
           </div>
           <div>
             <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Week</InputLabel>
-              <Select label="Week" onChange={HandleChange} defaultValue={defaultDay} name="week">
+              <InputLabel id="demo-simple-select-label" size='small'>Week</InputLabel>
+              <Select label="Week" onChange={HandleChange} size='small' defaultValue={defaultDay} name="week">
                 <MenuItem value="Monday">Monday</MenuItem>
                 <MenuItem value="Tuesday">Tuesday</MenuItem>
                 <MenuItem value="Wednesday">Wednesday</MenuItem>
@@ -172,6 +172,7 @@ function ConsultationCharges({ selectedDepData }) {
               <DemoContainer components={['TimePicker']}>
                 <TimePicker
                   label="From Time"
+                  slotProps={{ textField: { size: 'small' } }}
                   viewRenderers={{ hours: renderTimeViewClock, minutes: renderTimeViewClock, seconds: renderTimeViewClock }}
                   onChange={AddFromTime}
                   className='w-[100%]'
@@ -184,6 +185,7 @@ function ConsultationCharges({ selectedDepData }) {
               <DemoContainer components={['TimePicker']}>
                 <TimePicker
                   label="To Time"
+                  slotProps={{ textField: { size: 'small' } }}
                   viewRenderers={{ hours: renderTimeViewClock, minutes: renderTimeViewClock, seconds: renderTimeViewClock }}
                   onChange={AddToTime}
                   className='w-[100%]'
@@ -194,6 +196,7 @@ function ConsultationCharges({ selectedDepData }) {
           <div>
             <TextField
               type='number'
+              size='small'
               name='consultationCharges'
               disabled={formData.isFree}
               value={formData.consultationCharges}
@@ -205,6 +208,7 @@ function ConsultationCharges({ selectedDepData }) {
           <div>
             <TextField
               type='number'
+              size='small'
               disabled={!formData.followUpApplication}
               onChange={HandleChange}
               name='followCharges'
@@ -233,8 +237,8 @@ function ConsultationCharges({ selectedDepData }) {
           </div>
           <div className='space-x-2'>
             <FormControlLabel control={<Checkbox checked={formData.isActive} onChange={HandleChange} name="isActive" />} label="Active" />
-            <Button variant='outlined' onClick={resetData}>Reset</Button>
-            <Button variant='contained' onClick={submitData}>Add</Button>
+            <Button sx={{border:'1.5px solid red',color:"red"}} onClick={resetData}>Reset</Button>
+            <Button variant='contained' onClick={submitData}>+ Add</Button>
           </div>
         </div>
       </div>
@@ -263,9 +267,9 @@ function ConsultationCharges({ selectedDepData }) {
                   <td className="px-6 py-4 ">{item.followUpApplication === true ? item.followCharges : 0}</td>
                   <td className="px-6 py-4 ">
                     {item.isActive ? (
-                      <button className='border-2 border-green-500 px-4 text-green-500 py-1 font-semibold rounded-md'>Active</button>
+                      <button className='border-2 border-green-600 px-4 text-green-600 py-1 font-semibold rounded-md'>Active</button>
                     ) : (
-                      <button className='border-2 border-red-500 px-4 text-red-500 font-semibold py-1 rounded-md'>Close</button>
+                      <button className='border-2 border-red-600 px-4 text-red-600 font-semibold py-1 rounded-md'>inActive</button>
                     )}
                   </td>
                   <td className="px-6 py-4">{item.isFree === true ? 'Yes' : 'No'}</td>

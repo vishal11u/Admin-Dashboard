@@ -234,20 +234,31 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-    const [openCollapseId, setOpenCollapseId] = React.useState(null);
+    const [openCollapseId, setOpenCollapseId] = React.useState([]);
     const [fullScreen, setFullScreen] = React.useState(true);
 
     const handleDrawerOpen = () => {
-        setOpen(true);
+        setOpen(!open);
     };
 
     const handleDrawerClose = () => {
         setOpen(false);
-        setOpenCollapseId(false);
+        setOpenCollapseId([]);
     };
 
+    // React.useEffect(() => {
+    //     console.log("openCollapseIdopenCollapseId", openCollapseId);
+    // }, [openCollapseId])
+
     const toggleCollapse = (id) => {
-        setOpenCollapseId((prevId) => (prevId === id ? null : id));
+        let ids = [...openCollapseId]
+        if (!ids.includes(id)) {
+            ids.push(id)
+            setOpenCollapseId(ids)
+        } else {
+            let modifiedIds = ids.filter((prev) => prev !== id)
+            setOpenCollapseId(modifiedIds)
+        }
         setOpen(true);
     };
 
@@ -304,7 +315,7 @@ export default function MiniDrawer() {
                     </DrawerHeader>
                     <Divider />
                     <List >
-                        {data.map((text,i) => (
+                        {data.map((text, i) => (
                             <div key={text.id}>
                                 <Tooltip title={text.name} placement="right" arrow>
                                     <NavLink to={text.path} disablePadding sx={{ display: 'block' }}>
@@ -318,13 +329,13 @@ export default function MiniDrawer() {
                                             <ListItemText primary={text.name} sx={{ opacity: open ? 1 : 0, color: "#1F2933" }} />
                                             {text.subMenus && (
                                                 <IconButton sx={{ ml: 'auto', display: open && text.subMenus ? 'block' : 'none' }} >
-                                                    {text.subMenus && (openCollapseId === text.id ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />)}
+                                                    {text.subMenus && (openCollapseId.includes(text.id) ? <FaChevronUp size={14} /> : <FaChevronDown size={14} />)}
                                                 </IconButton>
                                             )}
                                         </ListItemButton>
                                     </NavLink>
                                 </Tooltip>
-                                <Collapse timeout="auto" unmountOnExit in={openCollapseId === text.id}>
+                                <Collapse timeout="auto" unmountOnExit in={openCollapseId.includes(text.id)}>
                                     <List component="div" disablePadding >
                                         {text.subMenus && text.subMenus.map((subMenu) => (
                                             <NavLink to={subMenu.path} key={subMenu.id} disablePadding sx={{ display: 'block' }}>

@@ -10,6 +10,7 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import dayjs from 'dayjs';
 
 const DropdownIndicator = (props) => {
     return (
@@ -62,7 +63,7 @@ function Section1({ register, errors, handleChangeGender, gender }) {
             <div className='mt-2 flex justify-between items-center'>
                 <LocalizationProvider dateAdapter={AdapterDayjs} >
                     <DemoContainer components={['DatePicker']} >
-                        <DatePicker label="Date" sx={{ width: '19vw' }} slotProps={{ textField: { size: "small" } }} />
+                        <DatePicker label="Date" sx={{ width: '19vw' }} slotProps={{ textField: { size: "small" } }} value={new dayjs()}/>
                     </DemoContainer>
                 </LocalizationProvider>
                 <div>

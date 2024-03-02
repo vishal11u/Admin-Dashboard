@@ -11,7 +11,7 @@ const DropdownIndicator = (props) => {
     return (
         components.DropdownIndicator && (
             <components.DropdownIndicator {...props}>
-                <FaSearch className='text-black' />
+                <FaSearch className='text-gray-500' />
             </components.DropdownIndicator>
         )
     );
