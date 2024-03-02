@@ -279,7 +279,7 @@ function UsersDoctor() {
                             type='number'
                             id='specialty'
                             name='specialty'
-                            placeholder='Enter Department'
+                            placeholder='Enter Age'
                             value={formData.specialty}
                             onChange={handleChange}
                         />
@@ -292,7 +292,7 @@ function UsersDoctor() {
                             type='email'
                             id='email'
                             name='email'
-                            placeholder='Email'
+                            placeholder='Enter Email'
                             value={formData.email}
                             onChange={handleChange}
                         />
