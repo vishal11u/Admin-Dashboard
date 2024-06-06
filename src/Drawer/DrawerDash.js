@@ -43,7 +43,6 @@ import Details from './assets/svg.png';
 import DashMain from '../Dashboard/DashMain';
 import SearchDash from './SearchDash';
 import Calender from './Calender/Calender';
-import Setting from '../Component/dropdown/SteperParent';
 import CityDrop from '../Component/dropdown/CityDrop';
 import StateDrop from '../Component/dropdown/StateDrop';
 import CountryDrop from '../Component/dropdown/ApiDropDown';
@@ -56,6 +55,9 @@ import { FaCircleChevronLeft } from "react-icons/fa6";
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import Registration from '../Login/registration/Registration';
 import Tooltip from '@mui/material/Tooltip';
+import BillingAnalyze from '../Analytics/BillingAnalyze';
+import UsersDoctor from '../CRUD/UsersDoctor';
+import FeedBackAnal from '../Analytics/FeedBackAnal';
 
 const data = [
     {
@@ -121,12 +123,6 @@ const data = [
         icon: `${Details}`,
         subMenus: [
             {
-                id: 11,
-                functionality: "Patient Form",
-                path: "/details/createpatient",
-                icon: `${Feedback}`,
-            },
-            {
                 id: 12,
                 functionality: "Patient Details",
                 path: "/details/patientdetails",
@@ -145,27 +141,39 @@ const data = [
                 path: "/analytics/patientanalysis",
                 icon: `${Feedback}`,
             },
+            {
+                id: 15,
+                functionality: "Billing",
+                path: "/analytics/billing",
+                icon: `${Feedback}`,
+            },
+            {
+                id: 16,
+                functionality: "Feedback Analysis",
+                path: "/analytics/feedbackanalysis",
+                icon: `${Feedback}`,
+            }
         ]
     },
     {
-        id: 15,
+        id: 17,
         name: "Masters",
         icon: `${Settings}`,
         subMenus: [
             {
-                id: 16,
+                id: 18,
                 functionality: "Country Master",
                 path: "/setting/staffprofile/Country",
                 icon: `${Feedback}`,
             },
             {
-                id: 17,
+                id: 19,
                 functionality: "State Master",
                 path: "/setting/staffprofile/State",
                 icon: `${Feedback}`,
             },
             {
-                id: 18,
+                id: 20,
                 functionality: "City Master",
                 path: "/setting/staffprofile/City",
                 icon: `${Feedback}`,
@@ -173,7 +181,7 @@ const data = [
         ]
     },
     {
-        id: 19,
+        id: 20,
         path: "/hospital/calender",
         name: "Calender",
         icon: `${Calendar}`,
@@ -311,9 +319,13 @@ export default function MiniDrawer() {
                             </IconButton>
                         </Tooltip>
                         <div className='flex justify-between w-full items-center'>
-                            <Typography className='flex items-center space-x-2'>
-                                {/* <img className='h-10' src={Logo} alt='' /> */}
-                                <h1 className='text-[23px] font-medium flex items-center text-green-500'><span className='text-white'>Health</span>care.</h1>
+                            <Typography>
+                                {open ? null : (
+                                    <div className='flex justify-center items-center mx-4'>
+                                        <img className='h-9 mr-0.5' src={Logo} alt='' />
+                                        <span className='text-purple-600 text-[17px] flex justify-center items-center font-semibold'><span className='text-yellow-400 text-[25px]'>V-</span>health.</span>
+                                    </div>
+                                )}
                             </Typography>
                             <Typography sx={{ display: "flex", alignItems: "center", gap: '5px' }}>
                                 <SearchDash />
@@ -404,13 +416,15 @@ export default function MiniDrawer() {
                         </Route>
                         <Route path='/activity/feedback/answer' element={<TemplateQue />} />
                         <Route path='/activity/feedback/qr' element={<QRgen />} />
-                        <Route path='/details/patientdetails' element={<Hospital />} />
+                        <Route path='/details/patientdetails' element={<UsersDoctor />} />
                         <Route path='/hospital/calender' element={<Calender />} />
                         <Route path='/setting/staffprofile/Country' element={<CountryDrop />} />
                         <Route path='/setting/staffprofile/state' element={<StateDrop />} />
                         <Route path='/setting/staffprofile/city' element={<CityDrop />} />
                         <Route path='/analytics/patientanalysis' element={<AnalyticsMain />} />
                         <Route path='/details/createpatient' element={<PatientForm />} />
+                        <Route path='/analytics/billing' element={<BillingAnalyze />} />
+                        <Route path='/analytics/feedbackanalysis' element={<FeedBackAnal />} />
                     </Routes>
                 </Box>
             </Box>

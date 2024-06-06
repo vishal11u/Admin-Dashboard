@@ -210,7 +210,7 @@ function UsersDoctor() {
     // };
 
     return (
-        <div className="h-full">
+        <div className="h-[90vh] px-9">
             <Modal
                 title="Patient Details"
                 visible={viewModalOpen}
@@ -234,7 +234,7 @@ function UsersDoctor() {
                 </h1>
                 <div className='flex'>
                     <input
-                        className='py-2 px-2 border text-[18px] outline-none '
+                        className='py-2 px-2 border bg-white text-[18px] outline-none '
                         type='text'
                         placeholder='Search Patient Name..'
                         onChange={(e) => handleSearch(e.target.value)} />

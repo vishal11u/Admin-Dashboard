@@ -63,12 +63,12 @@ export default function StickyHeadTable() {
 
   return (
     <>
-    <div className='flex items-center justify-between'>
-      <TextField size='small' className='' sx={{ width: '30%' }} label='Search by Name/Mobileno.' variant='outlined' placeholder='Search by Name/Mobileno.' onChange={(e) => handleSearch(e.target.value)} />
-      <Link to='/details/createpatient'>
-        <button className='py-2 px-3 bg-blue-600 text-white rounded-md shadow-lg' >Add New</button>
-      </Link>
-    </div>
+      <div className='flex items-center justify-between'>
+        <TextField size='small' className='' sx={{ width: '40%' }} label='Search by Name.' variant='outlined' placeholder='Search by Name/Mobileno.' onChange={(e) => handleSearch(e.target.value)} />
+        {/* <Link to='/details/createpatient'>
+          <button className='py-2 px-3 bg-blue-600 text-white rounded-md shadow-lg' >Add New</button>
+        </Link> */}
+      </div>
       <Paper sx={{ width: '100%', overflow: 'hidden', height: '100%', marginTop: '3%' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
