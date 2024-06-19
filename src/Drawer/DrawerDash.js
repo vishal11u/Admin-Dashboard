@@ -425,7 +425,22 @@ export default function MiniDrawer() {
                             {
                                 id: '3',
                                 message: 'Hi {previousValue}, nice to meet you!',
-                                end: true,
+                                end: false,
+                            },
+                            {
+                                id: '4',
+                                message: 'Tell me your Age?',
+                                trigger: '5',
+                            },
+                            {
+                                id: '5',
+                                user: true,
+                                trigger: '6',
+                            },
+                            {
+                                id: '6',
+                                message: 'Your Age is {previousValue}!',
+                                end: false,
                             },
                         ]}
                         inputStyle={{
@@ -438,8 +453,8 @@ export default function MiniDrawer() {
                             // overflowY: 'scroll',
                             // height: '200px',
                             backgroundColor: '#f1f1f1',
-                            padding: '10px',
-                            border: '1px solid #ccc',
+                            // padding: '10px',
+                            // border: '1px solid #ccc',
                             borderRadius: '10px'
                         }}
                     />
