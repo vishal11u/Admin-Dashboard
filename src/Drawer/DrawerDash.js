@@ -58,6 +58,8 @@ import Tooltip from '@mui/material/Tooltip';
 import BillingAnalyze from '../Analytics/BillingAnalyze';
 import UsersDoctor from '../CRUD/UsersDoctor';
 import FeedBackAnal from '../Analytics/FeedBackAnal';
+import ChatBot from 'react-simple-chatbot';
+
 
 const data = [
     {
@@ -402,9 +404,45 @@ export default function MiniDrawer() {
                     </List>
                 </Drawer>
 
-                <Box component="main" sx={{ flexGrow: 1 }}>
+                <Box component="main" sx={{ flexGrow: 1, backgroundColor: 'white', height: '100%' }}>
                     <DrawerHeader />
                     <ScrollUp />
+                    <ChatBot
+                        headerTitle="Mr.Docto"
+                        recognitionEnable={true}
+                        floating={true}
+                        steps={[
+                            {
+                                id: '1',
+                                message: 'What is your name?',
+                                trigger: '2',
+                            },
+                            {
+                                id: '2',
+                                user: true,
+                                trigger: '3',
+                            },
+                            {
+                                id: '3',
+                                message: 'Hi {previousValue}, nice to meet you!',
+                                end: true,
+                            },
+                        ]}
+                        inputStyle={{
+                            backgroundColor: "white"
+                        }}
+                        // recognitionLang={'en'}
+                        botAvatar={"https://image.freepik.com/vetores-gratis/android-robo-medico_111928-2.jpg"}
+                        userAvatar={'https://static.vecteezy.com/system/resources/previews/000/662/702/original/vector-man-face-cartoon.jpg'}
+                        style={{
+                            // overflowY: 'scroll',
+                            // height: '200px',
+                            backgroundColor: '#f1f1f1',
+                            padding: '10px',
+                            border: '1px solid #ccc',
+                            borderRadius: '10px'
+                        }}
+                    />
                     <Routes>
                         <Route path='/' element={<DashMain />} />
                         <Route path='/appointment/bookappointment' element={<Dashboard />} />
