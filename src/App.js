@@ -12,7 +12,7 @@ function App() {
   })
 
   return (
-    <div>
+    <div className='bg-white'>
       {loader ? <Loader /> : <MiniDrawer />}
     </div>
   )

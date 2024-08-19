@@ -58,7 +58,7 @@ import Tooltip from '@mui/material/Tooltip';
 import BillingAnalyze from '../Analytics/BillingAnalyze';
 import UsersDoctor from '../CRUD/UsersDoctor';
 import FeedBackAnal from '../Analytics/FeedBackAnal';
-import ChatBot from 'react-simple-chatbot';
+// import ChatBot from '../chatbot/ChatBot';
 
 
 const data = [
@@ -283,10 +283,6 @@ export default function MiniDrawer() {
         setOpenCollapseId([]);
     };
 
-    // React.useEffect(() => {
-    //     console.log("openCollapseIdopenCollapseId", openCollapseId);
-    // }, [openCollapseId])
-
     const toggleCollapse = (id) => {
         let ids = [...openCollapseId]
         if (!ids.includes(id)) {
@@ -407,57 +403,7 @@ export default function MiniDrawer() {
                 <Box component="main" sx={{ flexGrow: 1, backgroundColor: 'white', height: '100%' }}>
                     <DrawerHeader />
                     <ScrollUp />
-                    <ChatBot
-                        headerTitle="Mr.Docto"
-                        recognitionEnable={true}
-                        floating={true}
-                        steps={[
-                            {
-                                id: '1',
-                                message: 'What is your name?',
-                                trigger: '2',
-                            },
-                            {
-                                id: '2',
-                                user: true,
-                                trigger: '3',
-                            },
-                            {
-                                id: '3',
-                                message: 'Hi {previousValue}, nice to meet you!',
-                                end: false,
-                            },
-                            {
-                                id: '4',
-                                message: 'Tell me your Age?',
-                                trigger: '5',
-                            },
-                            {
-                                id: '5',
-                                user: true,
-                                trigger: '6',
-                            },
-                            {
-                                id: '6',
-                                message: 'Your Age is {previousValue}!',
-                                end: false,
-                            },
-                        ]}
-                        inputStyle={{
-                            backgroundColor: "white"
-                        }}
-                        // recognitionLang={'en'}
-                        botAvatar={"https://image.freepik.com/vetores-gratis/android-robo-medico_111928-2.jpg"}
-                        userAvatar={'https://static.vecteezy.com/system/resources/previews/000/662/702/original/vector-man-face-cartoon.jpg'}
-                        style={{
-                            // overflowY: 'scroll',
-                            // height: '200px',
-                            backgroundColor: '#f1f1f1',
-                            // padding: '10px',
-                            // border: '1px solid #ccc',
-                            borderRadius: '10px'
-                        }}
-                    />
+                    {/* <ChatBot /> */}
                     <Routes>
                         <Route path='/' element={<DashMain />} />
                         <Route path='/appointment/bookappointment' element={<Dashboard />} />

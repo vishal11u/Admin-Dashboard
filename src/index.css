@@ -8,3 +8,13 @@
     font-family: "Poppins", sans-serif;
     scroll-behavior: smooth;
 }
+
+::-webkit-scrollbar{
+    width: 5px ;
+    height: 5px;
+    background-color: #E0FFFF;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #72A0C1;
+    border-radius: 15px;
+}
